@@ -22,7 +22,6 @@ namespace Hospital_Project
 
         }
 
-
-
+        
     }
 }
