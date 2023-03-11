@@ -12,8 +12,7 @@ namespace Hospital_Project
 {
     public partial class Form1 : Form
     {
-        private Button currentButton;
-        private Form activeForm;
+        
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +24,21 @@ namespace Hospital_Project
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Pacientbtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form2 pacient = new Form2();
+            pacient.ShowDialog();
+            this.Close();
+
+            
+        }
+
+        private void Workerbtn_Click(object sender, EventArgs e)
         {
 
         }

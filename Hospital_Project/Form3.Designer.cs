@@ -1,6 +1,6 @@
 ﻿namespace Hospital_Project
 {
-    partial class Form1
+    partial class Form3
     {
         /// <summary>
         /// Required designer variable.
@@ -47,10 +47,11 @@
             this.panel1.Controls.Add(this.Workerbtn);
             this.panel1.Controls.Add(this.Pacientbtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel1.Location = new System.Drawing.Point(0, 60);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 390);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 4;
             // 
             // Printbtn
             // 
@@ -87,7 +88,6 @@
             this.Workerbtn.TabIndex = 4;
             this.Workerbtn.Text = "Worker";
             this.Workerbtn.UseVisualStyleBackColor = true;
-            this.Workerbtn.Click += new System.EventHandler(this.Workerbtn_Click);
             // 
             // Pacientbtn
             // 
@@ -100,17 +100,17 @@
             this.Pacientbtn.TabIndex = 3;
             this.Pacientbtn.Text = "Pacient";
             this.Pacientbtn.UseVisualStyleBackColor = true;
-            this.Pacientbtn.Click += new System.EventHandler(this.Pacientbtn_Click);
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel3.Controls.Add(this.Homebtn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(800, 60);
-            this.panel3.TabIndex = 1;
+            this.panel3.TabIndex = 3;
             // 
             // Homebtn
             // 
@@ -124,7 +124,7 @@
             this.Homebtn.Text = "Main menu";
             this.Homebtn.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -132,9 +132,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
-            this.Name = "Form1";
-            this.Text = "main menu";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "Form3";
+            this.Text = "Form3";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -143,13 +142,13 @@
         }
 
         #endregion
+
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button Pacientbtn;
         private System.Windows.Forms.Button Printbtn;
         private System.Windows.Forms.Button Reservbtn;
         private System.Windows.Forms.Button Workerbtn;
+        private System.Windows.Forms.Button Pacientbtn;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button Homebtn;
     }
 }
-
