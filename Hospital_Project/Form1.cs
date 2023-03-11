@@ -12,6 +12,8 @@ namespace Hospital_Project
 {
     public partial class Form1 : Form
     {
+        private Button currentButton;
+        private Form activeForm;
         public Form1()
         {
             InitializeComponent();
@@ -22,6 +24,9 @@ namespace Hospital_Project
 
         }
 
-        
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
