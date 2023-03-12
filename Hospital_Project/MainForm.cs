@@ -45,5 +45,13 @@ namespace Hospital_Project
             pacient.ShowDialog();
             this.Close();
         }
+
+        private void Homebtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainForm pacient = new MainForm();
+            pacient.ShowDialog();
+            this.Close();
+        }
     }
 }
