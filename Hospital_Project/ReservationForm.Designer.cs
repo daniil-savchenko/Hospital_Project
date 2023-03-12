@@ -1,6 +1,6 @@
 ﻿namespace Hospital_Project
 {
-    partial class Form3
+    partial class ReservationForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form3";
+            this.Text = "Form4";
         }
 
         #endregion

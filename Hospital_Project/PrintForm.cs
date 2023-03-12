@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Hospital_Project
 {
-    public partial class Form2 : Form
+    public partial class PrintForm : Form
     {
-        public Form2()
+        public PrintForm()
         {
             InitializeComponent();
         }

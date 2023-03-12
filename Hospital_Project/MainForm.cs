@@ -10,10 +10,11 @@ using System.Windows.Forms;
 
 namespace Hospital_Project
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         
-        public Form1()
+        
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -31,16 +32,18 @@ namespace Hospital_Project
         private void Pacientbtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form2 pacient = new Form2();
+            PacientForm pacient = new PacientForm();
             pacient.ShowDialog();
             this.Close();
 
-            
         }
 
         private void Workerbtn_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            PacientForm pacient = new PacientForm();
+            pacient.ShowDialog();
+            this.Close();
         }
     }
 }

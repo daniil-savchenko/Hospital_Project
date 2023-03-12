@@ -1,6 +1,6 @@
 ﻿namespace Hospital_Project
 {
-    partial class Form2
+    partial class PacientForm
     {
         /// <summary>
         /// Required designer variable.
