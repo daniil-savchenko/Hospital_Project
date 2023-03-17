@@ -131,7 +131,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Name = "WorkerForm";
-            this.Text = "Form3";
+            this.Text = "Worker";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
