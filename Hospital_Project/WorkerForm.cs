@@ -48,5 +48,19 @@ namespace Hospital_Project
             pacient.ShowDialog();
             this.Close();
         }
+
+        private void Workerbtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            WorkerForm pacient = new WorkerForm();
+            pacient.ShowDialog();
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AddPos pacient = new AddPos();
+            pacient.ShowDialog();
+        }
     }
 }

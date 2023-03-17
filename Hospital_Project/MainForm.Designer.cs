@@ -28,68 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.Printbtn = new System.Windows.Forms.Button();
-            this.Reservbtn = new System.Windows.Forms.Button();
-            this.Workerbtn = new System.Windows.Forms.Button();
-            this.Pacientbtn = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.Homebtn = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.Pacientbtn = new System.Windows.Forms.Button();
+            this.Workerbtn = new System.Windows.Forms.Button();
+            this.Reservbtn = new System.Windows.Forms.Button();
+            this.Printbtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // panel3
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel1.Controls.Add(this.Printbtn);
-            this.panel1.Controls.Add(this.Reservbtn);
-            this.panel1.Controls.Add(this.Workerbtn);
-            this.panel1.Controls.Add(this.Pacientbtn);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 60);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 390);
-            this.panel1.TabIndex = 2;
+            this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(800, 60);
+            this.panel3.TabIndex = 1;
             // 
-            // Printbtn
+            // panel2
             // 
-            this.Printbtn.AutoSize = true;
-            this.Printbtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Printbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Printbtn.Location = new System.Drawing.Point(0, 234);
-            this.Printbtn.Name = "Printbtn";
-            this.Printbtn.Size = new System.Drawing.Size(200, 78);
-            this.Printbtn.TabIndex = 6;
-            this.Printbtn.Text = "Output Data";
-            this.Printbtn.UseVisualStyleBackColor = true;
-            this.Printbtn.Click += new System.EventHandler(this.Printbtn_Click);
-            // 
-            // Reservbtn
-            // 
-            this.Reservbtn.AutoSize = true;
-            this.Reservbtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Reservbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Reservbtn.Location = new System.Drawing.Point(0, 156);
-            this.Reservbtn.Name = "Reservbtn";
-            this.Reservbtn.Size = new System.Drawing.Size(200, 78);
-            this.Reservbtn.TabIndex = 5;
-            this.Reservbtn.Text = "Reservation";
-            this.Reservbtn.UseVisualStyleBackColor = true;
-            this.Reservbtn.Click += new System.EventHandler(this.Reservbtn_Click);
-            // 
-            // Workerbtn
-            // 
-            this.Workerbtn.AutoSize = true;
-            this.Workerbtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Workerbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Workerbtn.Location = new System.Drawing.Point(0, 78);
-            this.Workerbtn.Name = "Workerbtn";
-            this.Workerbtn.Size = new System.Drawing.Size(200, 78);
-            this.Workerbtn.TabIndex = 4;
-            this.Workerbtn.Text = "Worker";
-            this.Workerbtn.UseVisualStyleBackColor = true;
-            this.Workerbtn.Click += new System.EventHandler(this.Workerbtn_Click);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(200, 60);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(600, 390);
+            this.panel2.TabIndex = 3;
             // 
             // Pacientbtn
             // 
@@ -104,28 +68,57 @@
             this.Pacientbtn.UseVisualStyleBackColor = true;
             this.Pacientbtn.Click += new System.EventHandler(this.Pacientbtn_Click);
             // 
-            // panel3
+            // Workerbtn
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel3.Controls.Add(this.Homebtn);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(800, 60);
-            this.panel3.TabIndex = 1;
+            this.Workerbtn.AutoSize = true;
+            this.Workerbtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Workerbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Workerbtn.Location = new System.Drawing.Point(0, 78);
+            this.Workerbtn.Name = "Workerbtn";
+            this.Workerbtn.Size = new System.Drawing.Size(200, 78);
+            this.Workerbtn.TabIndex = 4;
+            this.Workerbtn.Text = "Worker";
+            this.Workerbtn.UseVisualStyleBackColor = true;
+            this.Workerbtn.Click += new System.EventHandler(this.Workerbtn_Click);
             // 
-            // Homebtn
+            // Reservbtn
             // 
-            this.Homebtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.Homebtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Homebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Homebtn.Location = new System.Drawing.Point(0, 0);
-            this.Homebtn.Name = "Homebtn";
-            this.Homebtn.Size = new System.Drawing.Size(200, 60);
-            this.Homebtn.TabIndex = 3;
-            this.Homebtn.Text = "Main menu";
-            this.Homebtn.UseVisualStyleBackColor = false;
-            this.Homebtn.Click += new System.EventHandler(this.Homebtn_Click);
+            this.Reservbtn.AutoSize = true;
+            this.Reservbtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Reservbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Reservbtn.Location = new System.Drawing.Point(0, 156);
+            this.Reservbtn.Name = "Reservbtn";
+            this.Reservbtn.Size = new System.Drawing.Size(200, 78);
+            this.Reservbtn.TabIndex = 5;
+            this.Reservbtn.Text = "Reservation";
+            this.Reservbtn.UseVisualStyleBackColor = true;
+            this.Reservbtn.Click += new System.EventHandler(this.Reservbtn_Click);
+            // 
+            // Printbtn
+            // 
+            this.Printbtn.AutoSize = true;
+            this.Printbtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Printbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Printbtn.Location = new System.Drawing.Point(0, 234);
+            this.Printbtn.Name = "Printbtn";
+            this.Printbtn.Size = new System.Drawing.Size(200, 78);
+            this.Printbtn.TabIndex = 6;
+            this.Printbtn.Text = "Output Data";
+            this.Printbtn.UseVisualStyleBackColor = true;
+            this.Printbtn.Click += new System.EventHandler(this.Printbtn_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel1.Controls.Add(this.Printbtn);
+            this.panel1.Controls.Add(this.Reservbtn);
+            this.panel1.Controls.Add(this.Workerbtn);
+            this.panel1.Controls.Add(this.Pacientbtn);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 60);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 390);
+            this.panel1.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -133,6 +126,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Name = "MainForm";
@@ -141,19 +135,18 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button Pacientbtn;
-        private System.Windows.Forms.Button Printbtn;
-        private System.Windows.Forms.Button Reservbtn;
-        private System.Windows.Forms.Button Workerbtn;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button Homebtn;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button Pacientbtn;
+        private System.Windows.Forms.Button Workerbtn;
+        private System.Windows.Forms.Button Reservbtn;
+        private System.Windows.Forms.Button Printbtn;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

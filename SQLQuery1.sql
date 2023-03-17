@@ -1,51 +1,52 @@
-﻿Create table Position(
+﻿Create table Positions(
 	ID int not null primary key,
-	posname varchar(20)
+	posName varchar(20)
 )
 
-create table Worker(
+create table Workers(
 	ID int not null primary key,
-	name_ varchar(20),
-	phone varchar(20),
+	workerName varchar(20),
+	phone varchar(10),
 	email varchar(20),
-	position int,
-	salary int,
+	Position int,
+	salary float,
 
-	Foreign key (position) REFERENCES Position(ID)
+	Foreign key (Position) REFERENCES Positions(ID)
 )
 
-create table Parent(
+create table Parents(
 	ID int not null primary key,
-	name_ varchar(20),
-	phone varchar(20),
+	parName Varchar(20),
+	phone varchar(10),
 	egn varchar(10)
 )
 
-create table Napravlenie(
+create table Pacients(
 	ID int not null primary key,
-	name_ varchar(20)
-)
-
-create table Doctor(
-	ID int not null primary key,
-	name_ varchar(20),
-	phone varchar(20),
-	email varchar(20),
-	salary int,
-	Pacient int
-)
-
-alter table Doctor
-Add Foreign key (Pacient) REFERENCES Pacient(ID);
-
-create table Pacient(
-	ID int not null primary key,
-	name_ varchar(20),
-	phone varchar(20),
+	pacName varchar(20),
+	phone Varchar(10),
 	egn varchar(10),
-	parent int,
-	doctor int
+	Parent int,
+	Doctor int,
 
-	Foreign key (doctor) REFERENCES Doctor(ID),
-	Foreign key (parent) REFERENCES Parent(ID)
+	Foreign key (Parent) REFERENCES Parents(ID),
+	Foreign key (Doctor) REFERENCES Doctors(ID)
+)
+
+Create table Doctors(
+	ID int not null primary key,
+	workerName varchar(20),
+	phone varchar(10),
+	email varchar(20),
+	salary float,
+)
+
+Create table Reservations(
+	ID int not null,
+	thedate smalldatetime, /*YYYY-MM-DD hh:mm:ss*/
+	Patient int,
+	Doctor int,
+
+	Foreign key (Patient) REFERENCES Pacients(ID),
+	Foreign key (Doctor) REFERENCES Doctors(ID)
 )
