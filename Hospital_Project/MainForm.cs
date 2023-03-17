@@ -13,7 +13,6 @@ namespace Hospital_Project
     public partial class MainForm : Form
     {
         
-        
         public MainForm()
         {
             InitializeComponent();
@@ -41,7 +40,7 @@ namespace Hospital_Project
         private void Workerbtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            PacientForm pacient = new PacientForm();
+            WorkerForm pacient = new WorkerForm();
             pacient.ShowDialog();
             this.Close();
         }
@@ -50,6 +49,22 @@ namespace Hospital_Project
         {
             this.Hide();
             MainForm pacient = new MainForm();
+            pacient.ShowDialog();
+            this.Close();
+        }
+
+        private void Reservbtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ReservationForm pacient = new ReservationForm();
+            pacient.ShowDialog();
+            this.Close();
+        }
+
+        private void Printbtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            PrintForm pacient = new PrintForm();
             pacient.ShowDialog();
             this.Close();
         }

@@ -63,6 +63,7 @@
             this.Printbtn.TabIndex = 6;
             this.Printbtn.Text = "Output Data";
             this.Printbtn.UseVisualStyleBackColor = true;
+            this.Printbtn.Click += new System.EventHandler(this.Printbtn_Click);
             // 
             // Reservbtn
             // 
@@ -75,6 +76,7 @@
             this.Reservbtn.TabIndex = 5;
             this.Reservbtn.Text = "Reservation";
             this.Reservbtn.UseVisualStyleBackColor = true;
+            this.Reservbtn.Click += new System.EventHandler(this.Reservbtn_Click);
             // 
             // Workerbtn
             // 
@@ -87,6 +89,7 @@
             this.Workerbtn.TabIndex = 4;
             this.Workerbtn.Text = "Worker";
             this.Workerbtn.UseVisualStyleBackColor = true;
+            this.Workerbtn.Click += new System.EventHandler(this.Workerbtn_Click);
             // 
             // Pacientbtn
             // 
@@ -99,6 +102,7 @@
             this.Pacientbtn.TabIndex = 3;
             this.Pacientbtn.Text = "Pacient";
             this.Pacientbtn.UseVisualStyleBackColor = true;
+            this.Pacientbtn.Click += new System.EventHandler(this.Pacientbtn_Click);
             // 
             // panel3
             // 
@@ -121,6 +125,7 @@
             this.Homebtn.TabIndex = 3;
             this.Homebtn.Text = "Main menu";
             this.Homebtn.UseVisualStyleBackColor = false;
+            this.Homebtn.Click += new System.EventHandler(this.Homebtn_Click);
             // 
             // PrintForm
             // 
@@ -131,6 +136,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Name = "PrintForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Print";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

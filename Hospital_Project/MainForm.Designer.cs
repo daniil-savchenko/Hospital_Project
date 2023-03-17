@@ -63,6 +63,7 @@
             this.Printbtn.TabIndex = 6;
             this.Printbtn.Text = "Output Data";
             this.Printbtn.UseVisualStyleBackColor = true;
+            this.Printbtn.Click += new System.EventHandler(this.Printbtn_Click);
             // 
             // Reservbtn
             // 
@@ -75,6 +76,7 @@
             this.Reservbtn.TabIndex = 5;
             this.Reservbtn.Text = "Reservation";
             this.Reservbtn.UseVisualStyleBackColor = true;
+            this.Reservbtn.Click += new System.EventHandler(this.Reservbtn_Click);
             // 
             // Workerbtn
             // 
@@ -134,6 +136,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "main menu";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
