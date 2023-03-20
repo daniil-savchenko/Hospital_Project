@@ -56,5 +56,10 @@ namespace Hospital_Project
             pacient.ShowDialog();
             this.Close();
         }
+
+        private void PrintPacBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

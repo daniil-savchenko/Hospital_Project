@@ -30,13 +30,13 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Submitbtn = new System.Windows.Forms.Button();
             this.NameOfPacient = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nameTextBoxP = new System.Windows.Forms.TextBox();
             this.doctorPac = new System.Windows.Forms.Label();
             this.parentPac = new System.Windows.Forms.Label();
             this.egnPac = new System.Windows.Forms.Label();
@@ -47,13 +47,13 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.Submitbtn);
             this.panel1.Controls.Add(this.NameOfPacient);
             this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.nameTextBoxP);
             this.panel1.Controls.Add(this.doctorPac);
             this.panel1.Controls.Add(this.parentPac);
             this.panel1.Controls.Add(this.egnPac);
@@ -73,16 +73,16 @@
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // Submitbtn
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(87, 164);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 29);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = false;
+            this.Submitbtn.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Submitbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Submitbtn.Location = new System.Drawing.Point(87, 164);
+            this.Submitbtn.Name = "Submitbtn";
+            this.Submitbtn.Size = new System.Drawing.Size(100, 29);
+            this.Submitbtn.TabIndex = 11;
+            this.Submitbtn.Text = "Submit";
+            this.Submitbtn.UseVisualStyleBackColor = false;
             // 
             // NameOfPacient
             // 
@@ -121,12 +121,12 @@
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 6;
             // 
-            // textBox1
+            // nameTextBoxP
             // 
-            this.textBox1.Location = new System.Drawing.Point(87, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 5;
+            this.nameTextBoxP.Location = new System.Drawing.Point(87, 34);
+            this.nameTextBoxP.Name = "nameTextBoxP";
+            this.nameTextBoxP.Size = new System.Drawing.Size(100, 20);
+            this.nameTextBoxP.TabIndex = 5;
             // 
             // doctorPac
             // 
@@ -184,13 +184,13 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Submitbtn;
         private System.Windows.Forms.Label NameOfPacient;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox nameTextBoxP;
         private System.Windows.Forms.Label doctorPac;
         private System.Windows.Forms.Label parentPac;
         private System.Windows.Forms.Label egnPac;

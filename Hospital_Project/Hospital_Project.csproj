@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPar.Designer.cs">
+      <DependentUpon>AddPar.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddPos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddPar.resx">
+      <DependentUpon>AddPar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddPos.resx">
       <DependentUpon>AddPos.cs</DependentUpon>
     </EmbeddedResource>
