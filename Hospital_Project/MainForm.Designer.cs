@@ -58,6 +58,7 @@
             // Pacientbtn
             // 
             this.Pacientbtn.AutoSize = true;
+            this.Pacientbtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Pacientbtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pacientbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Pacientbtn.Location = new System.Drawing.Point(0, 0);
@@ -65,12 +66,13 @@
             this.Pacientbtn.Size = new System.Drawing.Size(200, 78);
             this.Pacientbtn.TabIndex = 3;
             this.Pacientbtn.Text = "Pacient";
-            this.Pacientbtn.UseVisualStyleBackColor = true;
+            this.Pacientbtn.UseVisualStyleBackColor = false;
             this.Pacientbtn.Click += new System.EventHandler(this.Pacientbtn_Click);
             // 
             // Workerbtn
             // 
             this.Workerbtn.AutoSize = true;
+            this.Workerbtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Workerbtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.Workerbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Workerbtn.Location = new System.Drawing.Point(0, 78);
@@ -78,12 +80,13 @@
             this.Workerbtn.Size = new System.Drawing.Size(200, 78);
             this.Workerbtn.TabIndex = 4;
             this.Workerbtn.Text = "Worker";
-            this.Workerbtn.UseVisualStyleBackColor = true;
+            this.Workerbtn.UseVisualStyleBackColor = false;
             this.Workerbtn.Click += new System.EventHandler(this.Workerbtn_Click);
             // 
             // Reservbtn
             // 
             this.Reservbtn.AutoSize = true;
+            this.Reservbtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Reservbtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.Reservbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Reservbtn.Location = new System.Drawing.Point(0, 156);
@@ -91,25 +94,26 @@
             this.Reservbtn.Size = new System.Drawing.Size(200, 78);
             this.Reservbtn.TabIndex = 5;
             this.Reservbtn.Text = "Reservation";
-            this.Reservbtn.UseVisualStyleBackColor = true;
+            this.Reservbtn.UseVisualStyleBackColor = false;
             this.Reservbtn.Click += new System.EventHandler(this.Reservbtn_Click);
             // 
             // Printbtn
             // 
             this.Printbtn.AutoSize = true;
+            this.Printbtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Printbtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.Printbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Printbtn.Location = new System.Drawing.Point(0, 234);
             this.Printbtn.Name = "Printbtn";
-            this.Printbtn.Size = new System.Drawing.Size(200, 78);
+            this.Printbtn.Size = new System.Drawing.Size(200, 76);
             this.Printbtn.TabIndex = 6;
             this.Printbtn.Text = "Output Data";
-            this.Printbtn.UseVisualStyleBackColor = true;
+            this.Printbtn.UseVisualStyleBackColor = false;
             this.Printbtn.Click += new System.EventHandler(this.Printbtn_Click);
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.Printbtn);
             this.panel1.Controls.Add(this.Reservbtn);
             this.panel1.Controls.Add(this.Workerbtn);

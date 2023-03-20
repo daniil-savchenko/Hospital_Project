@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Hospital_Project
 {
-    public partial class AddPos : Form
+    public partial class PositionForm : Form
     {
-        public AddPos()
+        public PositionForm()
         {
             InitializeComponent();
         }

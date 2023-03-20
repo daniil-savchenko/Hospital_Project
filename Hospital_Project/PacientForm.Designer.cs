@@ -29,118 +29,153 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Printbtn = new System.Windows.Forms.Button();
-            this.Reservbtn = new System.Windows.Forms.Button();
-            this.Workerbtn = new System.Windows.Forms.Button();
-            this.Pacientbtn = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.Homebtn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.NameOfPacient = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.doctorPac = new System.Windows.Forms.Label();
+            this.parentPac = new System.Windows.Forms.Label();
+            this.egnPac = new System.Windows.Forms.Label();
+            this.PhonePac = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel1.Controls.Add(this.Printbtn);
-            this.panel1.Controls.Add(this.Reservbtn);
-            this.panel1.Controls.Add(this.Workerbtn);
-            this.panel1.Controls.Add(this.Pacientbtn);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 60);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.NameOfPacient);
+            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.doctorPac);
+            this.panel1.Controls.Add(this.parentPac);
+            this.panel1.Controls.Add(this.egnPac);
+            this.panel1.Controls.Add(this.PhonePac);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 390);
-            this.panel1.TabIndex = 4;
+            this.panel1.Size = new System.Drawing.Size(400, 350);
+            this.panel1.TabIndex = 1;
             // 
-            // Printbtn
+            // button2
             // 
-            this.Printbtn.AutoSize = true;
-            this.Printbtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Printbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Printbtn.Location = new System.Drawing.Point(0, 234);
-            this.Printbtn.Name = "Printbtn";
-            this.Printbtn.Size = new System.Drawing.Size(200, 78);
-            this.Printbtn.TabIndex = 6;
-            this.Printbtn.Text = "Output Data";
-            this.Printbtn.UseVisualStyleBackColor = true;
-            this.Printbtn.Click += new System.EventHandler(this.Printbtn_Click);
+            this.button2.Location = new System.Drawing.Point(266, 152);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(54, 41);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // Reservbtn
+            // button1
             // 
-            this.Reservbtn.AutoSize = true;
-            this.Reservbtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Reservbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Reservbtn.Location = new System.Drawing.Point(0, 156);
-            this.Reservbtn.Name = "Reservbtn";
-            this.Reservbtn.Size = new System.Drawing.Size(200, 78);
-            this.Reservbtn.TabIndex = 5;
-            this.Reservbtn.Text = "Reservation";
-            this.Reservbtn.UseVisualStyleBackColor = true;
-            this.Reservbtn.Click += new System.EventHandler(this.Reservbtn_Click);
+            this.button1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(87, 164);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 29);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = false;
             // 
-            // Workerbtn
+            // NameOfPacient
             // 
-            this.Workerbtn.AutoSize = true;
-            this.Workerbtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Workerbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Workerbtn.Location = new System.Drawing.Point(0, 78);
-            this.Workerbtn.Name = "Workerbtn";
-            this.Workerbtn.Size = new System.Drawing.Size(200, 78);
-            this.Workerbtn.TabIndex = 4;
-            this.Workerbtn.Text = "Worker";
-            this.Workerbtn.UseVisualStyleBackColor = true;
-            this.Workerbtn.Click += new System.EventHandler(this.Workerbtn_Click);
+            this.NameOfPacient.AutoSize = true;
+            this.NameOfPacient.Location = new System.Drawing.Point(46, 37);
+            this.NameOfPacient.Name = "NameOfPacient";
+            this.NameOfPacient.Size = new System.Drawing.Size(35, 13);
+            this.NameOfPacient.TabIndex = 10;
+            this.NameOfPacient.Text = "Name";
             // 
-            // Pacientbtn
+            // textBox5
             // 
-            this.Pacientbtn.AutoSize = true;
-            this.Pacientbtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Pacientbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Pacientbtn.Location = new System.Drawing.Point(0, 0);
-            this.Pacientbtn.Name = "Pacientbtn";
-            this.Pacientbtn.Size = new System.Drawing.Size(200, 78);
-            this.Pacientbtn.TabIndex = 3;
-            this.Pacientbtn.Text = "Pacient";
-            this.Pacientbtn.UseVisualStyleBackColor = true;
-            this.Pacientbtn.Click += new System.EventHandler(this.Pacientbtn_Click);
+            this.textBox5.Location = new System.Drawing.Point(87, 138);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 20);
+            this.textBox5.TabIndex = 9;
             // 
-            // panel3
+            // textBox4
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel3.Controls.Add(this.Homebtn);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(800, 60);
-            this.panel3.TabIndex = 3;
+            this.textBox4.Location = new System.Drawing.Point(87, 112);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 8;
             // 
-            // Homebtn
+            // textBox3
             // 
-            this.Homebtn.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.Homebtn.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Homebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Homebtn.Location = new System.Drawing.Point(0, 0);
-            this.Homebtn.Name = "Homebtn";
-            this.Homebtn.Size = new System.Drawing.Size(200, 60);
-            this.Homebtn.TabIndex = 3;
-            this.Homebtn.Text = "Main menu";
-            this.Homebtn.UseVisualStyleBackColor = false;
-            this.Homebtn.Click += new System.EventHandler(this.Homebtn_Click);
+            this.textBox3.Location = new System.Drawing.Point(87, 86);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 7;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(87, 60);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 6;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(87, 34);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 5;
+            // 
+            // doctorPac
+            // 
+            this.doctorPac.AutoSize = true;
+            this.doctorPac.Location = new System.Drawing.Point(42, 141);
+            this.doctorPac.Name = "doctorPac";
+            this.doctorPac.Size = new System.Drawing.Size(39, 13);
+            this.doctorPac.TabIndex = 4;
+            this.doctorPac.Text = "Doctor";
+            // 
+            // parentPac
+            // 
+            this.parentPac.AutoSize = true;
+            this.parentPac.Location = new System.Drawing.Point(40, 115);
+            this.parentPac.Name = "parentPac";
+            this.parentPac.Size = new System.Drawing.Size(38, 13);
+            this.parentPac.TabIndex = 3;
+            this.parentPac.Text = "Parent";
+            // 
+            // egnPac
+            // 
+            this.egnPac.AutoSize = true;
+            this.egnPac.Location = new System.Drawing.Point(46, 89);
+            this.egnPac.Name = "egnPac";
+            this.egnPac.Size = new System.Drawing.Size(30, 13);
+            this.egnPac.TabIndex = 2;
+            this.egnPac.Text = "EGN";
+            // 
+            // PhonePac
+            // 
+            this.PhonePac.AutoSize = true;
+            this.PhonePac.Location = new System.Drawing.Point(46, 63);
+            this.PhonePac.Name = "PhonePac";
+            this.PhonePac.Size = new System.Drawing.Size(38, 13);
+            this.PhonePac.TabIndex = 1;
+            this.PhonePac.Text = "Phone";
             // 
             // PacientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(400, 350);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel3);
             this.Name = "PacientForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pacient";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -148,11 +183,17 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button Printbtn;
-        private System.Windows.Forms.Button Reservbtn;
-        private System.Windows.Forms.Button Workerbtn;
-        private System.Windows.Forms.Button Pacientbtn;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button Homebtn;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label NameOfPacient;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label doctorPac;
+        private System.Windows.Forms.Label parentPac;
+        private System.Windows.Forms.Label egnPac;
+        private System.Windows.Forms.Label PhonePac;
     }
 }

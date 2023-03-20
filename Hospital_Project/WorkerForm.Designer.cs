@@ -31,7 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.Name = new System.Windows.Forms.Label();
+            this.NameOfWorker = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@
             // 
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.Name);
+            this.panel1.Controls.Add(this.NameOfWorker);
             this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.textBox3);
@@ -66,7 +66,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(329, 127);
+            this.button2.Location = new System.Drawing.Point(265, 152);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(54, 41);
             this.button2.TabIndex = 12;
@@ -85,14 +85,14 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // Name
+            // NameOfWorker
             // 
-            this.Name.AutoSize = true;
-            this.Name.Location = new System.Drawing.Point(46, 37);
-            this.Name.Name = "Name";
-            this.Name.Size = new System.Drawing.Size(35, 13);
-            this.Name.TabIndex = 10;
-            this.Name.Text = "Name";
+            this.NameOfWorker.AutoSize = true;
+            this.NameOfWorker.Location = new System.Drawing.Point(46, 37);
+            this.NameOfWorker.Name = "NameOfWorker";
+            this.NameOfWorker.Size = new System.Drawing.Size(35, 13);
+            this.NameOfWorker.TabIndex = 10;
+            this.NameOfWorker.Text = "Name";
             // 
             // textBox5
             // 
@@ -172,6 +172,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(400, 350);
             this.Controls.Add(this.panel1);
+            this.Name = "WorkerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Worker";
             this.panel1.ResumeLayout(false);
@@ -192,8 +193,8 @@
         private System.Windows.Forms.Label Position;
         private System.Windows.Forms.Label email;
         private System.Windows.Forms.Label Phone;
-        private System.Windows.Forms.Label Name;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label NameOfWorker;
     }
 }

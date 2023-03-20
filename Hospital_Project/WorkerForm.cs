@@ -59,7 +59,7 @@ namespace Hospital_Project
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AddPos pacient = new AddPos();
+            PositionForm pacient = new PositionForm();
             pacient.ShowDialog();
         }
     }
