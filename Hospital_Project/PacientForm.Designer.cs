@@ -33,7 +33,6 @@
             this.Submitbtn = new System.Windows.Forms.Button();
             this.NameOfPacient = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.nameTextBoxP = new System.Windows.Forms.TextBox();
@@ -41,16 +40,17 @@
             this.parentPac = new System.Windows.Forms.Label();
             this.egnPac = new System.Windows.Forms.Label();
             this.PhonePac = new System.Windows.Forms.Label();
+            this.NameTextParent = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.NameTextParent);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.Submitbtn);
             this.panel1.Controls.Add(this.NameOfPacient);
             this.panel1.Controls.Add(this.textBox5);
-            this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.nameTextBoxP);
@@ -72,6 +72,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Submitbtn
             // 
@@ -83,6 +84,7 @@
             this.Submitbtn.TabIndex = 11;
             this.Submitbtn.Text = "Submit";
             this.Submitbtn.UseVisualStyleBackColor = false;
+            this.Submitbtn.Click += new System.EventHandler(this.Submitbtn_Click);
             // 
             // NameOfPacient
             // 
@@ -99,13 +101,6 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 20);
             this.textBox5.TabIndex = 9;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(87, 112);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 8;
             // 
             // textBox3
             // 
@@ -164,6 +159,14 @@
             this.PhonePac.TabIndex = 1;
             this.PhonePac.Text = "Phone";
             // 
+            // NameTextParent
+            // 
+            this.NameTextParent.FormattingEnabled = true;
+            this.NameTextParent.Location = new System.Drawing.Point(87, 112);
+            this.NameTextParent.Name = "NameTextParent";
+            this.NameTextParent.Size = new System.Drawing.Size(100, 21);
+            this.NameTextParent.TabIndex = 13;
+            // 
             // PacientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,7 +190,6 @@
         private System.Windows.Forms.Button Submitbtn;
         private System.Windows.Forms.Label NameOfPacient;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox nameTextBoxP;
@@ -195,5 +197,6 @@
         private System.Windows.Forms.Label parentPac;
         private System.Windows.Forms.Label egnPac;
         private System.Windows.Forms.Label PhonePac;
+        private System.Windows.Forms.ComboBox NameTextParent;
     }
 }

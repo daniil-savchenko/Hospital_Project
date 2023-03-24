@@ -17,44 +17,15 @@ namespace Hospital_Project
             InitializeComponent();
         }
 
-        private void Homebtn_Click(object sender, EventArgs e)
+        private void Submitbtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainForm pacient = new MainForm();
-            pacient.ShowDialog();
-            this.Close();
+
         }
 
-        private void Pacientbtn_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            PacientForm pacient = new PacientForm();
-            pacient.ShowDialog();
-            this.Close();
-        }
-
-        private void Workerbtn_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            WorkerForm pacient = new WorkerForm();
-            pacient.ShowDialog();
-            this.Close();
-        }
-
-        private void Reservbtn_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            ReservationForm pacient = new ReservationForm();
-            pacient.ShowDialog();
-            this.Close();
-        }
-
-        private void Printbtn_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            PrintForm pacient = new PrintForm();
-            pacient.ShowDialog();
-            this.Close();
+            AddPar par = new AddPar();
+            par.Show();
         }
     }
 }
