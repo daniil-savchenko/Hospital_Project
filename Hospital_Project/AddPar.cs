@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +24,9 @@ namespace Hospital_Project
         private void button1_Click(object sender, EventArgs e)
         {
             var idd = 1;
-            SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Student\\source\\repos\\daniil-savchenko\\Hospital_Project\\Hospital_Project\\Hospital_database.mdf;Integrated Security=True;Connect Timeout=30");
+            string path = Path.GetFullPath(Directory.GetCurrentDirectory());
+            string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\""+ Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
+            SqlConnection con = new SqlConnection(conn);
             string sqlcom = "INSERT INTO Parents(ID, parName, phone, egn)  Values(@ID, @parName, @phone, @egn)";
             var select = "SELECT * FROM Parents";
 
@@ -40,19 +44,32 @@ namespace Hospital_Project
                 con.Close();
             }
             con.Open();
-            using (SqlCommand insert = new SqlCommand(sqlcom, con))
+
+            if (this.textBox2.Text.Length == 10 && this.textBox3.Text.Length == 10)
             {
-                insert.Parameters.AddWithValue("@ID", idd);
-                insert.Parameters.AddWithValue("@parName", this.textBox1.Text);
-                insert.Parameters.AddWithValue("@phone", this.textBox2.Text);
-                insert.Parameters.AddWithValue("@egn", this.textBox3.Text);
-                insert.CommandType = CommandType.Text;
-                insert.ExecuteNonQuery();
-                con.Close();
+                using (SqlCommand insert = new SqlCommand(sqlcom, con))
+                {
+                    insert.Parameters.AddWithValue("@ID", idd);
+                    insert.Parameters.AddWithValue("@parName", this.textBox1.Text);
+                    insert.Parameters.AddWithValue("@phone", this.textBox2.Text);
+                    insert.Parameters.AddWithValue("@egn", this.textBox3.Text);
+                    insert.CommandType = CommandType.Text;
+                    insert.ExecuteNonQuery();
+                    con.Close();
+                }
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                this.Close();
+                this.Dispose();
             }
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            this.Close();
+            else
+            {
+                if (this.textBox2.Text.Length != 10)
+                {
+                    MessageBox.Show("Wrong input of Phone number");
+                }
+                else MessageBox.Show("Wrong input of EGN");
+            }
         }
     }
 }

@@ -29,30 +29,30 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.NameTextParentP = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.Submitbtn = new System.Windows.Forms.Button();
             this.NameOfPacient = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.egnTextBoxP = new System.Windows.Forms.TextBox();
+            this.phoneTextBoxP = new System.Windows.Forms.TextBox();
             this.nameTextBoxP = new System.Windows.Forms.TextBox();
             this.doctorPac = new System.Windows.Forms.Label();
             this.parentPac = new System.Windows.Forms.Label();
             this.egnPac = new System.Windows.Forms.Label();
             this.PhonePac = new System.Windows.Forms.Label();
-            this.NameTextParent = new System.Windows.Forms.ComboBox();
+            this.NameTextDoctorP = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.NameTextParent);
+            this.panel1.Controls.Add(this.NameTextDoctorP);
+            this.panel1.Controls.Add(this.NameTextParentP);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.Submitbtn);
             this.panel1.Controls.Add(this.NameOfPacient);
-            this.panel1.Controls.Add(this.textBox5);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.egnTextBoxP);
+            this.panel1.Controls.Add(this.phoneTextBoxP);
             this.panel1.Controls.Add(this.nameTextBoxP);
             this.panel1.Controls.Add(this.doctorPac);
             this.panel1.Controls.Add(this.parentPac);
@@ -63,6 +63,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(400, 350);
             this.panel1.TabIndex = 1;
+            // 
+            // NameTextParentP
+            // 
+            this.NameTextParentP.FormattingEnabled = true;
+            this.NameTextParentP.Location = new System.Drawing.Point(87, 112);
+            this.NameTextParentP.Name = "NameTextParentP";
+            this.NameTextParentP.Size = new System.Drawing.Size(100, 21);
+            this.NameTextParentP.TabIndex = 13;
             // 
             // button2
             // 
@@ -95,26 +103,19 @@
             this.NameOfPacient.TabIndex = 10;
             this.NameOfPacient.Text = "Name";
             // 
-            // textBox5
+            // egnTextBoxP
             // 
-            this.textBox5.Location = new System.Drawing.Point(87, 138);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 9;
+            this.egnTextBoxP.Location = new System.Drawing.Point(87, 86);
+            this.egnTextBoxP.Name = "egnTextBoxP";
+            this.egnTextBoxP.Size = new System.Drawing.Size(100, 20);
+            this.egnTextBoxP.TabIndex = 7;
             // 
-            // textBox3
+            // phoneTextBoxP
             // 
-            this.textBox3.Location = new System.Drawing.Point(87, 86);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 7;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(87, 60);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 6;
+            this.phoneTextBoxP.Location = new System.Drawing.Point(87, 60);
+            this.phoneTextBoxP.Name = "phoneTextBoxP";
+            this.phoneTextBoxP.Size = new System.Drawing.Size(100, 20);
+            this.phoneTextBoxP.TabIndex = 6;
             // 
             // nameTextBoxP
             // 
@@ -159,13 +160,13 @@
             this.PhonePac.TabIndex = 1;
             this.PhonePac.Text = "Phone";
             // 
-            // NameTextParent
+            // NameTextDoctorP
             // 
-            this.NameTextParent.FormattingEnabled = true;
-            this.NameTextParent.Location = new System.Drawing.Point(87, 112);
-            this.NameTextParent.Name = "NameTextParent";
-            this.NameTextParent.Size = new System.Drawing.Size(100, 21);
-            this.NameTextParent.TabIndex = 13;
+            this.NameTextDoctorP.FormattingEnabled = true;
+            this.NameTextDoctorP.Location = new System.Drawing.Point(87, 138);
+            this.NameTextDoctorP.Name = "NameTextDoctorP";
+            this.NameTextDoctorP.Size = new System.Drawing.Size(100, 21);
+            this.NameTextDoctorP.TabIndex = 14;
             // 
             // PacientForm
             // 
@@ -189,14 +190,14 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button Submitbtn;
         private System.Windows.Forms.Label NameOfPacient;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox egnTextBoxP;
+        private System.Windows.Forms.TextBox phoneTextBoxP;
         private System.Windows.Forms.TextBox nameTextBoxP;
         private System.Windows.Forms.Label doctorPac;
         private System.Windows.Forms.Label parentPac;
         private System.Windows.Forms.Label egnPac;
         private System.Windows.Forms.Label PhonePac;
-        private System.Windows.Forms.ComboBox NameTextParent;
+        private System.Windows.Forms.ComboBox NameTextParentP;
+        private System.Windows.Forms.ComboBox NameTextDoctorP;
     }
 }
