@@ -35,12 +35,15 @@
             this.Reservbtn = new System.Windows.Forms.Button();
             this.Printbtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
@@ -113,7 +116,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panel1.Controls.Add(this.Printbtn);
             this.panel1.Controls.Add(this.Reservbtn);
             this.panel1.Controls.Add(this.Workerbtn);
@@ -123,6 +126,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 390);
             this.panel1.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 60);
+            this.panel4.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -137,6 +148,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "main menu";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -151,6 +163,7 @@
         private System.Windows.Forms.Button Reservbtn;
         private System.Windows.Forms.Button Printbtn;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel4;
     }
 }
 

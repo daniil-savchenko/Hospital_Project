@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.NameOfPos = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,10 +46,22 @@
             this.panel1.Size = new System.Drawing.Size(384, 361);
             this.panel1.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(123, 112);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Submit";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // NameOfPos
             // 
             this.NameOfPos.AutoSize = true;
-            this.NameOfPos.Location = new System.Drawing.Point(102, 68);
+            this.NameOfPos.Location = new System.Drawing.Point(82, 77);
             this.NameOfPos.Name = "NameOfPos";
             this.NameOfPos.Size = new System.Drawing.Size(35, 13);
             this.NameOfPos.TabIndex = 1;
@@ -57,19 +69,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(143, 65);
+            this.textBox1.Location = new System.Drawing.Point(123, 74);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(143, 118);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // PositionForm
             // 

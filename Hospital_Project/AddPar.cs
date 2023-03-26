@@ -43,10 +43,10 @@ namespace Hospital_Project
                 }
                 con.Close();
             }
-            con.Open();
 
             if (this.textBox2.Text.Length == 10 && this.textBox3.Text.Length == 10)
             {
+                con.Open();
                 using (SqlCommand insert = new SqlCommand(sqlcom, con))
                 {
                     insert.Parameters.AddWithValue("@ID", idd);
@@ -55,10 +55,10 @@ namespace Hospital_Project
                     insert.Parameters.AddWithValue("@egn", this.textBox3.Text);
                     insert.CommandType = CommandType.Text;
                     insert.ExecuteNonQuery();
-                    con.Close();
                 }
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
+                con.Close();
                 this.Close();
                 this.Dispose();
             }
@@ -70,6 +70,8 @@ namespace Hospital_Project
                 }
                 else MessageBox.Show("Wrong input of EGN");
             }
+
+            
         }
     }
 }

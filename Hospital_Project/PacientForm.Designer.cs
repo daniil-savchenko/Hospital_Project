@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.NameTextDoctorP = new System.Windows.Forms.ComboBox();
             this.NameTextParentP = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.Submitbtn = new System.Windows.Forms.Button();
@@ -40,7 +41,6 @@
             this.parentPac = new System.Windows.Forms.Label();
             this.egnPac = new System.Windows.Forms.Label();
             this.PhonePac = new System.Windows.Forms.Label();
-            this.NameTextDoctorP = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +64,14 @@
             this.panel1.Size = new System.Drawing.Size(400, 350);
             this.panel1.TabIndex = 1;
             // 
+            // NameTextDoctorP
+            // 
+            this.NameTextDoctorP.FormattingEnabled = true;
+            this.NameTextDoctorP.Location = new System.Drawing.Point(87, 138);
+            this.NameTextDoctorP.Name = "NameTextDoctorP";
+            this.NameTextDoctorP.Size = new System.Drawing.Size(100, 21);
+            this.NameTextDoctorP.TabIndex = 14;
+            // 
             // NameTextParentP
             // 
             this.NameTextParentP.FormattingEnabled = true;
@@ -74,12 +82,14 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(266, 152);
+            this.button2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(87, 199);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(54, 41);
+            this.button2.Size = new System.Drawing.Size(100, 29);
             this.button2.TabIndex = 12;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Text = "Add parent";
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Submitbtn
@@ -160,14 +170,6 @@
             this.PhonePac.TabIndex = 1;
             this.PhonePac.Text = "Phone";
             // 
-            // NameTextDoctorP
-            // 
-            this.NameTextDoctorP.FormattingEnabled = true;
-            this.NameTextDoctorP.Location = new System.Drawing.Point(87, 138);
-            this.NameTextDoctorP.Name = "NameTextDoctorP";
-            this.NameTextDoctorP.Size = new System.Drawing.Size(100, 21);
-            this.NameTextDoctorP.TabIndex = 14;
-            // 
             // PacientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,6 +180,7 @@
             this.Name = "PacientForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pacient";
+            this.Load += new System.EventHandler(this.PacientForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
