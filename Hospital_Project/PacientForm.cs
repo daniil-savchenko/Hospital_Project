@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -62,10 +63,18 @@ namespace Hospital_Project
 
                 adb.Fill(table);
                 adb.Dispose();
-                foreach (DataRow row in table.Rows)
+                if (table.Rows.Count >= 1)
                 {
-                    NameTextDoctorP.Text = row["ID"].ToString();
+                    foreach (DataRow row in table.Rows)
+                    {
+                        NameTextDoctorP.Text = row["ID"].ToString();
+                    }
                 }
+                else
+                {
+                    NameTextDoctorP.Text = string.Empty;
+                }
+
                 con.Close();
             }
 
@@ -80,10 +89,18 @@ namespace Hospital_Project
 
                 adb.Fill(table);
                 adb.Dispose();
-                foreach (DataRow row in table.Rows)
+                if (table.Rows.Count >= 1)
                 {
-                    NameTextParentP.Text = row["ID"].ToString();
+                    foreach (DataRow row in table.Rows)
+                    {
+                        NameTextParentP.Text = row["ID"].ToString();
+                    }
                 }
+                else
+                {
+                    NameTextParentP.Text = string.Empty;
+                }
+                
 
                 con.Close();
             }
