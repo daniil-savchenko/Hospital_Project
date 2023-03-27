@@ -44,6 +44,7 @@ namespace Hospital_Project
                 con.Close();
             }
 
+            
             if (this.textBox2.Text.Length == 10 && this.textBox3.Text.Length == 10)
             {
                 con.Open();
@@ -71,7 +72,6 @@ namespace Hospital_Project
                 else MessageBox.Show("Wrong input of EGN");
             }
 
-            
         }
     }
 }
