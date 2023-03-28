@@ -112,14 +112,21 @@ namespace Hospital_Project
 
                 if (NameTextParentP.Text != string.Empty && NameTextDoctorP.Text != string.Empty)
                 {
-                    insert.Parameters.AddWithValue("@ID", idd);
-                    insert.Parameters.AddWithValue("@pacName", nameTextBoxP.Text);
-                    insert.Parameters.AddWithValue("@phone", phoneTextBoxP.Text);
-                    insert.Parameters.AddWithValue("@egn", egnTextBoxP.Text);
-                    insert.Parameters.AddWithValue("@Parent", NameTextParentP.Text);
-                    insert.Parameters.AddWithValue("@Doctor", NameTextDoctorP.Text);
-                    insert.CommandType = CommandType.Text;
-                    insert.ExecuteNonQuery();
+                    if (nameTextBoxP.Text != string.Empty && phoneTextBoxP.Text != string.Empty && egnTextBoxP.Text != string.Empty)
+                    {
+                        insert.Parameters.AddWithValue("@ID", idd);
+                        insert.Parameters.AddWithValue("@pacName", nameTextBoxP.Text);
+                        insert.Parameters.AddWithValue("@phone", phoneTextBoxP.Text);
+                        insert.Parameters.AddWithValue("@egn", egnTextBoxP.Text);
+                        insert.Parameters.AddWithValue("@Parent", NameTextParentP.Text);
+                        insert.Parameters.AddWithValue("@Doctor", NameTextDoctorP.Text);
+                        insert.CommandType = CommandType.Text;
+                        insert.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        MessageBox.Show("please inout data");
+                    }
                 }
                 else
                 {

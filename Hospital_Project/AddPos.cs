@@ -42,19 +42,24 @@ namespace Hospital_Project
                 con.Close();
             }
 
-            con.Open();
-            using (SqlCommand insert = new SqlCommand(sqlcom, con))
+            if (textBox1.Text != string.Empty)
             {
-                insert.Parameters.AddWithValue("@ID", idd);
-                insert.Parameters.AddWithValue("@posName", this.textBox1.Text);
-                insert.CommandType = CommandType.Text;
-                insert.ExecuteNonQuery();
+                con.Open();
+                using (SqlCommand insert = new SqlCommand(sqlcom, con))
+                {
+                    insert.Parameters.AddWithValue("@ID", idd);
+                    insert.Parameters.AddWithValue("@posName", this.textBox1.Text);
+                    insert.CommandType = CommandType.Text;
+                    insert.ExecuteNonQuery();
+                }
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                con.Close();
+                this.Close();
+                this.Dispose();
             }
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            con.Close();
-            this.Close();
-            this.Dispose();
+            else MessageBox.Show("please Input the Position");
+            
         }
     }
 }

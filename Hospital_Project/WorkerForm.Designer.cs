@@ -32,28 +32,28 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.NameOfWorker = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SalaryTextBoxW = new System.Windows.Forms.TextBox();
+            this.EmailTextBoxW = new System.Windows.Forms.TextBox();
+            this.PhoneTextBoxW = new System.Windows.Forms.TextBox();
+            this.NameTextBoxW = new System.Windows.Forms.TextBox();
             this.Salary = new System.Windows.Forms.Label();
             this.Position = new System.Windows.Forms.Label();
             this.email = new System.Windows.Forms.Label();
             this.Phone = new System.Windows.Forms.Label();
+            this.PositionTextBoxW = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.PositionTextBoxW);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.NameOfWorker);
-            this.panel1.Controls.Add(this.textBox5);
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.SalaryTextBoxW);
+            this.panel1.Controls.Add(this.EmailTextBoxW);
+            this.panel1.Controls.Add(this.PhoneTextBoxW);
+            this.panel1.Controls.Add(this.NameTextBoxW);
             this.panel1.Controls.Add(this.Salary);
             this.panel1.Controls.Add(this.Position);
             this.panel1.Controls.Add(this.email);
@@ -66,12 +66,15 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(265, 152);
+            this.button2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button2.Location = new System.Drawing.Point(87, 199);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(54, 41);
+            this.button2.Size = new System.Drawing.Size(100, 29);
             this.button2.TabIndex = 12;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Text = "Add Position";
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
@@ -82,8 +85,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 29);
             this.button1.TabIndex = 11;
-            this.button1.Text = "button1";
+            this.button1.Text = "Submit";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // NameOfWorker
             // 
@@ -94,40 +98,33 @@
             this.NameOfWorker.TabIndex = 10;
             this.NameOfWorker.Text = "Name";
             // 
-            // textBox5
+            // SalaryTextBoxW
             // 
-            this.textBox5.Location = new System.Drawing.Point(87, 138);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 9;
+            this.SalaryTextBoxW.Location = new System.Drawing.Point(87, 138);
+            this.SalaryTextBoxW.Name = "SalaryTextBoxW";
+            this.SalaryTextBoxW.Size = new System.Drawing.Size(100, 20);
+            this.SalaryTextBoxW.TabIndex = 9;
             // 
-            // textBox4
+            // EmailTextBoxW
             // 
-            this.textBox4.Location = new System.Drawing.Point(87, 112);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 8;
+            this.EmailTextBoxW.Location = new System.Drawing.Point(87, 86);
+            this.EmailTextBoxW.Name = "EmailTextBoxW";
+            this.EmailTextBoxW.Size = new System.Drawing.Size(100, 20);
+            this.EmailTextBoxW.TabIndex = 7;
             // 
-            // textBox3
+            // PhoneTextBoxW
             // 
-            this.textBox3.Location = new System.Drawing.Point(87, 86);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 7;
+            this.PhoneTextBoxW.Location = new System.Drawing.Point(87, 60);
+            this.PhoneTextBoxW.Name = "PhoneTextBoxW";
+            this.PhoneTextBoxW.Size = new System.Drawing.Size(100, 20);
+            this.PhoneTextBoxW.TabIndex = 6;
             // 
-            // textBox2
+            // NameTextBoxW
             // 
-            this.textBox2.Location = new System.Drawing.Point(87, 60);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 6;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(87, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 5;
+            this.NameTextBoxW.Location = new System.Drawing.Point(87, 34);
+            this.NameTextBoxW.Name = "NameTextBoxW";
+            this.NameTextBoxW.Size = new System.Drawing.Size(100, 20);
+            this.NameTextBoxW.TabIndex = 5;
             // 
             // Salary
             // 
@@ -165,6 +162,14 @@
             this.Phone.TabIndex = 1;
             this.Phone.Text = "Phone";
             // 
+            // PositionTextBoxW
+            // 
+            this.PositionTextBoxW.FormattingEnabled = true;
+            this.PositionTextBoxW.Location = new System.Drawing.Point(87, 112);
+            this.PositionTextBoxW.Name = "PositionTextBoxW";
+            this.PositionTextBoxW.Size = new System.Drawing.Size(100, 21);
+            this.PositionTextBoxW.TabIndex = 13;
+            // 
             // WorkerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,6 +180,7 @@
             this.Name = "WorkerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Worker";
+            this.Load += new System.EventHandler(this.WorkerForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -184,11 +190,10 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox SalaryTextBoxW;
+        private System.Windows.Forms.TextBox EmailTextBoxW;
+        private System.Windows.Forms.TextBox PhoneTextBoxW;
+        private System.Windows.Forms.TextBox NameTextBoxW;
         private System.Windows.Forms.Label Salary;
         private System.Windows.Forms.Label Position;
         private System.Windows.Forms.Label email;
@@ -196,5 +201,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label NameOfWorker;
+        private System.Windows.Forms.ComboBox PositionTextBoxW;
     }
 }
