@@ -50,22 +50,10 @@ namespace Hospital_Project
                 }
                 con.Close();
             }
-                select = "SELECT ID FROM Positions where posName = @doc";
-            
 
-
-            using (SqlCommand cmd = new SqlCommand(select, con))
+            if (PositionTextBoxW.Text == "Doctor")
             {
-                con.Open();
-                adb = new SqlDataAdapter(cmd);
-                table = new DataTable();
-                cmd.Parameters.AddWithValue("@doc", "Doctor");
-                adb.Fill(table);
-                adb.Dispose();
-
-                if (table.Rows.Count == 1) isDoctor = true;
-                else isDoctor = false;
-                con.Close();
+                isDoctor = true;
             }
 
             select = "SELECT ID from Positions where posName = @name";
@@ -111,7 +99,7 @@ namespace Hospital_Project
                     }
                     else
                     {
-                        MessageBox.Show("please inout data");
+                        MessageBox.Show("please input data");
                     }
                 }
                 else
@@ -120,9 +108,6 @@ namespace Hospital_Project
                 }
                 con.Close();
             }
-
-            
-
             sqlcom = "INSERT INTO Doctors Values(@ID, @workerName, @phone, @email, @salary)";
             con.Open();
             using (SqlCommand insert = new SqlCommand(sqlcom, con))
@@ -158,7 +143,8 @@ namespace Hospital_Project
             EmailTextBoxW.Text = string.Empty;
             PositionTextBoxW.Text = string.Empty;
             SalaryTextBoxW.Text = string.Empty;
-
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         private void WorkerForm_Load(object sender, EventArgs e)
@@ -179,6 +165,8 @@ namespace Hospital_Project
                 }
                 connection.Close();
             }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
     }
 }

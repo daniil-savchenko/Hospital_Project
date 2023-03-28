@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.DocBox = new System.Windows.Forms.ComboBox();
+            this.PacientBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.doctorRes = new System.Windows.Forms.Label();
             this.pacientRes = new System.Windows.Forms.Label();
             this.Datee = new System.Windows.Forms.Label();
@@ -41,10 +41,10 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.dateTimePicker);
+            this.panel1.Controls.Add(this.DocBox);
+            this.panel1.Controls.Add(this.PacientBox);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.textBox5);
-            this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.doctorRes);
             this.panel1.Controls.Add(this.pacientRes);
             this.panel1.Controls.Add(this.Datee);
@@ -54,38 +54,42 @@
             this.panel1.Size = new System.Drawing.Size(324, 313);
             this.panel1.TabIndex = 2;
             // 
-            // comboBox1
+            // dateTimePicker
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(96, 74);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 21);
-            this.comboBox1.TabIndex = 12;
+            this.dateTimePicker.CustomFormat = "yyyy-MM-dd hh:mm";
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker.Location = new System.Drawing.Point(96, 48);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(122, 20);
+            this.dateTimePicker.TabIndex = 14;
+            // 
+            // DocBox
+            // 
+            this.DocBox.FormattingEnabled = true;
+            this.DocBox.Location = new System.Drawing.Point(96, 100);
+            this.DocBox.Name = "DocBox";
+            this.DocBox.Size = new System.Drawing.Size(122, 21);
+            this.DocBox.TabIndex = 13;
+            // 
+            // PacientBox
+            // 
+            this.PacientBox.FormattingEnabled = true;
+            this.PacientBox.Location = new System.Drawing.Point(96, 74);
+            this.PacientBox.Name = "PacientBox";
+            this.PacientBox.Size = new System.Drawing.Size(122, 21);
+            this.PacientBox.TabIndex = 12;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(96, 126);
+            this.button1.Location = new System.Drawing.Point(106, 127);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 29);
             this.button1.TabIndex = 11;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = false;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(96, 100);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 9;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(96, 48);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 7;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // doctorRes
             // 
@@ -124,6 +128,7 @@
             this.Name = "ReservationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reservation";
+            this.Load += new System.EventHandler(this.ReservationForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -134,11 +139,11 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label doctorRes;
         private System.Windows.Forms.Label pacientRes;
         private System.Windows.Forms.Label Datee;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox PacientBox;
+        private System.Windows.Forms.ComboBox DocBox;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }
