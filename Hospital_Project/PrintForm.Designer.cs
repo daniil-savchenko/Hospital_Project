@@ -36,12 +36,14 @@
             this.PrintWorBtn = new System.Windows.Forms.Button();
             this.PrintPacBtn = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.PrintResBtn);
             this.panel1.Controls.Add(this.PrintPosBtn);
             this.panel1.Controls.Add(this.PrintParBtn);
@@ -136,6 +138,16 @@
             this.dataGridView.Size = new System.Drawing.Size(382, 123);
             this.dataGridView.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(147, 273);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // PrintForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,5 +174,6 @@
         private System.Windows.Forms.Button PrintWorBtn;
         private System.Windows.Forms.Button PrintPacBtn;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Button button1;
     }
 }

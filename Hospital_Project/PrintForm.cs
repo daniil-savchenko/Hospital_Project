@@ -135,5 +135,22 @@ namespace Hospital_Project
                 dataGridView.DataSource = table;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(dataGridView.SelectedCells[0-1].Value.ToString());
+            var command = "Update @table SET @column1 = @value1 where ID = @id";
+            string path = Path.GetFullPath(Directory.GetCurrentDirectory());
+            string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
+            SqlConnection con = new SqlConnection(conn);
+            SqlDataAdapter adb;
+            DataTable table;
+            using (SqlCommand cmd = new SqlCommand(command, con))
+            {
+
+            }
+
+
+        }
     }
 }
