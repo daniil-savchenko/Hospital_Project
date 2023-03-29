@@ -104,43 +104,52 @@ namespace Hospital_Project
 
                 con.Close();
             }
-
-            
-            con.Open();
-            using (SqlCommand insert = new SqlCommand(sqlcom, con))
+            try
             {
-
-                if (NameTextParentP.Text != string.Empty && NameTextDoctorP.Text != string.Empty)
+                con.Open();
+                using (SqlCommand insert = new SqlCommand(sqlcom, con))
                 {
-                    if (nameTextBoxP.Text != string.Empty && phoneTextBoxP.Text != string.Empty && egnTextBoxP.Text != string.Empty)
+
+                    if (NameTextParentP.Text != string.Empty && NameTextDoctorP.Text != string.Empty)
                     {
-                        insert.Parameters.AddWithValue("@ID", idd);
-                        insert.Parameters.AddWithValue("@pacName", nameTextBoxP.Text);
-                        insert.Parameters.AddWithValue("@phone", phoneTextBoxP.Text);
-                        insert.Parameters.AddWithValue("@egn", egnTextBoxP.Text);
-                        insert.Parameters.AddWithValue("@Parent", NameTextParentP.Text);
-                        insert.Parameters.AddWithValue("@Doctor", NameTextDoctorP.Text);
-                        insert.CommandType = CommandType.Text;
-                        insert.ExecuteNonQuery();
+                        if (nameTextBoxP.Text != string.Empty && phoneTextBoxP.Text != string.Empty && egnTextBoxP.Text != string.Empty)
+                        {
+                            insert.Parameters.AddWithValue("@ID", idd);
+                            insert.Parameters.AddWithValue("@pacName", nameTextBoxP.Text);
+                            insert.Parameters.AddWithValue("@phone", phoneTextBoxP.Text);
+                            insert.Parameters.AddWithValue("@egn", egnTextBoxP.Text);
+                            insert.Parameters.AddWithValue("@Parent", NameTextParentP.Text);
+                            insert.Parameters.AddWithValue("@Doctor", NameTextDoctorP.Text);
+                            insert.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            MessageBox.Show("please input data");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("please inout data");
+                        MessageBox.Show("wrong Input of Parent or Doctor");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("wrong Input of Parent or Doctor");
-                }
             }
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            con.Close();
-            nameTextBoxP.Text = string.Empty;
-            phoneTextBoxP.Text = string.Empty;
-            egnTextBoxP.Text = string.Empty;
-            NameTextParentP.Text = string.Empty;
-            NameTextDoctorP.Text = string.Empty;
+            catch (SqlException)
+            {
+                MessageBox.Show("Error with Data Input");
+                
+            }
+            finally
+            {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                con.Close();
+                nameTextBoxP.Text = string.Empty;
+                phoneTextBoxP.Text = string.Empty;
+                egnTextBoxP.Text = string.Empty;
+                NameTextParentP.Text = string.Empty;
+                NameTextDoctorP.Text = string.Empty;
+            }
+            
 
         }
 

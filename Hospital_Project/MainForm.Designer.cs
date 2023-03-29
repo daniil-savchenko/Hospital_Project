@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.Pacientbtn = new System.Windows.Forms.Button();
             this.Workerbtn = new System.Windows.Forms.Button();
             this.Reservbtn = new System.Windows.Forms.Button();
             this.Printbtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +50,14 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(800, 60);
             this.panel3.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 60);
+            this.panel4.TabIndex = 0;
             // 
             // panel2
             // 
@@ -117,6 +126,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.Printbtn);
             this.panel1.Controls.Add(this.Reservbtn);
             this.panel1.Controls.Add(this.Workerbtn);
@@ -127,13 +137,14 @@
             this.panel1.Size = new System.Drawing.Size(200, 390);
             this.panel1.TabIndex = 2;
             // 
-            // panel4
+            // panel5
             // 
-            this.panel4.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 60);
-            this.panel4.TabIndex = 0;
+            this.panel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel5.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel5.Location = new System.Drawing.Point(0, 310);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(200, 80);
+            this.panel5.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -164,6 +175,7 @@
         private System.Windows.Forms.Button Printbtn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
     }
 }
 

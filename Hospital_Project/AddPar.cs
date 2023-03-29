@@ -44,33 +44,38 @@ namespace Hospital_Project
                 con.Close();
             }
 
-            
-            if (this.textBox2.Text.Length == 10 && this.textBox3.Text.Length == 10)
+
+            try
             {
-                con.Open();
-                using (SqlCommand insert = new SqlCommand(sqlcom, con))
+                if (this.textBox1.Text != string.Empty && this.textBox2.Text.Length == 10 && this.textBox3.Text.Length == 10)
                 {
-                    insert.Parameters.AddWithValue("@ID", idd);
-                    insert.Parameters.AddWithValue("@parName", this.textBox1.Text);
-                    insert.Parameters.AddWithValue("@phone", this.textBox2.Text);
-                    insert.Parameters.AddWithValue("@egn", this.textBox3.Text);
-                    insert.CommandType = CommandType.Text;
-                    insert.ExecuteNonQuery();
+                    con.Open();
+                    using (SqlCommand insert = new SqlCommand(sqlcom, con))
+                    {
+                        insert.Parameters.AddWithValue("@ID", idd);
+                        insert.Parameters.AddWithValue("@parName", this.textBox1.Text);
+                        insert.Parameters.AddWithValue("@phone", this.textBox2.Text);
+                        insert.Parameters.AddWithValue("@egn", this.textBox3.Text);
+                        insert.CommandType = CommandType.Text;
+                        insert.ExecuteNonQuery();
+                    }
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    this.Close();
+                    this.Dispose();
                 }
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                con.Close();
-                this.Close();
-                this.Dispose();
+                else
+                {
+                    if (this.textBox2.Text.Length != 10) MessageBox.Show("Wrong input of Phone number");
+                    else if (this.textBox3.Text.Length != 10) MessageBox.Show("Wrong input of EGN");
+                    else MessageBox.Show("Wrong Input");
+                }
             }
-            else
+            catch (SqlException)
             {
-                if (this.textBox2.Text.Length != 10)
-                {
-                    MessageBox.Show("Wrong input of Phone number");
-                }
-                else MessageBox.Show("Wrong input of EGN");
+                MessageBox.Show("Error with Data Input");
             }
+            finally { con.Close(); }
 
         }
     }

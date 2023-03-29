@@ -34,7 +34,7 @@ namespace Hospital_Project
                 adb = new SqlDataAdapter(cmd);
                 table = new DataTable();
                 adb.Fill(table);
-
+                adb.Dispose();
                 dataGridView.DataSource= table;
             }
 
@@ -55,7 +55,7 @@ namespace Hospital_Project
                 adb = new SqlDataAdapter(cmd);
                 table = new DataTable();
                 adb.Fill(table);
-
+                adb.Dispose();
                 dataGridView.DataSource = table;
             }
         }
@@ -74,7 +74,7 @@ namespace Hospital_Project
                 adb = new SqlDataAdapter(cmd);
                 table = new DataTable();
                 adb.Fill(table);
-
+                adb.Dispose();
                 dataGridView.DataSource = table;
             }
         }
@@ -93,7 +93,7 @@ namespace Hospital_Project
                 adb = new SqlDataAdapter(cmd);
                 table = new DataTable();
                 adb.Fill(table);
-
+                adb.Dispose();
                 dataGridView.DataSource = table;
             }
         }
@@ -112,7 +112,7 @@ namespace Hospital_Project
                 adb = new SqlDataAdapter(cmd);
                 table = new DataTable();
                 adb.Fill(table);
-
+                adb.Dispose();
                 dataGridView.DataSource = table;
             }
         }
@@ -138,7 +138,7 @@ namespace Hospital_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(dataGridView.SelectedCells[0-1].Value.ToString());
+            MessageBox.Show(dataGridView.SelectedCells[0].Value.ToString());
             var command = "Update @table SET @column1 = @value1 where ID = @id";
             string path = Path.GetFullPath(Directory.GetCurrentDirectory());
             string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
