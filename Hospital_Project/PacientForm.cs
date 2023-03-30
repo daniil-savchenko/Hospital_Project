@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospital_Project.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,129 +29,28 @@ namespace Hospital_Project
 
         private void Submitbtn_Click(object sender, EventArgs e)
         {
-            var idd = 1;
-            string path = Path.GetFullPath(Directory.GetCurrentDirectory());
-            string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
-            SqlConnection con = new SqlConnection(conn);
-            SqlDataAdapter adb;
-            DataTable table;
-            string sqlcom = "INSERT INTO Pacients Values(@ID, @pacName, @phone, @egn, @Parent, @Doctor)";
-            var select = "SELECT * FROM Pacients";
-
-            using (SqlCommand cmd = new SqlCommand(select, con))
-            {
-                con.Open();
-                adb = new SqlDataAdapter(cmd);
-                table = new DataTable();
-                adb.Fill(table);
-                adb.Dispose();
-                foreach (DataRow row in table.Rows)
-                {
-                    idd++;
-                }
-                con.Close();
+            Pacients pac = new Pacients();
+            DataBaseManager cmd = new DataBaseManager();
+            pac.PacName = nameTextBoxP.Text;
+            pac.Phone = phoneTextBoxP.Text;
+            pac.Egn = egnTextBoxP.Text;
+            pac.Parent1 = NameTextParentP.Text;
+            pac.Doctor1 = NameTextDoctorP.Text;
+            if (string.IsNullOrEmpty(nameTextBoxP.Text) || 
+                string.IsNullOrEmpty(phoneTextBoxP.Text) ||
+                string.IsNullOrEmpty(egnTextBoxP.Text) ||
+                string.IsNullOrEmpty(NameTextParentP.Text) ||
+                string.IsNullOrEmpty(NameTextDoctorP.Text)
+                ) 
+            { 
+                MessageBox.Show("Inorrent Data");
+                return;
             }
-
-            select = "SELECT ID from Doctors where workerName = @Doctor";
-            
-            using (SqlCommand cmd = new SqlCommand(select, con))
+            else if(cmd.AddParent(pac))
             {
-                con.Open();
-                adb = new SqlDataAdapter(cmd);
-                table = new DataTable();
-
-                cmd.Parameters.AddWithValue("@Doctor", NameTextDoctorP.Text);
-
-                adb.Fill(table);
-                adb.Dispose();
-                if (table.Rows.Count >= 1)
-                {
-                    foreach (DataRow row in table.Rows)
-                    {
-                        NameTextDoctorP.Text = row["ID"].ToString();
-                    }
-                }
-                else
-                {
-                    NameTextDoctorP.Text = string.Empty;
-                }
-
-                con.Close();
+                MessageBox.Show("Data writing was succesed");
             }
-
-            select = "SELECT ID from Parents where parName = @Parent";
-            using (SqlCommand cmd = new SqlCommand(select, con))
-            {
-                con.Open();
-                adb = new SqlDataAdapter(cmd);
-                table = new DataTable();
-
-                cmd.Parameters.AddWithValue("@Parent", NameTextParentP.Text);
-
-                adb.Fill(table);
-                adb.Dispose();
-                if (table.Rows.Count >= 1)
-                {
-                    foreach (DataRow row in table.Rows)
-                    {
-                        NameTextParentP.Text = row["ID"].ToString();
-                    }
-                }
-                else
-                {
-                    NameTextParentP.Text = string.Empty;
-                }
-                
-
-                con.Close();
-            }
-            try
-            {
-                con.Open();
-                using (SqlCommand insert = new SqlCommand(sqlcom, con))
-                {
-
-                    if (NameTextParentP.Text != string.Empty && NameTextDoctorP.Text != string.Empty)
-                    {
-                        if (nameTextBoxP.Text != string.Empty && phoneTextBoxP.Text != string.Empty && egnTextBoxP.Text != string.Empty)
-                        {
-                            insert.Parameters.AddWithValue("@ID", idd);
-                            insert.Parameters.AddWithValue("@pacName", nameTextBoxP.Text);
-                            insert.Parameters.AddWithValue("@phone", phoneTextBoxP.Text);
-                            insert.Parameters.AddWithValue("@egn", egnTextBoxP.Text);
-                            insert.Parameters.AddWithValue("@Parent", NameTextParentP.Text);
-                            insert.Parameters.AddWithValue("@Doctor", NameTextDoctorP.Text);
-                            insert.ExecuteNonQuery();
-                        }
-                        else
-                        {
-                            MessageBox.Show("please input data");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("wrong Input of Parent or Doctor");
-                    }
-                }
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("Error with Data Input");
-                
-            }
-            finally
-            {
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                con.Close();
-                nameTextBoxP.Text = string.Empty;
-                phoneTextBoxP.Text = string.Empty;
-                egnTextBoxP.Text = string.Empty;
-                NameTextParentP.Text = string.Empty;
-                NameTextDoctorP.Text = string.Empty;
-            }
-            
-
+            else MessageBox.Show("something went wrong");
         }
 
         private void button2_Click(object sender, EventArgs e)

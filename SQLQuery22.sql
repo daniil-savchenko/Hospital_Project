@@ -1,16 +1,18 @@
-﻿SELECT * FROM Pacients
-
-INSERT INTO Parents
-Values(' ', ' ', ' ', ' ')
-
-DELETE FROM Parents
-WHERE ID = 4 OR ID = 3
+﻿ALTER TABLE Pacients
+ADD CONSTRAINT PacNameCheck CHECK (LEN(pacName) > 0)
 
 ALTER TABLE Pacients
-ADD CONSTRAINT PacNameCheck CHECK ( LEN(pacName) > 0)
+ADD CONSTRAINT phoneNameCheck CHECK (LEN(phone) > 0)
 
-alter table Parents
-DROP CONSTRAINT ParNameCheck
+ALTER TABLE Pacients
+ADD CONSTRAINT egnCheck CHECK (LEN(egn) > 0)
 
-ALTER TABLE Parents
-ADD CONSTRAINT ParNameCheck CHECK ( LEN(parName) > 0)
+ALTER TABLE Positions
+ADD CONSTRAINT posNameCheck CHECK (LEN(posName) > 0)
+
+ALTER TABLE Pacients
+DROP CONSTRAINT PacNameCheck
+
+SELECT * FROM Pacients
+DELETE FROM  Pacients
+where pacname != 'sad'

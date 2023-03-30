@@ -73,6 +73,13 @@
     <Compile Include="AddPos.Designer.cs">
       <DependentUpon>AddPos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\DataBaseManager.cs" />
+    <Compile Include="Classes\Doctors.cs" />
+    <Compile Include="Classes\Pacients.cs" />
+    <Compile Include="Classes\Parents.cs" />
+    <Compile Include="Classes\Positions.cs" />
+    <Compile Include="Classes\Reservations.cs" />
+    <Compile Include="Classes\Workers.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

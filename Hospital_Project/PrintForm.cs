@@ -15,6 +15,7 @@ namespace Hospital_Project
 {
     public partial class PrintForm : Form
     {
+        string currentTable = "";
         public PrintForm()
         {
             InitializeComponent();
@@ -37,8 +38,9 @@ namespace Hospital_Project
                 adb.Dispose();
                 dataGridView.DataSource= table;
             }
-
-
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            currentTable = "Pacients";
         }
 
         private void PrintWorBtn_Click(object sender, EventArgs e)
@@ -58,6 +60,9 @@ namespace Hospital_Project
                 adb.Dispose();
                 dataGridView.DataSource = table;
             }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            currentTable = "Workers";
         }
 
         private void PrintDocBtn_Click(object sender, EventArgs e)
@@ -77,6 +82,9 @@ namespace Hospital_Project
                 adb.Dispose();
                 dataGridView.DataSource = table;
             }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            currentTable = "Doctors";
         }
 
         private void PrintParBtn_Click(object sender, EventArgs e)
@@ -96,6 +104,9 @@ namespace Hospital_Project
                 adb.Dispose();
                 dataGridView.DataSource = table;
             }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            currentTable = "Parents";
         }
 
         private void PrintPosBtn_Click(object sender, EventArgs e)
@@ -115,6 +126,9 @@ namespace Hospital_Project
                 adb.Dispose();
                 dataGridView.DataSource = table;
             }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            currentTable = "Positions";
         }
 
         private void PrintResBtn_Click(object sender, EventArgs e)
@@ -134,17 +148,23 @@ namespace Hospital_Project
 
                 dataGridView.DataSource = table;
             }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            currentTable = "Reservations";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show(dataGridView.SelectedCells[0].Value.ToString());
-            var command = "Update @table SET @column1 = @value1 where ID = @id";
+            MessageBox.Show(dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name);
+            
+            var command = "Update @table SET @column1 = @newval where @column1 = @value1";
             string path = Path.GetFullPath(Directory.GetCurrentDirectory());
             string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
             SqlConnection con = new SqlConnection(conn);
             SqlDataAdapter adb;
             DataTable table;
+            
             using (SqlCommand cmd = new SqlCommand(command, con))
             {
 

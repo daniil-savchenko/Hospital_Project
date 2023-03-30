@@ -80,71 +80,89 @@ namespace Hospital_Project
                 }
                 con.Close();
             }
-            sqlcom = "INSERT INTO Workers Values(@ID, @workerName, @phone, @email, @Position, @salary)";
-            using (SqlCommand insert = new SqlCommand(sqlcom, con))
+
+            try
             {
-                con.Open();
-                if (PositionTextBoxW.Text != string.Empty)
+                sqlcom = "INSERT INTO Workers Values(@ID, @workerName, @phone, @email, @Position, @salary)";
+                using (SqlCommand insert = new SqlCommand(sqlcom, con))
                 {
-                    if (NameTextBoxW.Text != string.Empty && PhoneTextBoxW.Text != string.Empty && EmailTextBoxW.Text != string.Empty && SalaryTextBoxW.Text != string.Empty)
+                    con.Open();
+                    if (PositionTextBoxW.Text != string.Empty)
                     {
+                        if (
+                            NameTextBoxW.Text != string.Empty && PhoneTextBoxW.Text != string.Empty &&
+                            EmailTextBoxW.Text != string.Empty && SalaryTextBoxW.Text != string.Empty &&
+                            PhoneTextBoxW.Text.Length == 10
+                            )
+                        {
+                            insert.Parameters.AddWithValue("@ID", idd);
+                            insert.Parameters.AddWithValue("@workerName", NameTextBoxW.Text);
+                            insert.Parameters.AddWithValue("@phone", PhoneTextBoxW.Text);
+                            insert.Parameters.AddWithValue("@email", EmailTextBoxW.Text);
+                            insert.Parameters.AddWithValue("@Position", PositionTextBoxW.Text);
+                            insert.Parameters.AddWithValue("@salary", SalaryTextBoxW.Text);
+                            insert.CommandType = CommandType.Text;
+                            insert.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            if (PhoneTextBoxW.Text.Length != 10) MessageBox.Show("Wrong input of phone");
+                                else MessageBox.Show("please input data");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("wrong Input of Position");
+                    }
+                    con.Close();
+                }
+                sqlcom = "INSERT INTO Doctors Values(@ID, @workerName, @phone, @email, @salary)";
+                using (SqlCommand insert = new SqlCommand(sqlcom, con))
+                {
+                    if (isDoctor == true)
+                    {
+                        select = "SELECT * FROM Doctors";
+                        idd = 1;
+                        using (SqlCommand cmd = new SqlCommand(select, con))
+                        {
+                            adb = new SqlDataAdapter(cmd);
+                            table = new DataTable();
+                            adb.Fill(table);
+                            adb.Dispose();
+                            foreach (DataRow row in table.Rows)
+                            {
+                                idd++;
+                            }
+                        }
+
                         insert.Parameters.AddWithValue("@ID", idd);
                         insert.Parameters.AddWithValue("@workerName", NameTextBoxW.Text);
                         insert.Parameters.AddWithValue("@phone", PhoneTextBoxW.Text);
                         insert.Parameters.AddWithValue("@email", EmailTextBoxW.Text);
-                        insert.Parameters.AddWithValue("@Position", PositionTextBoxW.Text);
                         insert.Parameters.AddWithValue("@salary", SalaryTextBoxW.Text);
                         insert.CommandType = CommandType.Text;
                         insert.ExecuteNonQuery();
                     }
-                    else
-                    {
-                        MessageBox.Show("please input data");
-                    }
                 }
-                else
-                {
-                    MessageBox.Show("wrong Input of Position");
-                }
-                con.Close();
             }
-            sqlcom = "INSERT INTO Doctors Values(@ID, @workerName, @phone, @email, @salary)";
-            con.Open();
-            using (SqlCommand insert = new SqlCommand(sqlcom, con))
+            catch (SqlException)
             {
-                if (isDoctor == true)
-                {
-                    select = "SELECT * FROM Doctors";
-                    idd = 1;
-                    using (SqlCommand cmd = new SqlCommand(select, con))
-                    {
-                        adb = new SqlDataAdapter(cmd);
-                        table = new DataTable();
-                        adb.Fill(table);
-                        adb.Dispose();
-                        foreach (DataRow row in table.Rows)
-                        {
-                            idd++;
-                        }
-                    }
-
-                    insert.Parameters.AddWithValue("@ID", idd);
-                    insert.Parameters.AddWithValue("@workerName", NameTextBoxW.Text);
-                    insert.Parameters.AddWithValue("@phone", PhoneTextBoxW.Text);
-                    insert.Parameters.AddWithValue("@email", EmailTextBoxW.Text);
-                    insert.Parameters.AddWithValue("@salary", SalaryTextBoxW.Text);
-                    insert.CommandType = CommandType.Text;
-                    insert.ExecuteNonQuery();
-                }
-                con.Close();
+                MessageBox.Show("Wrong Input");
+                
             }
-            NameTextBoxW.Text = string.Empty;
-            PhoneTextBoxW.Text = string.Empty;
-            EmailTextBoxW.Text = string.Empty;
-            PositionTextBoxW.Text = string.Empty;
-            SalaryTextBoxW.Text = string.Empty;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            finally
+            {
+                con.Close();
+                NameTextBoxW.Text = string.Empty;
+                PhoneTextBoxW.Text = string.Empty;
+                EmailTextBoxW.Text = string.Empty;
+                PositionTextBoxW.Text = string.Empty;
+                SalaryTextBoxW.Text = string.Empty;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+            
+            
         }
 
         private void WorkerForm_Load(object sender, EventArgs e)

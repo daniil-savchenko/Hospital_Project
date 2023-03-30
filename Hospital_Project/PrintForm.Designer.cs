@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.PrintResBtn = new System.Windows.Forms.Button();
             this.PrintPosBtn = new System.Windows.Forms.Button();
             this.PrintParBtn = new System.Windows.Forms.Button();
@@ -36,13 +37,14 @@
             this.PrintWorBtn = new System.Windows.Forms.Button();
             this.PrintPacBtn = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.PrintResBtn);
             this.panel1.Controls.Add(this.PrintPosBtn);
@@ -56,6 +58,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(382, 324);
             this.panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(12, 264);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 30);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Update";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // PrintResBtn
             // 
@@ -138,15 +152,13 @@
             this.dataGridView.Size = new System.Drawing.Size(382, 123);
             this.dataGridView.TabIndex = 0;
             // 
-            // button1
+            // textBox1
             // 
-            this.button1.Location = new System.Drawing.Point(147, 273);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.textBox1.Location = new System.Drawing.Point(93, 264);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(84, 30);
+            this.textBox1.TabIndex = 8;
             // 
             // PrintForm
             // 
@@ -159,6 +171,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Print";
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -175,5 +188,6 @@
         private System.Windows.Forms.Button PrintPacBtn;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
