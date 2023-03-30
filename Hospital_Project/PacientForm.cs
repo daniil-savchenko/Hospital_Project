@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -31,6 +32,8 @@ namespace Hospital_Project
         {
             Pacients pac = new Pacients();
             DataBaseManager cmd = new DataBaseManager();
+            Regex phoneregex = new Regex(@"^359[0-9]{7}$");
+            Regex egnregex = new Regex(@"^[0-9]{10}$");
             pac.PacName = nameTextBoxP.Text;
             pac.Phone = phoneTextBoxP.Text;
             pac.Egn = egnTextBoxP.Text;
@@ -40,15 +43,17 @@ namespace Hospital_Project
                 string.IsNullOrEmpty(phoneTextBoxP.Text) ||
                 string.IsNullOrEmpty(egnTextBoxP.Text) ||
                 string.IsNullOrEmpty(NameTextParentP.Text) ||
-                string.IsNullOrEmpty(NameTextDoctorP.Text)
+                string.IsNullOrEmpty(NameTextDoctorP.Text) ||
+                phoneregex.IsMatch(phoneTextBoxP.Text) ||
+                egnregex.IsMatch(egnTextBoxP.Text)
                 ) 
             { 
-                MessageBox.Show("Inorrent Data");
+                MessageBox.Show("Incorrect Data");
                 return;
             }
-            else if(cmd.AddParent(pac))
+            else if(cmd.AddPacient(pac))
             {
-                MessageBox.Show("Data writing was succesed");
+                MessageBox.Show("Data Writing was successful");
             }
             else MessageBox.Show("something went wrong");
         }

@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace Hospital_Project.Classes
 {
-    internal class Workers
+    internal class Work
     {
-        private int id;
         private string workerName;
         private string phone;
         private string email;
         private int Position;
         private double salary;
 
-        public int Id { get => id; set => id = value; }
         public string WorkerName { get => workerName; set => workerName = value; }
         public string Phone { get => phone; set => phone = value; }
         public string Email { get => email; set => email = value; }

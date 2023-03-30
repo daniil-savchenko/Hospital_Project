@@ -35,7 +35,7 @@ namespace Hospital_Project
                 string.IsNullOrEmpty(textBox3.Text)
                 )
             {
-                MessageBox.Show("Inorrent Data");
+                MessageBox.Show("Incorrect Data");
                 return;
             }else  if (cmd.AddPar(parent))
                 {

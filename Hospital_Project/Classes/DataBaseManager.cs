@@ -7,18 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Hospital_Project.Classes
 {
     internal class DataBaseManager
     {
-        int idd = 1;
-        static string path = Path.GetFullPath(Directory.GetCurrentDirectory());
-        static string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
-        static SqlConnection con = new SqlConnection(conn);
+        private int idd = 1;
+        private static string constring = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
+        private static SqlConnection con = new SqlConnection(constring);
         public DataBaseManager() { }
         
-        public bool AddParent(Pacients pacient)
+        public bool AddPacient(Pacients pacient)
         {
             idd = 1;
             SqlDataAdapter adb;
@@ -110,7 +110,7 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                MessageBox.Show("Error with Data Input");
+                MessageBox.Show("Error in inserting data into DataBase");
                 return false;
             }
             finally
@@ -166,6 +166,44 @@ namespace Hospital_Project.Classes
                 GC.WaitForPendingFinalizers();
             }
 
+        }
+
+        public void AddPos(Positions position)
+        {
+            string sqlcom = "INSERT INTO Positions(ID, posName)  Values(@ID, @posName)";
+            var select = "SELECT * FROM Positions";
+
+            using (SqlCommand cmd = new SqlCommand(select, con))
+            {
+                con.Open();
+                SqlDataAdapter adb = new SqlDataAdapter(cmd);
+                DataTable table = new DataTable();
+                adb.Fill(table);
+                adb.Dispose();
+                foreach (DataRow row in table.Rows)
+                {
+                    idd++;
+                }
+                con.Close();
+            }
+
+            if (position.PosName != string.Empty)
+            {
+                con.Open();
+                using (SqlCommand insert = new SqlCommand(sqlcom, con))
+                {
+                    insert.Parameters.AddWithValue("@ID", idd);
+                    insert.Parameters.AddWithValue("@posName", position.PosName);
+                    insert.CommandType = CommandType.Text;
+                    insert.ExecuteNonQuery();
+                }
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                con.Close();
+                /*this.Close();
+                this.Dispose();*/
+            }
+            else MessageBox.Show("please Input the Position");
         }
 
     }

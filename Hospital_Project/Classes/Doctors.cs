@@ -8,15 +8,12 @@ namespace Hospital_Project.Classes
 {
     internal class Doctors
     {
-        private int id;
         private string workerName;
         private string phone;
         private string email;
         private double salary;
 
         public Doctors() { }
-
-        public int Id { get => id; set => id = value; }
         public string WorkerName { get => workerName; set => workerName = value; }
         public string Phone { get => phone; set => phone = value; }
         public string Email { get => email; set => email = value; }

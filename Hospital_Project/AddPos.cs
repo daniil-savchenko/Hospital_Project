@@ -25,40 +25,8 @@ namespace Hospital_Project
             string path = Path.GetFullPath(Directory.GetCurrentDirectory());
             string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
             SqlConnection con = new SqlConnection(conn);
-            string sqlcom = "INSERT INTO Positions(ID, posName)  Values(@ID, @posName)";
-            var select = "SELECT * FROM Positions";
+            
 
-            using (SqlCommand cmd = new SqlCommand(select, con))
-            {
-                con.Open();
-                SqlDataAdapter adb = new SqlDataAdapter(cmd);
-                DataTable table = new DataTable();
-                adb.Fill(table);
-                adb.Dispose();
-                foreach (DataRow row in table.Rows)
-                {
-                    idd++;
-                }
-                con.Close();
-            }
-
-            if (textBox1.Text != string.Empty)
-            {
-                con.Open();
-                using (SqlCommand insert = new SqlCommand(sqlcom, con))
-                {
-                    insert.Parameters.AddWithValue("@ID", idd);
-                    insert.Parameters.AddWithValue("@posName", this.textBox1.Text);
-                    insert.CommandType = CommandType.Text;
-                    insert.ExecuteNonQuery();
-                }
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                con.Close();
-                this.Close();
-                this.Dispose();
-            }
-            else MessageBox.Show("please Input the Position");
             
         }
     }
