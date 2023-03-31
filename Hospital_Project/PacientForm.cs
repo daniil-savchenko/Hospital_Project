@@ -32,7 +32,7 @@ namespace Hospital_Project
         {
             Pacients pac = new Pacients();
             DataBaseManager cmd = new DataBaseManager();
-            Regex phoneregex = new Regex(@"^359[0-9]{7}$");
+            Regex phoneregex = new Regex(@"^0[0-9]{9}$");
             Regex egnregex = new Regex(@"^[0-9]{10}$");
             pac.PacName = nameTextBoxP.Text;
             pac.Phone = phoneTextBoxP.Text;
@@ -55,13 +55,15 @@ namespace Hospital_Project
             {
                 MessageBox.Show("Data Writing was successful");
             }
-            else MessageBox.Show("something went wrong");
+            else MessageBox.Show("something went with Data input");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             AddPar par = new AddPar();
             par.ShowDialog();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         private void PacientForm_Load(object sender, EventArgs e)

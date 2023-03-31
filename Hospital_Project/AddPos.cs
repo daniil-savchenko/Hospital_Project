@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospital_Project.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,13 +23,27 @@ namespace Hospital_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var idd = 1;
-            string path = Path.GetFullPath(Directory.GetCurrentDirectory());
-            string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
-            SqlConnection con = new SqlConnection(conn);
-            
+            Positions pos = new Positions();
+            DataBaseManager cmd = new DataBaseManager();
+            pos.PosName = textBox1.Text;
 
-            
+            if (string.IsNullOrEmpty(textBox1.Text))
+            {
+                MessageBox.Show("Pleaese input Data");
+                return;
+            }
+            else if (cmd.AddPos(pos))
+            {
+                MessageBox.Show("Data wrining was successful");
+                this.Close();
+                this.Dispose();
+                return;
+            }else
+            {
+                MessageBox.Show("Something went wrong is Data writing");
+                return;
+            }
+
         }
     }
 }

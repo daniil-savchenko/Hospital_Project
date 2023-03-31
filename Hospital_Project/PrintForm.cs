@@ -172,5 +172,10 @@ namespace Hospital_Project
 
 
         }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
