@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospital_Project.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,15 +22,19 @@ namespace Hospital_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string constring = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
-            SqlConnection connection = new SqlConnection(constring);
-            SqlDataAdapter adb;
-            DataTable table;
-            var idd = 1;
-            var select = "SELECT * FROM Reservations";
-            var insert = "INSERT INTO Reservations VALUES(@ID, @date, @pac, @doc)";
+            DataBaseManager cmd = new DataBaseManager();
+            Reservations res = new Reservations();
+            res.DoctorId = DocBox.Text;
+            res.PacientId = PacientBox.Text;
+            res.Thedate= dateTimePicker.Text;
 
-            
+            if (cmd.AddReservation(res))
+            {
+                MessageBox.Show("Success");
+            } else
+            {
+                MessageBox.Show("no");
+            }
         }
 
         private void ReservationForm_Load(object sender, EventArgs e)

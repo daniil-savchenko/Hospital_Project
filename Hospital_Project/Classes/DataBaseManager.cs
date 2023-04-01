@@ -355,10 +355,12 @@ namespace Hospital_Project.Classes
         }
         public bool AddReservation(Reservations reservation)
         {
+            sqlcom = "INSERT INTO Reservations Values(@ID, @date, @pac, @doc)";
+            select = "SELECT * FROM Reservations";
             idd = 1;
-            using (SqlCommand cmd = new SqlCommand(select, connection))
+            using (SqlCommand cmd = new SqlCommand(select, con))
             {
-                connection.Open();
+                con.Open();
                 adb = new SqlDataAdapter(cmd);
                 table = new DataTable();
                 adb.Fill(table);
@@ -368,17 +370,17 @@ namespace Hospital_Project.Classes
                 {
                     idd++;
                 }
-                connection.Close();
+                con.Close();
             }
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(insert, connection))
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
                 {
                     select = "SELECT * FROM Pacients where pacName = @name";
-                    using (SqlCommand sel = new SqlCommand(select, connection))
+                    using (SqlCommand sel = new SqlCommand(select, con))
                     {
-                        connection.Open();
+                        con.Open();
                         adb = new SqlDataAdapter(sel);
                         table = new DataTable();
                         sel.Parameters.AddWithValue("@name", reservation.PacientId);
@@ -395,12 +397,12 @@ namespace Hospital_Project.Classes
                         {
                             reservation.PacientId = string.Empty;
                         }
-                        connection.Close();
+                        con.Close();
                     }
                     select = "SELECT * FROM Doctors where workerName = @name";
-                    using (SqlCommand sel = new SqlCommand(select, connection))
+                    using (SqlCommand sel = new SqlCommand(select, con))
                     {
-                        connection.Open();
+                        con.Open();
                         adb = new SqlDataAdapter(sel);
                         table = new DataTable();
                         sel.Parameters.AddWithValue("@name", reservation.DoctorId);
@@ -418,15 +420,19 @@ namespace Hospital_Project.Classes
                         {
                             reservation.DoctorId = string.Empty;
                         }
-                        connection.Close();
+                        con.Close();
                     }
-                    connection.Open();
+                    if (reservation.DoctorId != string.Empty && reservation.PacientId != string.Empty)
+                    {
+                        con.Open();
                         cmd.Parameters.AddWithValue("@ID", idd);
                         cmd.Parameters.AddWithValue("@pac", reservation.PacientId);
                         cmd.Parameters.AddWithValue("@doc", reservation.DoctorId);
                         cmd.Parameters.AddWithValue("@date", reservation.Thedate);
                         cmd.ExecuteNonQuery();
-                    return true;
+                        return true;
+                    }
+                    else return false;
                 }
             }
             catch (Exception)
@@ -436,7 +442,7 @@ namespace Hospital_Project.Classes
             }
             finally
             {
-                connection.Close();
+                con.Close();
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
