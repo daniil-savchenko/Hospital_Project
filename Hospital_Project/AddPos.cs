@@ -27,7 +27,7 @@ namespace Hospital_Project
             DataBaseManager cmd = new DataBaseManager();
             pos.PosName = textBox1.Text;
 
-            if (string.IsNullOrEmpty(textBox1.Text))
+            if (string.IsNullOrEmpty(pos.PosName))
             {
                 MessageBox.Show("Pleaese input Data");
                 return;

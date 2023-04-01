@@ -15,7 +15,6 @@ namespace Hospital_Project
 {
     public partial class PrintForm : Form
     {
-        string currentTable = "";
         public PrintForm()
         {
             InitializeComponent();
@@ -36,11 +35,12 @@ namespace Hospital_Project
                 table = new DataTable();
                 adb.Fill(table);
                 adb.Dispose();
+                dataGridView.AutoResizeColumns();
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dataGridView.DataSource= table;
             }
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            currentTable = "Pacients";
         }
 
         private void PrintWorBtn_Click(object sender, EventArgs e)
@@ -62,7 +62,6 @@ namespace Hospital_Project
             }
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            currentTable = "Workers";
         }
 
         private void PrintDocBtn_Click(object sender, EventArgs e)
@@ -84,7 +83,6 @@ namespace Hospital_Project
             }
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            currentTable = "Doctors";
         }
 
         private void PrintParBtn_Click(object sender, EventArgs e)
@@ -106,7 +104,6 @@ namespace Hospital_Project
             }
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            currentTable = "Parents";
         }
 
         private void PrintPosBtn_Click(object sender, EventArgs e)
@@ -128,7 +125,6 @@ namespace Hospital_Project
             }
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            currentTable = "Positions";
         }
 
         private void PrintResBtn_Click(object sender, EventArgs e)
@@ -150,7 +146,6 @@ namespace Hospital_Project
             }
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            currentTable = "Reservations";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -167,15 +162,17 @@ namespace Hospital_Project
             
             using (SqlCommand cmd = new SqlCommand(command, con))
             {
-
+                    
             }
 
 
         }
 
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
+
+        
     }
 }

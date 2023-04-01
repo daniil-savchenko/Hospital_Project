@@ -17,15 +17,18 @@ namespace Hospital_Project.Classes
         private int idd = 1;
         private static string constring = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
         private static SqlConnection con = new SqlConnection(constring);
+        private SqlDataAdapter adb;
+        private DataTable table;
+        private string sqlcom = "";
+        private string select = "";
         public DataBaseManager() { }
 
         public bool AddPacient(Pacients pacient)
         {
             idd = 1;
-            SqlDataAdapter adb;
-            DataTable table;
-            string sqlcom = "INSERT INTO Pacients Values(@ID, @pacName, @phone, @egn, @Parent, @Doctor)";
-            var select = "SELECT * FROM Pacients";
+            
+            sqlcom = "INSERT INTO Pacients Values(@ID, @pacName, @phone, @egn, @Parent, @Doctor)";
+            select = "SELECT * FROM Pacients";
 
             using (SqlCommand cmd = new SqlCommand(select, con))
             {
@@ -125,14 +128,14 @@ namespace Hospital_Project.Classes
         public bool AddPar(Parents parent)
         {
             idd = 1;
-            string sqlcom = "INSERT INTO Parents(ID, parName, phone, egn)  Values(@ID, @parName, @phone, @egn)";
-            var select = "SELECT * FROM Parents";
+            sqlcom = "INSERT INTO Parents(ID, parName, phone, egn)  Values(@ID, @parName, @phone, @egn)";
+            select = "SELECT * FROM Parents";
 
             using (SqlCommand cmd = new SqlCommand(select, con))
             {
                 con.Open();
-                SqlDataAdapter adb = new SqlDataAdapter(cmd);
-                DataTable table = new DataTable();
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
                 adb.Fill(table);
                 adb.Dispose();
                 foreach (DataRow row in table.Rows)
@@ -169,14 +172,14 @@ namespace Hospital_Project.Classes
 
         public bool AddPos(Positions position)
         {
-            string sqlcom = "INSERT INTO Positions(ID, posName)  Values(@ID, @posName)";
-            var select = "SELECT * FROM Positions";
+            sqlcom = "INSERT INTO Positions(ID, posName)  Values(@ID, @posName)";
+            select = "SELECT * FROM Positions";
 
             using (SqlCommand cmd = new SqlCommand(select, con))
             {
                 con.Open();
-                SqlDataAdapter adb = new SqlDataAdapter(cmd);
-                DataTable table = new DataTable();
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
                 adb.Fill(table);
                 adb.Dispose();
                 foreach (DataRow row in table.Rows)
@@ -214,8 +217,8 @@ namespace Hospital_Project.Classes
         {
             SqlDataAdapter adb;
             DataTable table;
-            string sqlcom = "INSERT INTO Workers Values(@ID, @workerName, @phone, @email, @Position, @salary)";
-            var select = "SELECT * FROM Workers";
+            sqlcom = "INSERT INTO Workers Values(@ID, @workerName, @phone, @email, @Position, @salary)";
+            select = "SELECT * FROM Workers";
             var isDoctor = false;
 
             using (SqlCommand cmd = new SqlCommand(select, con))
@@ -310,16 +313,13 @@ namespace Hospital_Project.Classes
 
         public bool AddDoc(Workers worker)
         {
-            string sqlcom = "INSERT INTO Workers Values(@ID, @workerName, @phone, @email, @Position, @salary)";
-            var select = "SELECT * FROM Workers";
-            SqlDataAdapter adb;
-            DataTable table;
+            sqlcom = "INSERT INTO Doctors Values(@ID, @workerName, @phone, @email, @salary)";
+            select = "SELECT * FROM Doctors";
             try
             {
-                sqlcom = "INSERT INTO Doctors Values(@ID, @workerName, @phone, @email, @salary)";
                 using (SqlCommand insert = new SqlCommand(sqlcom, con))
                 {
-                        select = "SELECT * FROM Doctors";
+                        
                         idd = 1;
                         using (SqlCommand cmd = new SqlCommand(select, con))
                         {
@@ -352,6 +352,96 @@ namespace Hospital_Project.Classes
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
+        }
+        public bool AddReservation(Reservations reservation)
+        {
+            idd = 1;
+            using (SqlCommand cmd = new SqlCommand(select, connection))
+            {
+                connection.Open();
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
+                adb.Fill(table);
+                adb.Dispose();
+
+                foreach (DataRow row in table.Rows)
+                {
+                    idd++;
+                }
+                connection.Close();
+            }
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(insert, connection))
+                {
+                    select = "SELECT * FROM Pacients where pacName = @name";
+                    using (SqlCommand sel = new SqlCommand(select, connection))
+                    {
+                        connection.Open();
+                        adb = new SqlDataAdapter(sel);
+                        table = new DataTable();
+                        sel.Parameters.AddWithValue("@name", reservation.PacientId);
+                        adb.Fill(table);
+                        adb.Dispose();
+                        if (table.Rows.Count == 1)
+                        {
+                            foreach (DataRow row in table.Rows)
+                            {
+                                reservation.PacientId = row["ID"].ToString();
+                            }
+                        }
+                        else
+                        {
+                            reservation.PacientId = string.Empty;
+                        }
+                        connection.Close();
+                    }
+                    select = "SELECT * FROM Doctors where workerName = @name";
+                    using (SqlCommand sel = new SqlCommand(select, connection))
+                    {
+                        connection.Open();
+                        adb = new SqlDataAdapter(sel);
+                        table = new DataTable();
+                        sel.Parameters.AddWithValue("@name", reservation.DoctorId);
+                        adb.Fill(table);
+                        adb.Dispose();
+
+                        if (table.Rows.Count >= 1)
+                        {
+                            foreach (DataRow row in table.Rows)
+                            {
+                                reservation.DoctorId = row["ID"].ToString();
+                            }
+                        }
+                        else
+                        {
+                            reservation.DoctorId = string.Empty;
+                        }
+                        connection.Close();
+                    }
+                    connection.Open();
+                        cmd.Parameters.AddWithValue("@ID", idd);
+                        cmd.Parameters.AddWithValue("@pac", reservation.PacientId);
+                        cmd.Parameters.AddWithValue("@doc", reservation.DoctorId);
+                        cmd.Parameters.AddWithValue("@date", reservation.Thedate);
+                        cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+            
+            
         }
     }
 }

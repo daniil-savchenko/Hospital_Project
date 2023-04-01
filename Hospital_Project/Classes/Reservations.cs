@@ -8,12 +8,12 @@ namespace Hospital_Project.Classes
 {
     internal class Reservations
     {
-        private DateTime thedate;
-        private int pacientId;
-        private int doctorId;
+        private string thedate;
+        private string pacientId;
+        private string doctorId;
 
-        public DateTime Thedate { get => thedate; set => thedate = value; }
-        public int PacientId { get => pacientId; set => pacientId = value; }
-        public int DoctorId { get => doctorId; set => doctorId = value; }
+        public string Thedate { get => thedate; set => thedate = value; }
+        public string PacientId { get => pacientId; set => pacientId = value; }
+        public string DoctorId { get => doctorId; set => doctorId = value; }
     }
 }

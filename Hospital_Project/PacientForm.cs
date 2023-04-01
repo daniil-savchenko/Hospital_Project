@@ -34,28 +34,59 @@ namespace Hospital_Project
             DataBaseManager cmd = new DataBaseManager();
             Regex phoneregex = new Regex(@"^0[0-9]{9}$");
             Regex egnregex = new Regex(@"^[0-9]{10}$");
+            if (phoneregex.IsMatch(phoneTextBoxP.Text))
+            {
+                pac.Phone = phoneTextBoxP.Text;
+            }
+            else
+            {
+                MessageBox.Show("Wrong Phone Input");
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                return;
+
+            }
+            if (egnregex.IsMatch(egnTextBoxP.Text))
+            {
+                pac.Egn = egnTextBoxP.Text;
+            }
+            else
+            {
+                MessageBox.Show("Wrong Phone Input");
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                return;
+
+            }
             pac.PacName = nameTextBoxP.Text;
-            pac.Phone = phoneTextBoxP.Text;
-            pac.Egn = egnTextBoxP.Text;
             pac.Parent1 = NameTextParentP.Text;
             pac.Doctor1 = NameTextDoctorP.Text;
-            if (string.IsNullOrEmpty(nameTextBoxP.Text) || 
-                string.IsNullOrEmpty(phoneTextBoxP.Text) ||
-                string.IsNullOrEmpty(egnTextBoxP.Text) ||
-                string.IsNullOrEmpty(NameTextParentP.Text) ||
-                string.IsNullOrEmpty(NameTextDoctorP.Text) ||
-                phoneregex.IsMatch(phoneTextBoxP.Text) ||
-                egnregex.IsMatch(egnTextBoxP.Text)
+            if (string.IsNullOrEmpty(pac.PacName) || 
+                string.IsNullOrEmpty(pac.Phone) ||
+                string.IsNullOrEmpty(pac.Egn) ||
+                string.IsNullOrEmpty(pac.Parent1) ||
+                string.IsNullOrEmpty(pac.Doctor1)
                 ) 
-            { 
+            {
                 MessageBox.Show("Incorrect Data");
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 return;
             }
             else if(cmd.AddPacient(pac))
             {
                 MessageBox.Show("Data Writing was successful");
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                return;
             }
-            else MessageBox.Show("something went with Data input");
+            else
+            {
+                MessageBox.Show("something went with Data input");
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            } 
+                
         }
 
         private void button2_Click(object sender, EventArgs e)

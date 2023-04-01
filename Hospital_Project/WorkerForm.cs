@@ -48,31 +48,44 @@ namespace Hospital_Project
             {
                 worker.Phone = PhoneTextBoxW.Text;
             }
-            else PhoneTextBoxW.Text = string.Empty;
+            else
+            {
+                MessageBox.Show("Wrong Phone Input");
+                PhoneTextBoxW.Text = string.Empty;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                return;
+            }
 
             worker.WorkerName = NameTextBoxW.Text;
             worker.Position1 = PositionTextBoxW.Text;
             worker.Salary = SalaryTextBoxW.Text;
 
             if (
-                string.IsNullOrEmpty(NameTextBoxW.Text) ||
-                string.IsNullOrEmpty(PhoneTextBoxW.Text) ||
-                string.IsNullOrEmpty(EmailTextBoxW.Text) ||
-                string.IsNullOrEmpty(PositionTextBoxW.Text) ||
-                string.IsNullOrEmpty(SalaryTextBoxW.Text)
+                string.IsNullOrEmpty(worker.WorkerName) ||
+                string.IsNullOrEmpty(worker.Phone) ||
+                string.IsNullOrEmpty(worker.Email) ||
+                string.IsNullOrEmpty(worker.Position1) ||
+                string.IsNullOrEmpty(worker.Salary)
                 )
             {
                 MessageBox.Show("Wrong Data input");
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 return;
             }
             else if (cmd.AddWorker(worker))
             {
                 MessageBox.Show("Data writing was successed");
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 return;
             }
             else
             {
                 MessageBox.Show("Something went wrong with data input");
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 return;
             }
         }
