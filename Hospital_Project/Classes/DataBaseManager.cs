@@ -26,7 +26,7 @@ namespace Hospital_Project.Classes
         public bool AddPacient(Pacients pacient)
         {
             idd = 1;
-            
+
             sqlcom = "INSERT INTO Pacients Values(@ID, @pacName, @phone, @egn, @Parent, @Doctor)";
             select = "SELECT * FROM Pacients";
 
@@ -303,8 +303,8 @@ namespace Hospital_Project.Classes
             {
                 return false;
             }
-            finally 
-            { 
+            finally
+            {
                 con.Close();
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
@@ -319,28 +319,28 @@ namespace Hospital_Project.Classes
             {
                 using (SqlCommand insert = new SqlCommand(sqlcom, con))
                 {
-                        
-                        idd = 1;
-                        using (SqlCommand cmd = new SqlCommand(select, con))
-                        {
-                            adb = new SqlDataAdapter(cmd);
-                            table = new DataTable();
-                            adb.Fill(table);
-                            adb.Dispose();
-                            foreach (DataRow row in table.Rows)
-                            {
-                                idd++;
-                            }
-                        }
 
-                        insert.Parameters.AddWithValue("@ID", idd);
-                        insert.Parameters.AddWithValue("@workerName", worker.WorkerName);
-                        insert.Parameters.AddWithValue("@phone", worker.Phone);
-                        insert.Parameters.AddWithValue("@email", worker.Email);
-                        insert.Parameters.AddWithValue("@salary", worker.Salary);
-                        insert.CommandType = CommandType.Text;
-                        insert.ExecuteNonQuery();
-                        return true;
+                    idd = 1;
+                    using (SqlCommand cmd = new SqlCommand(select, con))
+                    {
+                        adb = new SqlDataAdapter(cmd);
+                        table = new DataTable();
+                        adb.Fill(table);
+                        adb.Dispose();
+                        foreach (DataRow row in table.Rows)
+                        {
+                            idd++;
+                        }
+                    }
+
+                    insert.Parameters.AddWithValue("@ID", idd);
+                    insert.Parameters.AddWithValue("@workerName", worker.WorkerName);
+                    insert.Parameters.AddWithValue("@phone", worker.Phone);
+                    insert.Parameters.AddWithValue("@email", worker.Email);
+                    insert.Parameters.AddWithValue("@salary", worker.Salary);
+                    insert.CommandType = CommandType.Text;
+                    insert.ExecuteNonQuery();
+                    return true;
                 }
             }
             catch (Exception)
@@ -446,8 +446,73 @@ namespace Hospital_Project.Classes
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
-            
-            
+
+
+        }
+
+        public DataTable SelectPacient()
+        {
+            select = "SELECT * FROM Pacients";
+            SqlCommand cmd = new SqlCommand(select, con);
+            adb = new SqlDataAdapter(cmd);
+            table = new DataTable();
+            adb.Fill(table);
+            adb.Dispose();
+            return table;
+        }
+
+        public DataTable SelectWokrker()
+        {
+            select = "SELECT * FROM Workers";
+            SqlCommand cmd = new SqlCommand(select, con);
+            adb = new SqlDataAdapter(cmd);
+            table = new DataTable();
+            adb.Fill(table);
+            adb.Dispose();
+            return table;
+        }
+
+        public DataTable SelectDoctor()
+        {
+            select = "SELECT * FROM Doctors";
+            SqlCommand cmd = new SqlCommand(select, con);
+            adb = new SqlDataAdapter(cmd);
+            table = new DataTable();
+            adb.Fill(table);
+            adb.Dispose();
+            return table;
+        }
+
+        public DataTable SelectParents()
+        {
+            select = "SELECT * FROM Parents";
+            SqlCommand cmd = new SqlCommand(select, con);
+            adb = new SqlDataAdapter(cmd);
+            table = new DataTable();
+            adb.Fill(table);
+            adb.Dispose();
+            return table;
+        }
+
+        public DataTable SelectPositions()
+        {
+            select = "SELECT * FROM Positions";
+            SqlCommand cmd = new SqlCommand(select, con);
+            adb = new SqlDataAdapter(cmd);
+            table = new DataTable();
+            adb.Fill(table);
+            adb.Dispose();
+            return table;
+        }
+        public DataTable SelectReservations()
+        {
+            select = "SELECT * FROM Reservations";
+            SqlCommand cmd = new SqlCommand(select, con);
+            adb = new SqlDataAdapter(cmd);
+            table = new DataTable();
+            adb.Fill(table);
+            adb.Dispose();
+            return table;
         }
     }
 }
