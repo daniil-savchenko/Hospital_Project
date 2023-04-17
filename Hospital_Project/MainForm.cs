@@ -20,7 +20,7 @@ namespace Hospital_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            timer1.Start();
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -116,6 +116,11 @@ namespace Hospital_Project
             a.BringToFront();
             a.Show();
             
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label1.Text = DateTime.Now.ToString("hh:mm:ss");
         }
     }
 }

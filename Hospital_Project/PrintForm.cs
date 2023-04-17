@@ -90,8 +90,6 @@ namespace Hospital_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*string column1 = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-            string value1 = dataGridView.SelectedCells[0].Value.ToString();*/
             MessageBox.Show(dataGridView.SelectedCells[0].Value.ToString()); // value
             MessageBox.Show(dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name); // name of column
             
@@ -99,24 +97,11 @@ namespace Hospital_Project
             string newval = textBox1.Text;
             string oldval = dataGridView.SelectedCells[0].Value.ToString();
             DataBaseManager cmd = new DataBaseManager();
-            /* var command = "Update Pacients SET @column1 = @newval where @column1 = @value1";
-             string path = Path.GetFullPath(Directory.GetCurrentDirectory());
-             string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + Path.GetFullPath(Path.Combine(Path.GetFullPath(Directory.GetCurrentDirectory()), @"..\..\Hospital_database.mdf")) + "\";Integrated Security=True;Connect Timeout=30";
-             SqlConnection con = new SqlConnection(conn);
-             using (SqlCommand cmd = new SqlCommand(command, con))
-             {
-                 con.Open();
-                 cmd.Parameters.AddWithValue("@column1", column1.ToString());
-                 cmd.Parameters.AddWithValue("@newval", textBox1.Text);
-                 cmd.Parameters.AddWithValue("@value1", value1.ToString());
-                 cmd.ExecuteNonQuery();
-                 co*/
             
             if (cmd.UpdateData(tablename, columnname, newval, oldval))
             {
                 MessageBox.Show("Success");
-            }else MessageBox.Show("meow");
-
+            }
         }
 
         private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

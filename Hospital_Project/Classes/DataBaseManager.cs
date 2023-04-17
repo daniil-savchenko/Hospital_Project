@@ -578,6 +578,7 @@ namespace Hospital_Project.Classes
 
                                 break;
                             default:
+                                MessageBox.Show("Can't change Id's data");
                                 return false;
                         }
                         break;
@@ -607,6 +608,7 @@ namespace Hospital_Project.Classes
 
                                 break;
                             default:
+                                MessageBox.Show("Can't change Id's data");
                                 return false;
                         }
                         break;
@@ -631,7 +633,8 @@ namespace Hospital_Project.Classes
                                 if (!egnregex.IsMatch(newval)) return false;
                                 break;
 
-                            default: return false;
+                            default: MessageBox.Show("Can't change Id's data");
+                                return false;
                         }
                         break;
                     case "Positins":
@@ -656,7 +659,8 @@ namespace Hospital_Project.Classes
                             case "Doctor":
                                 sqlcom = "Update Reservations SET Doctor = @newval Where Doctor = @value";
                                 break;
-                            default: return false;
+                            default: MessageBox.Show("Can't change Id's data");
+                                return false;
                         }
                         break;
                     case "Workers":
@@ -702,13 +706,15 @@ namespace Hospital_Project.Classes
                         }
                         break;
                     default:
+                        MessageBox.Show("Can't change Id's data");
                         return false;
                 }
 
                 return UpdateUsingMethod(tablename, column, newval, oldval, sqlcom);
             }
-            catch (Exception)
+            catch (Exception x)
             {
+                MessageBox.Show(x.ToString());
                 throw;
             }
 
