@@ -18,6 +18,8 @@ namespace Hospital_Project
         public ReservationForm()
         {
             InitializeComponent();
+            dateTimePicker.Format = DateTimePickerFormat.Custom;
+            dateTimePicker.CustomFormat = "MM/dd/yyyy HH:mm:ss tt";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -26,7 +28,7 @@ namespace Hospital_Project
             Reservations res = new Reservations();
             res.DoctorId = DocBox.Text;
             res.PacientId = PacientBox.Text;
-            res.Thedate= dateTimePicker.Text;
+            res.Thedate = dateTimePicker.Text;
 
             if (cmd.AddReservation(res))
             {

@@ -55,6 +55,7 @@
             this.dataGridView.ReadOnly = true;
             this.dataGridView.Size = new System.Drawing.Size(352, 123);
             this.dataGridView.TabIndex = 0;
+            this.dataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseClick);
             // 
             // PrintPacBtn
             // 
@@ -145,7 +146,7 @@
             this.textBox1.Location = new System.Drawing.Point(208, 264);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(84, 30);
+            this.textBox1.Size = new System.Drawing.Size(158, 30);
             this.textBox1.TabIndex = 8;
             // 
             // panel1

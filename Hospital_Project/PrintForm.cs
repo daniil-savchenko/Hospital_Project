@@ -109,6 +109,9 @@ namespace Hospital_Project
             
         }
 
-        
+        private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            textBox1.Text = dataGridView.SelectedCells[0].Value.ToString();
+        }
     }
 }

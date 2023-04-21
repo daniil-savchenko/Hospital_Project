@@ -455,7 +455,7 @@ namespace Hospital_Project.Classes
 
         public DataTable SelectPacient()
         {
-            select = "SELECT * FROM Pacients";
+            select = "SELECT Pacients.ID, Pacients.pacName, Pacients.Phone, Pacients.egn, Parents.parName, Doctors.workerName From (Pacients INNER JOIN Parents ON Pacients.Parent = Parents.ID)INNER JOIN Doctors ON Pacients.Doctor = Doctors.ID";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -466,7 +466,7 @@ namespace Hospital_Project.Classes
 
         public DataTable SelectWokrker()
         {
-            select = "SELECT * FROM Workers";
+            select = "SELECT Workers.ID, Workers.WorkerName, Workers.Phone, Workers.email, Positions.posName, Workers.Salary FROM Workers INNER JOIN Positions ON Workers.Position = Positions.ID";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -509,7 +509,7 @@ namespace Hospital_Project.Classes
         }
         public DataTable SelectReservations()
         {
-            select = "SELECT * FROM Reservations";
+            select = "SELECT Reservations.ID, Reservations.thedate, Pacients.pacName, Doctors.workerName FROM (ReservationsINNER JOIN Pacients ON Reservations.Patient = Pacients.ID)INNER JOIN Doctors ON Reservations.Doctor = Doctors.ID";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -651,8 +651,8 @@ namespace Hospital_Project.Classes
                         {
                             case "thedate":
                                 // ask teacher about date
-                                MessageBox.Show("the date can't be changed");
-                                return false;
+                                sqlcom = "UPDATE Reservations SET thedate = @newval Where thedate = @value";
+                                break;
                             case "Pacient":
                                 sqlcom = "Update Reservations SET Pacient = @newval Where Pacient = @value";
                                 break;
