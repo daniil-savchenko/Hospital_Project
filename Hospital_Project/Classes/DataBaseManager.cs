@@ -455,7 +455,7 @@ namespace Hospital_Project.Classes
 
         public DataTable SelectPacient()
         {
-            select = "SELECT Pacients.ID, Pacients.pacName, Pacients.Phone, Pacients.egn, Parents.parName, Doctors.workerName From (Pacients INNER JOIN Parents ON Pacients.Parent = Parents.ID)INNER JOIN Doctors ON Pacients.Doctor = Doctors.ID";
+            select = "SELECT Pacients.ID, Pacients.pacName, Pacients.Phone, Pacients.egn, Parents.parName as Parent, Doctors.workerName as Doctor From (Pacients INNER JOIN Parents ON Pacients.Parent = Parents.ID)INNER JOIN Doctors ON Pacients.Doctor = Doctors.ID";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -466,7 +466,7 @@ namespace Hospital_Project.Classes
 
         public DataTable SelectWokrker()
         {
-            select = "SELECT Workers.ID, Workers.WorkerName, Workers.Phone, Workers.email, Positions.posName, Workers.Salary FROM Workers INNER JOIN Positions ON Workers.Position = Positions.ID";
+            select = "SELECT Workers.ID, Workers.WorkerName, Workers.Phone, Workers.email, Positions.posName as Position, Workers.Salary FROM Workers INNER JOIN Positions ON Workers.Position = Positions.ID";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -509,7 +509,7 @@ namespace Hospital_Project.Classes
         }
         public DataTable SelectReservations()
         {
-            select = "SELECT Reservations.ID, Reservations.thedate, Pacients.pacName, Doctors.workerName FROM (ReservationsINNER JOIN Pacients ON Reservations.Patient = Pacients.ID)INNER JOIN Doctors ON Reservations.Doctor = Doctors.ID";
+            select = "SELECT Reservations.ID, Reservations.thedate, Pacients.pacName as Patient, Doctors.workerName as Doctor FROM (Reservations INNER JOIN Pacients ON Reservations.Patient = Pacients.ID)INNER JOIN Doctors ON Reservations.Doctor = Doctors.ID";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -552,29 +552,29 @@ namespace Hospital_Project.Classes
                         {
                             case "pacName":
 
-                                sqlcom = "Update Pacients SET pacName = @newval Where pacName = @value";
+                                sqlcom = "Update Pacients SET pacName = @newval Where id = @value";
 
                                 break;
                             case "phone":
                                 Regex phoneregex = new Regex(@"^0[0-9]{9}$");
-                                sqlcom = "Update Pacients SET phone = @newval Where phone = @value";
+                                sqlcom = "Update Pacients SET phone = @newval Where id = @value";
 
                                 if (!phoneregex.IsMatch(newval)) return false;
                                 break;
 
                             case "egn":
                                 Regex egnregex = new Regex(@"^[0-9]{10}$");
-                                sqlcom = "Update Pacients SET egn = @newval Where egn = @value";
+                                sqlcom = "Update Pacients SET egn = @newval Where id = @value";
 
                                 if (!egnregex.IsMatch(newval)) return false;
                                 break;
 
                             case "Parent":
-                                sqlcom = "Update Pacients SET Parent = @newval Where Parent = @value";
+                                sqlcom = "Update Pacients SET Parent = @newval Where id = @value";
 
                                 break;
                             case "Doctor":
-                                sqlcom = "Update Pacients SET Doctor = @newval Where Doctor = @value";
+                                sqlcom = "Update Pacients SET Doctor = @newval Where id = @value";
 
                                 break;
                             default:
@@ -586,25 +586,25 @@ namespace Hospital_Project.Classes
                         switch (column)
                         {
                             case "workerName":
-                                sqlcom = "Update Doctors SET workerName = @newval Where workerName = @value";
+                                sqlcom = "Update Doctors SET workerName = @newval Where id = @value";
                                 break;
 
                             case "phone":
                                 Regex phoneregex = new Regex(@"^0[0-9]{9}$");
-                                sqlcom = "Update Doctors SET phone = @newval Where phone = @value";
+                                sqlcom = "Update Doctors SET phone = @newval Where id = @value";
 
                                 if (!phoneregex.IsMatch(newval)) return false;
                                 break;
 
                             case "email":
                                 Regex reg = new Regex(@"(@)(.+)$");
-                                sqlcom = "Update Doctors SET email = @newval Where email = @value";
+                                sqlcom = "Update Doctors SET email = @newval Where id = @value";
 
                                 if (!reg.IsMatch(newval)) return false;
                                 break;
 
                             case "salary":
-                                sqlcom = "Update Doctors SET salary = @newval Where salary = @value";
+                                sqlcom = "Update Doctors SET salary = @newval Where id = @value";
 
                                 break;
                             default:
@@ -616,19 +616,19 @@ namespace Hospital_Project.Classes
                         switch (column)
                         {
                             case "parName":
-                                sqlcom = "Update Parents SET parName = @newval Where parName = @value";
+                                sqlcom = "Update Parents SET parName = @newval Where id = @value";
                                 break;
 
                             case "phone":
                                 Regex phoneregex = new Regex(@"^0[0-9]{9}$");
-                                sqlcom = "Update Parents SET phone = @newval Where phone = @value";
+                                sqlcom = "Update Parents SET phone = @newval Where id = @value";
 
                                 if (!phoneregex.IsMatch(newval)) return false;
                                 break;
 
                             case "egn":
                                 Regex egnregex = new Regex(@"^[0-9]{10}$");
-                                sqlcom = "Update Parents SET egn = @newval Where egn = @value";
+                                sqlcom = "Update Parents SET egn = @newval Where id = @value";
 
                                 if (!egnregex.IsMatch(newval)) return false;
                                 break;
@@ -641,7 +641,7 @@ namespace Hospital_Project.Classes
                         switch (column)
                         {
                             case "posName":
-                                sqlcom = "Update Positins SET posName = @newval Where posName = @value";
+                                sqlcom = "Update Positins SET posName = @newval Where id = @value";
                                 break;
                             default: return false;
                         }
@@ -651,13 +651,13 @@ namespace Hospital_Project.Classes
                         {
                             case "thedate":
                                 // ask teacher about date
-                                sqlcom = "UPDATE Reservations SET thedate = @newval Where thedate = @value";
+                                sqlcom = "UPDATE Reservations SET thedate = @newval Where id = @value";
                                 break;
-                            case "Pacient":
-                                sqlcom = "Update Reservations SET Pacient = @newval Where Pacient = @value";
+                            case "Patient":
+                                sqlcom = "Update Reservations SET Patient = @newval Where id = @value";
                                 break;
                             case "Doctor":
-                                sqlcom = "Update Reservations SET Doctor = @newval Where Doctor = @value";
+                                sqlcom = "Update Reservations SET Doctor = @newval Where id = @value";
                                 break;
                             default: MessageBox.Show("Can't change Id's data");
                                 return false;
@@ -668,26 +668,26 @@ namespace Hospital_Project.Classes
                         {
                             case "workerName":
                                 //ask teacher Workers + Doctors
-                                sqlcom = "Update Workers SET workerName = @newval Where workerName = @value";
+                                sqlcom = "Update Workers SET workerName = @newval Where id = @value";
 
                                 break;
 
                             case "phone":
                                 Regex phoneregex = new Regex(@"^0[0-9]{9}$");
-                                sqlcom = "Update Workers SET phone = @newval Where phone = @value";
+                                sqlcom = "Update Workers SET phone = @newval Where id = @value";
 
                                 if (!phoneregex.IsMatch(newval)) return false;
                                 break;
 
                             case "email":
                                 Regex reg = new Regex(@"(@)(.+)$");
-                                sqlcom = "Update Workers SET email = @newval Where email = @value";
+                                sqlcom = "Update Workers SET email = @newval Where id = @value";
 
                                 if (!reg.IsMatch(newval)) return false;
                                 break;
 
                             case "Position":
-                                sqlcom = "Update Workers SET Position = @newval Where Position = @value";
+                                sqlcom = "Update Workers SET Position = @newval Where id = @value";
 
                                 if (newval == "Doctor")
                                 {

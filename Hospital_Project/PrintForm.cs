@@ -17,6 +17,7 @@ namespace Hospital_Project
     public partial class PrintForm : Form
     {
         private string tablename;
+        private int id;
         public PrintForm()
         {
             InitializeComponent();
@@ -92,13 +93,15 @@ namespace Hospital_Project
         {
             MessageBox.Show(dataGridView.SelectedCells[0].Value.ToString()); // value
             MessageBox.Show(dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name); // name of column
+            MessageBox.Show(id.ToString());
             
+            MessageBox.Show(id.ToString());
             string columnname = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
             string newval = textBox1.Text;
             string oldval = dataGridView.SelectedCells[0].Value.ToString();
             DataBaseManager cmd = new DataBaseManager();
             
-            if (cmd.UpdateData(tablename, columnname, newval, oldval))
+            if (cmd.UpdateData(tablename, columnname, newval, id.ToString()))
             {
                 MessageBox.Show("Success");
             }
@@ -112,6 +115,7 @@ namespace Hospital_Project
         private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             textBox1.Text = dataGridView.SelectedCells[0].Value.ToString();
+            id = Convert.ToInt32(dataGridView.Rows[dataGridView.CurrentRow.Index].Cells[0].Value);
         }
     }
 }

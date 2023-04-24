@@ -38,8 +38,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -50,7 +53,7 @@
             this.dataGridView.AllowUserToResizeColumns = false;
             this.dataGridView.AllowUserToResizeRows = false;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(35, 135);
+            this.dataGridView.Location = new System.Drawing.Point(10, 135);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.Size = new System.Drawing.Size(352, 123);
@@ -61,7 +64,7 @@
             // 
             this.PrintPacBtn.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrintPacBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PrintPacBtn.Location = new System.Drawing.Point(56, 12);
+            this.PrintPacBtn.Location = new System.Drawing.Point(30, 12);
             this.PrintPacBtn.Name = "PrintPacBtn";
             this.PrintPacBtn.Size = new System.Drawing.Size(91, 42);
             this.PrintPacBtn.TabIndex = 1;
@@ -73,7 +76,7 @@
             // 
             this.PrintWorBtn.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrintWorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PrintWorBtn.Location = new System.Drawing.Point(163, 12);
+            this.PrintWorBtn.Location = new System.Drawing.Point(137, 12);
             this.PrintWorBtn.Name = "PrintWorBtn";
             this.PrintWorBtn.Size = new System.Drawing.Size(91, 42);
             this.PrintWorBtn.TabIndex = 2;
@@ -85,7 +88,7 @@
             // 
             this.PrintDocBtn.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrintDocBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PrintDocBtn.Location = new System.Drawing.Point(275, 12);
+            this.PrintDocBtn.Location = new System.Drawing.Point(249, 12);
             this.PrintDocBtn.Name = "PrintDocBtn";
             this.PrintDocBtn.Size = new System.Drawing.Size(91, 42);
             this.PrintDocBtn.TabIndex = 3;
@@ -97,7 +100,7 @@
             // 
             this.PrintParBtn.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrintParBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PrintParBtn.Location = new System.Drawing.Point(56, 87);
+            this.PrintParBtn.Location = new System.Drawing.Point(30, 87);
             this.PrintParBtn.Name = "PrintParBtn";
             this.PrintParBtn.Size = new System.Drawing.Size(91, 42);
             this.PrintParBtn.TabIndex = 4;
@@ -109,7 +112,7 @@
             // 
             this.PrintPosBtn.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrintPosBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PrintPosBtn.Location = new System.Drawing.Point(163, 87);
+            this.PrintPosBtn.Location = new System.Drawing.Point(137, 87);
             this.PrintPosBtn.Name = "PrintPosBtn";
             this.PrintPosBtn.Size = new System.Drawing.Size(91, 42);
             this.PrintPosBtn.TabIndex = 5;
@@ -121,7 +124,7 @@
             // 
             this.PrintResBtn.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PrintResBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PrintResBtn.Location = new System.Drawing.Point(275, 87);
+            this.PrintResBtn.Location = new System.Drawing.Point(249, 87);
             this.PrintResBtn.Name = "PrintResBtn";
             this.PrintResBtn.Size = new System.Drawing.Size(91, 42);
             this.PrintResBtn.TabIndex = 6;
@@ -133,7 +136,7 @@
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(127, 264);
+            this.button1.Location = new System.Drawing.Point(101, 264);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 30);
             this.button1.TabIndex = 7;
@@ -143,7 +146,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(208, 264);
+            this.textBox1.Location = new System.Drawing.Point(182, 264);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(158, 30);
@@ -151,6 +154,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.PrintResBtn);
@@ -163,15 +167,36 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(436, 324);
+            this.panel1.Size = new System.Drawing.Size(556, 324);
             this.panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(379, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(177, 324);
+            this.panel2.TabIndex = 9;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(36, 135);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(91, 42);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Pacients";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // PrintForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(436, 324);
+            this.ClientSize = new System.Drawing.Size(556, 324);
             this.Controls.Add(this.panel1);
             this.Name = "PrintForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -179,6 +204,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -195,5 +221,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button2;
     }
 }
