@@ -1,4 +1,5 @@
 ﻿using Hospital_Project.Classes;
+using Hospital_Project.PrintForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,12 +12,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.WebRequestMethods;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Hospital_Project
 {
     public partial class PrintForm : Form
     {
-        private string tablename;
+        protected string tablename;
         private int id;
         public PrintForm()
         {
@@ -32,6 +34,24 @@ namespace Hospital_Project
             tablename = "Pacients";
             GC.Collect();
             GC.WaitForPendingFinalizers();
+
+            UpdatePac a = new UpdatePac();
+            a.TopLevel = false;
+            if (this.panel2.Controls.Count > 0)
+            {
+                foreach (Control control in this.panel2.Controls)
+                {
+                    control.Dispose();
+                }
+                this.panel2.Controls.Clear();
+            }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            this.panel2.Controls.Add(a);
+            a.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            a.ControlBox = false;
+            a.BringToFront();
+            a.Show();
         }
 
         private void PrintWorBtn_Click(object sender, EventArgs e)
@@ -91,14 +111,13 @@ namespace Hospital_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             MessageBox.Show(dataGridView.SelectedCells[0].Value.ToString()); // value
             MessageBox.Show(dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name); // name of column
             MessageBox.Show(id.ToString());
             
-            MessageBox.Show(id.ToString());
             string columnname = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-            string newval = textBox1.Text;
-            string oldval = dataGridView.SelectedCells[0].Value.ToString();
+            var newval = "";
             DataBaseManager cmd = new DataBaseManager();
             
             if (cmd.UpdateData(tablename, columnname, newval, id.ToString()))
@@ -114,8 +133,16 @@ namespace Hospital_Project
 
         private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            textBox1.Text = dataGridView.SelectedCells[0].Value.ToString();
-            id = Convert.ToInt32(dataGridView.Rows[dataGridView.CurrentRow.Index].Cells[0].Value);
+            var updatepac = new UpdatePac();
+            DataGridViewRow row = this.dataGridView.Rows[e.RowIndex];
+            id = int.Parse(row.Cells[0].Value.ToString());
+            MessageBox.Show(row.Cells[1].Value.ToString());
+            MessageBox.Show(row.Cells[2].Value.ToString());
+            MessageBox.Show(row.Cells[3].Value.ToString());
+            MessageBox.Show(row.Cells[4].Value.ToString());
+            MessageBox.Show(row.Cells[5].Value.ToString());
+
+
         }
     }
 }

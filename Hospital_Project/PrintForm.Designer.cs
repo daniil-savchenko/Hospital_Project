@@ -36,13 +36,10 @@
             this.PrintPosBtn = new System.Windows.Forms.Button();
             this.PrintResBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -144,18 +141,9 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(182, 264);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(158, 30);
-            this.textBox1.TabIndex = 8;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.PrintResBtn);
             this.panel1.Controls.Add(this.PrintPosBtn);
@@ -172,24 +160,12 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel2.Controls.Add(this.button2);
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(379, 0);
+            this.panel2.Location = new System.Drawing.Point(389, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(177, 324);
+            this.panel2.Size = new System.Drawing.Size(167, 324);
             this.panel2.TabIndex = 9;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(36, 135);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 42);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Pacients";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // PrintForm
             // 
@@ -203,8 +179,6 @@
             this.Text = "Print";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -219,9 +193,7 @@
         private System.Windows.Forms.Button PrintPosBtn;
         private System.Windows.Forms.Button PrintResBtn;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button2;
     }
 }
