@@ -49,8 +49,14 @@ namespace Hospital_Project
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView.DataSource = cmd.SelectWokrker();
             tablename = "Workers";
+            panel3.Hide();
+            panel2.Show();
+            panel2.BringToFront();
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
+
+
         }
 
         private void PrintDocBtn_Click(object sender, EventArgs e)
@@ -60,6 +66,11 @@ namespace Hospital_Project
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView.DataSource = cmd.SelectDoctor();
             tablename = "Doctors";
+            panel2.Hide();
+            panel2.SendToBack();
+            panel3.Show();
+            panel3.BringToFront();
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -136,6 +147,12 @@ namespace Hospital_Project
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void PrintForm_Load(object sender, EventArgs e)
+        {
+            panel2.Hide();
+            panel3.Hide();
         }
     }
 }

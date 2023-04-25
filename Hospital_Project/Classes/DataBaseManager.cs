@@ -840,6 +840,8 @@ namespace Hospital_Project.Classes
             }
         }
 
+        public void AddItems(Panel panel2)
+
     }
     
 }
