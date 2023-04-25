@@ -455,7 +455,7 @@ namespace Hospital_Project.Classes
 
         public DataTable SelectPacient()
         {
-            select = "SELECT Pacients.ID, Pacients.pacName, Pacients.Phone, Pacients.egn, Parents.parName as Parent, Doctors.workerName as Doctor From (Pacients INNER JOIN Parents ON Pacients.Parent = Parents.ID)INNER JOIN Doctors ON Pacients.Doctor = Doctors.ID";
+            select = "SELECT Pacients.ID, Pacients.pacName as Name, Pacients.Phone, Pacients.egn, Parents.parName as Parent, Doctors.workerName as Doctor From (Pacients INNER JOIN Parents ON Pacients.Parent = Parents.ID)INNER JOIN Doctors ON Pacients.Doctor = Doctors.ID";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -466,7 +466,7 @@ namespace Hospital_Project.Classes
 
         public DataTable SelectWokrker()
         {
-            select = "SELECT Workers.ID, Workers.WorkerName, Workers.Phone, Workers.email, Positions.posName as Position, Workers.Salary FROM Workers INNER JOIN Positions ON Workers.Position = Positions.ID";
+            select = "SELECT Workers.ID, Workers.WorkerName as Name, Workers.Phone, Workers.email, Positions.posName as Position, Workers.Salary FROM Workers INNER JOIN Positions ON Workers.Position = Positions.ID";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -477,7 +477,7 @@ namespace Hospital_Project.Classes
 
         public DataTable SelectDoctor()
         {
-            select = "SELECT * FROM Doctors";
+            select = "SELECT ID, workerName as Name, phone, email, salary FROM Doctors";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -488,7 +488,7 @@ namespace Hospital_Project.Classes
 
         public DataTable SelectParents()
         {
-            select = "SELECT * FROM Parents";
+            select = "SELECT ID, parName as Name, phone, egn FROM Parents";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -499,7 +499,7 @@ namespace Hospital_Project.Classes
 
         public DataTable SelectPositions()
         {
-            select = "SELECT * FROM Positions";
+            select = "SELECT ID, posName as Name FROM Positions";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -550,12 +550,12 @@ namespace Hospital_Project.Classes
 
                         switch (column)
                         {
-                            case "pacName":
+                            case "Name":
 
                                 sqlcom = "Update Pacients SET pacName = @newval Where id = @value";
 
                                 break;
-                            case "phone":
+                            case "Phone":
                                 Regex phoneregex = new Regex(@"^0[0-9]{9}$");
                                 sqlcom = "Update Pacients SET phone = @newval Where id = @value";
 
@@ -585,7 +585,7 @@ namespace Hospital_Project.Classes
                     case "Doctors":
                         switch (column)
                         {
-                            case "workerName":
+                            case "Name":
                                 sqlcom = "Update Doctors SET workerName = @newval Where id = @value";
                                 break;
 
@@ -615,7 +615,7 @@ namespace Hospital_Project.Classes
                     case "Parents":
                         switch (column)
                         {
-                            case "parName":
+                            case "Name":
                                 sqlcom = "Update Parents SET parName = @newval Where id = @value";
                                 break;
 
@@ -637,20 +637,22 @@ namespace Hospital_Project.Classes
                                 return false;
                         }
                         break;
-                    case "Positins":
+                    case "Positions":
                         switch (column)
                         {
-                            case "posName":
+                            case "Name":
                                 sqlcom = "Update Positins SET posName = @newval Where id = @value";
                                 break;
-                            default: return false;
+
+                            default:
+                                MessageBox.Show("Can't change Id's data");
+                                return false;
                         }
                         break;
                     case "Reservations":
                         switch (column)
                         {
                             case "thedate":
-                                // ask teacher about date
                                 sqlcom = "UPDATE Reservations SET thedate = @newval Where id = @value";
                                 break;
                             case "Patient":
@@ -666,13 +668,12 @@ namespace Hospital_Project.Classes
                     case "Workers":
                         switch (column)
                         {
-                            case "workerName":
-                                //ask teacher Workers + Doctors
+                            case "Name":
                                 sqlcom = "Update Workers SET workerName = @newval Where id = @value";
 
                                 break;
 
-                            case "phone":
+                            case "Phone":
                                 Regex phoneregex = new Regex(@"^0[0-9]{9}$");
                                 sqlcom = "Update Workers SET phone = @newval Where id = @value";
 
@@ -702,11 +703,11 @@ namespace Hospital_Project.Classes
                                 break;
 
                             default:
+                                MessageBox.Show("Can't change Id's data");
                                 return false;
                         }
                         break;
                     default:
-                        MessageBox.Show("Can't change Id's data");
                         return false;
                 }
 
