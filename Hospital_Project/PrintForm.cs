@@ -32,26 +32,14 @@ namespace Hospital_Project
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView.DataSource = cmd.SelectPacient();
             tablename = "Pacients";
+
+            cmd.AddPacItems(panel2);
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
 
-            UpdatePac a = new UpdatePac();
-            a.TopLevel = false;
-            if (this.panel2.Controls.Count > 0)
-            {
-                foreach (Control control in this.panel2.Controls)
-                {
-                    control.Dispose();
-                }
-                this.panel2.Controls.Clear();
-            }
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            this.panel2.Controls.Add(a);
-            a.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            a.ControlBox = false;
-            a.BringToFront();
-            a.Show();
+
+            
         }
 
         private void PrintWorBtn_Click(object sender, EventArgs e)
@@ -142,6 +130,11 @@ namespace Hospital_Project
             MessageBox.Show(row.Cells[4].Value.ToString());
             MessageBox.Show(row.Cells[5].Value.ToString());
 
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
