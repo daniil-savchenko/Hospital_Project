@@ -33,13 +33,13 @@ namespace Hospital_Project
             dataGridView.DataSource = cmd.SelectPacient();
             tablename = "Pacients";
 
-            cmd.AddPacItems(panel2);
-
+            /*cmd.AddPacItems(panel2);*/
+            panel2.Show();
+            panel3.Hide();
+            panel3.SendToBack();
+            panel2.BringToFront();
             GC.Collect();
             GC.WaitForPendingFinalizers();
-
-
-            
         }
 
         private void PrintWorBtn_Click(object sender, EventArgs e)
@@ -49,9 +49,10 @@ namespace Hospital_Project
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView.DataSource = cmd.SelectWokrker();
             tablename = "Workers";
-            panel3.Hide();
-            panel2.Show();
-            panel2.BringToFront();
+            panel3.Show();
+            panel2.Hide();
+            panel2.SendToBack();
+            panel3.BringToFront();
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -66,10 +67,11 @@ namespace Hospital_Project
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView.DataSource = cmd.SelectDoctor();
             tablename = "Doctors";
+
             panel2.Hide();
+            panel3.Hide();
+            panel3.SendToBack();
             panel2.SendToBack();
-            panel3.Show();
-            panel3.BringToFront();
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -140,8 +142,6 @@ namespace Hospital_Project
             MessageBox.Show(row.Cells[3].Value.ToString());
             MessageBox.Show(row.Cells[4].Value.ToString());
             MessageBox.Show(row.Cells[5].Value.ToString());
-
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
