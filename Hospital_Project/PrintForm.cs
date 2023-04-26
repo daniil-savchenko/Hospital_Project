@@ -33,11 +33,19 @@ namespace Hospital_Project
             dataGridView.DataSource = cmd.SelectPacient();
             tablename = "Pacients";
 
-            /*cmd.AddPacItems(panel2);*/
             panel2.Show();
+            panel2.BringToFront();
+
             panel3.Hide();
             panel3.SendToBack();
-            panel2.BringToFront();
+            panel4.Hide();
+            panel4.SendToBack();
+            panel5.Hide();
+            panel5.SendToBack();
+            panel6.Hide();
+            panel6.SendToBack();
+            panel7.Hide();
+            panel7.SendToBack();
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -50,9 +58,18 @@ namespace Hospital_Project
             dataGridView.DataSource = cmd.SelectWokrker();
             tablename = "Workers";
             panel3.Show();
+            panel3.BringToFront();
+
             panel2.Hide();
             panel2.SendToBack();
-            panel3.BringToFront();
+            panel4.Hide();
+            panel4.SendToBack();
+            panel5.Hide();
+            panel5.SendToBack();
+            panel6.Hide();
+            panel6.SendToBack();
+            panel7.Hide();
+            panel7.SendToBack();
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -68,10 +85,19 @@ namespace Hospital_Project
             dataGridView.DataSource = cmd.SelectDoctor();
             tablename = "Doctors";
 
-            panel2.Hide();
+            panel4.Show();
+            panel4.BringToFront();
+
             panel3.Hide();
             panel3.SendToBack();
+            panel2.Hide();
             panel2.SendToBack();
+            panel5.Hide();
+            panel5.SendToBack();
+            panel6.Hide();
+            panel6.SendToBack();
+            panel7.Hide();
+            panel7.SendToBack();
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -84,6 +110,21 @@ namespace Hospital_Project
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView.DataSource = cmd.SelectParents();
             tablename = "Parents";
+
+            panel5.Show();
+            panel5.BringToFront();
+
+            panel3.Hide();
+            panel3.SendToBack();
+            panel4.Hide();
+            panel4.SendToBack();
+            panel2.Hide();
+            panel2.SendToBack();
+            panel6.Hide();
+            panel6.SendToBack();
+            panel7.Hide();
+            panel7.SendToBack();
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -95,6 +136,20 @@ namespace Hospital_Project
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView.DataSource = cmd.SelectPositions();
             tablename = "Positions";
+
+            panel6.Show();
+            panel6.BringToFront();
+
+            panel3.Hide();
+            panel3.SendToBack();
+            panel4.Hide();
+            panel4.SendToBack();
+            panel5.Hide();
+            panel5.SendToBack();
+            panel2.Hide();
+            panel2.SendToBack();
+            panel7.Hide();
+            panel7.SendToBack();
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -106,6 +161,21 @@ namespace Hospital_Project
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView.DataSource = cmd.SelectReservations();
             tablename = "Reservations";
+
+            panel7.Show();
+            panel7.BringToFront();
+
+            panel3.Hide();
+            panel3.SendToBack();
+            panel4.Hide();
+            panel4.SendToBack();
+            panel5.Hide();
+            panel5.SendToBack();
+            panel6.Hide();
+            panel6.SendToBack();
+            panel2.Hide();
+            panel2.SendToBack();
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -153,6 +223,10 @@ namespace Hospital_Project
         {
             panel2.Hide();
             panel3.Hide();
+            panel4.Hide();
+            panel5.Hide();
+            panel6.Hide();
+            panel7.Hide();
         }
     }
 }
