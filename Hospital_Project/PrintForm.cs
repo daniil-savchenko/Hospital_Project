@@ -187,21 +187,19 @@ namespace Hospital_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             /*MessageBox.Show(dataGridView.SelectedCells[0].Value.ToString()); // value
             MessageBox.Show(dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name); // name of column
             MessageBox.Show(id.ToString());*/
-
-            MessageBox.Show(comboBoxpacPar.ValueMember);
-            
-            /*string columnname = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-            var newval = "";
-            DataBaseManager cmd = new DataBaseManager();
-            
-            if (cmd.UpdateData(tablename, columnname, newval, id.ToString()))
+            switch (tablename)
             {
-                MessageBox.Show("Success");
-            }*/
+                case "Pacients":
+
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -243,14 +241,62 @@ namespace Hospital_Project
                 adb.Fill(table);
                 adb.Dispose();
             }
-            Dictionary<string, string> test = new Dictionary<string, string>();
-            comboBoxpacPar.DisplayMember = "Text";
-            comboBoxpacPar.ValueMember = "Value";
+
             foreach (DataRow row in table.Rows)
             {
-                comboBoxpacPar.Items.Add(new { Value = row["ID"].ToString(), Text = row["parName".ToString()] });
+                comboBoxpacPar.Items.Add(row["parName"]);
             }
 
+            select = "SELECT * FROM Doctors";
+            using (SqlCommand cmd = new SqlCommand(select, con))
+            {
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
+                adb.Fill(table);
+                adb.Dispose();
+            }
+            foreach (DataRow row in table.Rows)
+            {
+                comboBoxpacDoc.Items.Add(row["workerName"]);
+            }
+
+            select = "SELECT * FROM Positions";
+            using (SqlCommand cmd = new SqlCommand(select, con))
+            {
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
+                adb.Fill(table);
+                adb.Dispose();
+            }
+            foreach (DataRow row in table.Rows)
+            {
+                comboBoxworPos.Items.Add(row["posName"]);
+            }
+
+            select = "SELECT * FROM Doctors";
+            using (SqlCommand cmd = new SqlCommand(select, con))
+            {
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
+                adb.Fill(table);
+                adb.Dispose();
+            }
+            foreach (DataRow row in table.Rows)
+            {
+                comboBoxresDoc.Items.Add(row["workerName"]);
+            }
+            select = "SELECT * FROM Pacients";
+            using (SqlCommand cmd = new SqlCommand(select, con))
+            {
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
+                adb.Fill(table);
+                adb.Dispose();
+            }
+            foreach (DataRow row in table.Rows)
+            {
+                comboBoxresPac.Items.Add(row["pacName"]);
+            }
         }
     }
 }
