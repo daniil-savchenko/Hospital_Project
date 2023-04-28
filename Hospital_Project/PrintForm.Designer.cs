@@ -39,14 +39,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxposName = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.comboBoxresPac = new System.Windows.Forms.ComboBox();
             this.comboBoxresDoc = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxresDate = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -219,7 +219,7 @@
             // panel6
             // 
             this.panel6.Controls.Add(this.label18);
-            this.panel6.Controls.Add(this.textBox1);
+            this.panel6.Controls.Add(this.textBoxposName);
             this.panel6.Location = new System.Drawing.Point(389, 0);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(167, 324);
@@ -234,12 +234,12 @@
             this.label18.TabIndex = 44;
             this.label18.Text = "Name";
             // 
-            // textBox1
+            // textBoxposName
             // 
-            this.textBox1.Location = new System.Drawing.Point(19, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 45;
+            this.textBoxposName.Location = new System.Drawing.Point(19, 43);
+            this.textBoxposName.Name = "textBoxposName";
+            this.textBoxposName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxposName.TabIndex = 45;
             // 
             // panel7
             // 
@@ -248,7 +248,7 @@
             this.panel7.Controls.Add(this.label19);
             this.panel7.Controls.Add(this.label20);
             this.panel7.Controls.Add(this.label21);
-            this.panel7.Controls.Add(this.textBox4);
+            this.panel7.Controls.Add(this.textBoxresDate);
             this.panel7.Location = new System.Drawing.Point(389, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(167, 324);
@@ -297,12 +297,12 @@
             this.label21.TabIndex = 38;
             this.label21.Text = "Pacient";
             // 
-            // textBox4
+            // textBoxresDate
             // 
-            this.textBox4.Location = new System.Drawing.Point(19, 43);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 37;
+            this.textBoxresDate.Location = new System.Drawing.Point(19, 43);
+            this.textBoxresDate.Name = "textBoxresDate";
+            this.textBoxresDate.Size = new System.Drawing.Size(100, 20);
+            this.textBoxresDate.TabIndex = 37;
             // 
             // panel5
             // 
@@ -722,7 +722,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxresDate;
         private System.Windows.Forms.ComboBox comboBoxresDoc;
         private System.Windows.Forms.ComboBox comboBoxresPac;
         private System.Windows.Forms.ComboBox comboBoxworPos;
@@ -730,6 +730,6 @@
         private System.Windows.Forms.ComboBox comboBoxpacDoc;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxposName;
     }
 }

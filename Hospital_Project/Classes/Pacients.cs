@@ -8,6 +8,7 @@ namespace Hospital_Project.Classes
 {
     public class Pacients
     {
+        private int id;
         private string pacName;
         private string phone;
         private string egn;
@@ -21,5 +22,6 @@ namespace Hospital_Project.Classes
         public string Egn { get => egn; set => egn = value; }
         public string Parent1 { get => Parent; set => Parent = value; }
         public string Doctor1 { get => Doctor; set => Doctor = value; }
+        public int ID { get => id; set => id = value; }
     }
 }

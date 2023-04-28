@@ -546,6 +546,37 @@ namespace Hospital_Project.Classes
             
         }
 
+        public bool UpdatePacTable(Pacients pacient)
+        {
+            try
+            {
+                con.Open();
+                sqlcom = "Update Pacients SET parName = @parname, phone = @phone, egn = @egn , Parent = @par, Doctor = @doc WHERE ID = @id";
+
+                using (SqlCommand cmd = new SqlCommand(sqlcom,con))
+                {
+                    cmd.Parameters.AddWithValue("@parname", pacient.PacName);
+                    cmd.Parameters.AddWithValue("@phone", pacient.Phone);
+                    cmd.Parameters.AddWithValue("@egn", pacient.Egn);
+                    cmd.Parameters.AddWithValue("@par", pacient.Parent1);
+                    cmd.Parameters.AddWithValue("@doc", pacient.Doctor1);
+                    cmd.Parameters.AddWithValue("@ID", pacient.ID);
+                    cmd.CommandText= sqlcom;
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         public bool UpdateData(string tablename, string column, string newval, string oldval)
         {
             try
@@ -727,123 +758,6 @@ namespace Hospital_Project.Classes
 
         }
 
-        public void AddPacItems(Panel panel2)
-        {
-            System.Windows.Forms.Label label1 = new System.Windows.Forms.Label();
-            label1.Location = new Point(32, 41);
-            label1.Name = "label1";
-            label1.Text = "Name";
-            panel2.Controls.Add(label1);
-
-            System.Windows.Forms.TextBox textBox1 = new System.Windows.Forms.TextBox();
-            textBox1.Location = new Point(35, 57);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 20);
-            panel2.Controls.Add(textBox1);
-            textBox1.BringToFront();
-
-            System.Windows.Forms.Label label2 = new System.Windows.Forms.Label();
-            label2.Location = new Point(32, 93);
-            label2.Name = "label1";
-            label2.Text = "Phone";
-            panel2.Controls.Add(label2);
-
-            System.Windows.Forms.TextBox textBox2 = new System.Windows.Forms.TextBox();
-            textBox2.Location = new Point(35, 109);
-            textBox2.Name = "textBox1";
-            textBox2.Size = new Size(100, 20);
-            panel2.Controls.Add(textBox2);
-            textBox2.BringToFront();
-
-            System.Windows.Forms.Label label3 = new System.Windows.Forms.Label();
-            label3.Location = new Point(32, 149);
-            label3.Name = "label1";
-            label3.Text = "egn";
-            panel2.Controls.Add(label3);
-
-            System.Windows.Forms.TextBox textBox3 = new System.Windows.Forms.TextBox();
-            textBox3.Location = new Point(35, 165);
-            textBox3.Name = "textBox1";
-            textBox3.Size = new Size(100, 20);
-            panel2.Controls.Add(textBox3);
-            textBox3.BringToFront();
-
-            System.Windows.Forms.Label label4 = new System.Windows.Forms.Label();
-            label4.Location = new Point(32, 204);
-            label4.Name = "label1";
-            label4.Text = "Parent";
-            panel2.Controls.Add(label4);
-
-            System.Windows.Forms.ComboBox comboBox1 = new System.Windows.Forms.ComboBox();
-            comboBox1.Location = new Point(34, 220);
-            comboBox1.Name = "textBox1";
-            comboBox1.Size = new Size(100, 20);
-            panel2.Controls.Add(comboBox1);
-            comboBox1.BringToFront();
-
-            System.Windows.Forms.Label label5 = new System.Windows.Forms.Label();
-            label5.Location = new Point(32, 254);
-            label5.Name = "label1";
-            label5.Text = "Doctor";
-            panel2.Controls.Add(label5);
-
-            System.Windows.Forms.ComboBox comboBox2 = new System.Windows.Forms.ComboBox();
-            comboBox2.Location = new Point(35, 270);
-            comboBox2.Name = "textBox1";
-            comboBox2.Size = new Size(100, 20);
-            panel2.Controls.Add(comboBox2);
-            comboBox2.BringToFront();
-
-            select = "SELECT * From Parents";
-
-            using (SqlCommand cmd = new SqlCommand(select,con))
-            {
-                con.Open();
-                SqlDataAdapter adb = new SqlDataAdapter(cmd);
-                DataTable table = new DataTable();
-                adb.Fill(table);
-                adb.Dispose();
-                Dictionary<string, string> comboSource = new Dictionary<string, string>();
-                foreach (DataRow row in table.Rows)
-                {
-                    string idd = row["ID"].ToString();
-                    string name = row["parName"].ToString();
-                    comboSource.Add(idd, name);
-                    
-                }
-                comboBox1.DataSource = new BindingSource(comboSource, null);
-                comboBox1.DisplayMember = "Value";
-                comboBox1.ValueMember = "Key";
-                con.Close();
-            }
-
-            select = "SELECT * From Doctors";
-
-            using (SqlCommand cmd = new SqlCommand(select, con))
-            {
-                con.Open();
-                SqlDataAdapter adb = new SqlDataAdapter(cmd);
-                DataTable table = new DataTable();
-                adb.Fill(table);
-                adb.Dispose();
-                Dictionary<string, string> comboSource = new Dictionary<string, string>();
-                foreach (DataRow row in table.Rows)
-                {
-                    string idd = row["ID"].ToString();
-                    string name = row["workerName"].ToString();
-                    comboSource.Add(idd, name);
-                }
-                comboBox2.DataSource = new BindingSource(comboSource, null);
-                comboBox2.DisplayMember = "Value";
-                comboBox2.ValueMember = "Key";
-                con.Close();
-            }
-        }
-
-        public void AddItems(Panel panel2)
-        {
-
-        }
 
     }
     

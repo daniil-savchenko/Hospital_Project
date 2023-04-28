@@ -8,8 +8,10 @@ namespace Hospital_Project.Classes
 {
     internal class Positions
     {
+        private int id;
         private string posName;
 
         public string PosName { get => posName; set => posName = value; }
+        public int ID { get => id; set => id = value; }
     }
 }

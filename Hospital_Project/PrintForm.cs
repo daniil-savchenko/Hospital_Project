@@ -191,14 +191,15 @@ namespace Hospital_Project
             /*MessageBox.Show(dataGridView.SelectedCells[0].Value.ToString()); // value
             MessageBox.Show(dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name); // name of column
             MessageBox.Show(id.ToString());*/
-            switch (tablename)
+            /*switch (tablename)
             {
                 case "Pacients":
-
                     break;
                 default:
                     break;
-            }
+            }*/
+
+            MessageBox.Show(comboBoxpacPar.SelectedIndex.ToString());
 
         }
 
@@ -241,10 +242,12 @@ namespace Hospital_Project
                 adb.Fill(table);
                 adb.Dispose();
             }
+            Dictionary<int, string> dic = new Dictionary<int, string>();
 
             foreach (DataRow row in table.Rows)
             {
-                comboBoxpacPar.Items.Add(row["parName"]);
+                dic.Add(int.Parse(row["ID"].ToString()), row["parName"].ToString());
+                comboBoxpacPar.Items.Add(dic[int.Parse(row["ID"].ToString())]);
             }
 
             select = "SELECT * FROM Doctors";
