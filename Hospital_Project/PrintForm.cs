@@ -210,14 +210,14 @@ namespace Hospital_Project
 
         private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            var updatepac = new UpdatePac();
+            /*var updatepac = new UpdatePac();
             DataGridViewRow row = this.dataGridView.Rows[e.RowIndex];
             id = int.Parse(row.Cells[0].Value.ToString());
             MessageBox.Show(row.Cells[1].Value.ToString());
             MessageBox.Show(row.Cells[2].Value.ToString());
             MessageBox.Show(row.Cells[3].Value.ToString());
             MessageBox.Show(row.Cells[4].Value.ToString());
-            MessageBox.Show(row.Cells[5].Value.ToString());
+            MessageBox.Show(row.Cells[5].Value.ToString());*/
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
