@@ -364,6 +364,7 @@ namespace Hospital_Project.Classes
                 GC.WaitForPendingFinalizers();
             }
         }
+
         public bool AddReservation(Reservations reservation)
         {
             sqlcom = "INSERT INTO Reservations Values(@ID, @date, @pac, @doc)";
@@ -515,9 +516,10 @@ namespace Hospital_Project.Classes
             adb.Dispose();
             return table;
         }
+
         public DataTable SelectReservations()
         {
-            select = "SELECT Reservations.ID, Reservations.thedate, Pacients.pacName as Patient, Doctors.workerName as Doctor FROM (Reservations INNER JOIN Pacients ON Reservations.Patient = Pacients.ID)INNER JOIN Doctors ON Reservations.Doctor = Doctors.ID";
+            select = "SELECT Reservations.ID, Reservations.thedate, Pacients.pacName as Pacient, Doctors.workerName as Doctor FROM (Reservations INNER JOIN Pacients ON Reservations.Patient = Pacients.ID)INNER JOIN Doctors ON Reservations.Doctor = Doctors.ID";
             SqlCommand cmd = new SqlCommand(select, con);
             adb = new SqlDataAdapter(cmd);
             table = new DataTable();
@@ -526,7 +528,7 @@ namespace Hospital_Project.Classes
             return table;
         }
 
-        public bool UpdatePacTable(Pacients pacient)
+        public bool UpdatePacientTable(Pacients pacient)
         {
             try
             {
@@ -671,6 +673,33 @@ namespace Hospital_Project.Classes
                 con.Close();
             }
         }
+
+        public bool UpdateReservationsTable(Reservations reservations)
+        {
+            sqlcom = "Update Reservations Set thedate = @date, Patient = @pac, Doctor = @doc where ID = @id";
+            try
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
+                {
+                    cmd.Parameters.AddWithValue("@date", reservations.Thedate);
+                    cmd.Parameters.AddWithValue("@pac", reservations.PacientId);
+                    cmd.Parameters.AddWithValue("@doc", reservations.DoctorId);
+                    cmd.Parameters.AddWithValue("@id", reservations.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { con.Close(); }
+        }
+
+
 
 
     }

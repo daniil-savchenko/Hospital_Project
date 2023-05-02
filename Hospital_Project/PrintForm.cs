@@ -3,12 +3,14 @@ using Hospital_Project.PrintForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.WebRequestMethods;
@@ -202,13 +204,20 @@ namespace Hospital_Project
 
             try
             {
+                Regex phoneregex = new Regex(@"^0[0-9]{9}$");
+                Regex egnregex = new Regex(@"^[0-9]{10}$");
+                Regex emailregex = new Regex(@"(@)(.+)$");
                 switch (tablename)
                 {
                     case "Pacients":
                         Pacients pacient = new Pacients();
 
                         if (string.IsNullOrEmpty(comboBoxpacPar.Text) ||
-                            string.IsNullOrEmpty(comboBoxpacDoc.Text))
+                            string.IsNullOrEmpty(comboBoxpacDoc.Text) ||
+                            string.IsNullOrEmpty(textBoxPacName.Text) ||
+                            string.IsNullOrEmpty(textBoxpacPhone.Text) ||
+                            string.IsNullOrEmpty(textBoxpacEgn.Text)
+                            )
                         {
                             MessageBox.Show("String can't be empty");
                             break;
@@ -274,12 +283,18 @@ namespace Hospital_Project
 
                             con.Close();
                         }
+
+                        if (phoneregex.IsMatch(textBoxpacPhone.Text) && egnregex.IsMatch(textBoxpacEgn.Text))
+                        {
+                            pacient.Phone = textBoxpacPhone.Text;
+                            pacient.Egn = textBoxpacEgn.Text;
+                        }
+                        else { MessageBox.Show("Incorrect Phone Or EGN");  break; }
+
                         pacient.ID = id;
                         pacient.PacName = textBoxPacName.Text;
-                        pacient.Phone = textBoxpacPhone.Text;
-                        pacient.Egn = textBoxpacEgn.Text;
-
-                        if (databaseman.UpdatePacTable(pacient))
+                        
+                        if (databaseman.UpdatePacientTable(pacient))
                         {
                             MessageBox.Show("Data was updated");
                         }
@@ -287,6 +302,29 @@ namespace Hospital_Project
                         break;
                     case "Workers":
                         Workers worker = new Workers();
+                        worker.ID = id;
+                        if (string.IsNullOrEmpty(textBoxworName.Text) ||
+                            string.IsNullOrEmpty(textBoxworPhone.Text) ||
+                            string.IsNullOrEmpty(textBoxworSal.Text) ||
+                            string.IsNullOrEmpty(textBoxworEmail.Text) ||
+                            string.IsNullOrEmpty(comboBoxworPos.Text)
+                            )
+                        {
+                            MessageBox.Show("String can't be empty");
+                            break;
+                        }
+                        else
+                        {
+                            worker.WorkerName = textBoxworName.Text;
+                            worker.Salary = textBoxworSal.Text;
+                            if (phoneregex.IsMatch(textBoxworPhone.Text) &&
+                            emailregex.IsMatch(textBoxworEmail.Text)
+                            )
+                            {
+                                worker.Phone = textBoxworPhone.Text;
+                                worker.Email = textBoxworEmail.Text;
+                            }
+                        }
                         select = "SELECT ID from Positions where posName = @pos";
 
                         using (SqlCommand cmd = new SqlCommand(select, con))
@@ -314,11 +352,9 @@ namespace Hospital_Project
 
                             con.Close();
                         }
-                        worker.ID = id;
-                        worker.WorkerName = textBoxworName.Text;
-                        worker.Phone = textBoxworPhone.Text;
-                        worker.Email = textBoxworEmail.Text;
-                        worker.Salary = textBoxworSal.Text;
+
+                        
+                        
 
                         if (databaseman.UpdateWorkerTable(worker))
                         {
@@ -328,11 +364,25 @@ namespace Hospital_Project
                     case "Doctors":
                         worker = new Workers();
                         worker.ID = id;
-                        worker.WorkerName = textBoxdocName.Text;
-                        worker.Phone = textBoxdocPhone.Text;
-                        worker.Email = textBoxdocEmail.Text;
-                        worker.Salary = textBoxdocSal.Text;
-
+                        if (string.IsNullOrEmpty(textBoxdocName.Text) ||
+                        string.IsNullOrEmpty(textBoxdocPhone.Text) ||
+                        string.IsNullOrEmpty(textBoxdocEmail.Text) ||
+                        string.IsNullOrEmpty(textBoxdocSal.Text) )
+                        {
+                            MessageBox.Show("String can't be empty");
+                            break;
+                        } else
+                        {
+                            worker.WorkerName = textBoxdocName.Text;
+                            worker.Salary = textBoxdocSal.Text;
+                            if (phoneregex.IsMatch(textBoxdocPhone.Text) &&
+                                emailregex.IsMatch(textBoxdocEmail.Text))
+                            {
+                                worker.Phone = textBoxdocPhone.Text;
+                                worker.Email = textBoxdocEmail.Text;
+                            }
+                            else { MessageBox.Show("Wrong Format of Phone or EGN"); break; }
+                        }
                         if (databaseman.UpdateDoctorsTable(worker))
                         {
                             MessageBox.Show("Data was updated");
@@ -341,12 +391,125 @@ namespace Hospital_Project
                         break;
                     case "Parents":
                         Parents parent = new Parents();
-
                         parent.ID = id;
-                        parent.ParName= textBoxparName.Text;
-                        parent.Phone = textBoxparPhone.Text;
-                        parent.Egn = textBoxparEgn.Text;
+                        if (
+                            string.IsNullOrEmpty(textBoxparName.Text) ||
+                            string.IsNullOrEmpty(textBoxparPhone.Text) ||
+                            string.IsNullOrEmpty(textBoxparEgn.Text)
+                            )
+                        {
+                            parent.ParName = textBoxparName.Text;
+                            if (
+                                phoneregex.IsMatch(textBoxparPhone.Text) &&
+                                egnregex.IsMatch(textBoxparEgn.Text)
+                                )
+                            {
+                                parent.Phone = textBoxparPhone.Text;
+                                parent.Egn = textBoxparEgn.Text;
+                            }
+                            else { MessageBox.Show("Wrong Format of Phone or EGN "); break;  }
+                        }
+                        else { MessageBox.Show("String can't be Empty"); break; }
+                        
+                        
+                        if (databaseman.UpdateParentTable(parent))
+                        {
+                            MessageBox.Show("Data was updated");
+                        } else MessageBox.Show("Data was NOT updated");
+                        break;
+                    case "Reservations":
+                        Reservations reservations= new Reservations();
+                        reservations.ID = id;
 
+                        if (
+                            string.IsNullOrEmpty(comboBoxresDoc.Text) ||
+                            string.IsNullOrEmpty(comboBoxresPac.Text) ||
+                            string.IsNullOrEmpty(dateTimePicker1.Text)
+                            )
+                        {
+                            MessageBox.Show("String can't be empty");
+                            break;
+                        } else
+                        {
+                            reservations.Thedate = dateTimePicker1.Text;
+                        }
+                        select = "SELECT ID from Doctors where workerName = @Doctor";
+                        using (SqlCommand cmd = new SqlCommand(select, con))
+                        {
+                            con.Open();
+                            adb = new SqlDataAdapter(cmd);
+                            table = new DataTable();
+
+                            cmd.Parameters.AddWithValue("@Doctor", comboBoxresDoc.Text);
+
+                            adb.Fill(table);
+                            adb.Dispose();
+                            if (table.Rows.Count >= 1)
+                            {
+                                foreach (DataRow row in table.Rows)
+                                {
+                                    reservations.DoctorId = row["ID"].ToString();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No such Doctor");
+                                con.Close();
+                                break;
+                            }
+                            con.Close();
+                        }
+
+                        select = "SELECT ID from Pacients where pacName = @pacient";
+
+                        using (SqlCommand cmd = new SqlCommand(select,con))
+                        {
+                            con.Open();
+
+                            adb = new SqlDataAdapter(cmd);
+                            table = new DataTable();
+
+                            cmd.Parameters.AddWithValue("@pacient", comboBoxresPac.Text);
+
+                            adb.Fill(table);
+                            adb.Dispose();
+                            if (table.Rows.Count >= 1)
+                            {
+                                foreach (DataRow row in table.Rows)
+                                {
+                                    reservations.PacientId = row["ID"].ToString();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No such Pacient");
+                                con.Close();
+                                break;
+                            }
+                            con.Close();
+                        }
+
+                        
+                        if (databaseman.UpdateReservationsTable(reservations))
+                        {
+                            MessageBox.Show("Data was updated");
+                        } else MessageBox.Show("Data was NOT updated");
+                        break;
+                    case "Positions":
+                        Positions positions = new Positions();
+                        positions.ID = id;
+                        if (string.IsNullOrEmpty(textBoxposName.Text)
+                            )
+                        {
+                            MessageBox.Show("String can't be empty");
+                            break;
+                        } else positions.PosName = textBoxposName.Text;
+                        
+                        if (databaseman.UpdatePositionsTable(positions))
+                        {
+                            MessageBox.Show("Data was updated");
+                            break;
+                        } else MessageBox.Show("Data was NOT updated");
                         break;
                     default:
                         break;
@@ -414,7 +577,7 @@ namespace Hospital_Project
                     break;
                 case "Reservations":
                     id = int.Parse(row.Cells[0].Value.ToString());
-                    textBoxresDate.Text = row.Cells[1].Value.ToString();
+                    dateTimePicker1.Text = row.Cells[1].Value.ToString();
                     comboBoxresPac.Text = row.Cells[2].Value.ToString();
                     comboBoxresDoc.Text = row.Cells[3].Value.ToString();
                     break;

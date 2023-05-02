@@ -46,7 +46,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.textBoxresDate = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -85,6 +84,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxPacName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -243,12 +243,12 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.dateTimePicker1);
             this.panel7.Controls.Add(this.comboBoxresPac);
             this.panel7.Controls.Add(this.comboBoxresDoc);
             this.panel7.Controls.Add(this.label19);
             this.panel7.Controls.Add(this.label20);
             this.panel7.Controls.Add(this.label21);
-            this.panel7.Controls.Add(this.textBoxresDate);
             this.panel7.Location = new System.Drawing.Point(389, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(167, 324);
@@ -259,7 +259,7 @@
             this.comboBoxresPac.FormattingEnabled = true;
             this.comboBoxresPac.Location = new System.Drawing.Point(19, 86);
             this.comboBoxresPac.Name = "comboBoxresPac";
-            this.comboBoxresPac.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxresPac.Size = new System.Drawing.Size(125, 21);
             this.comboBoxresPac.TabIndex = 43;
             // 
             // comboBoxresDoc
@@ -267,7 +267,7 @@
             this.comboBoxresDoc.FormattingEnabled = true;
             this.comboBoxresDoc.Location = new System.Drawing.Point(19, 135);
             this.comboBoxresDoc.Name = "comboBoxresDoc";
-            this.comboBoxresDoc.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxresDoc.Size = new System.Drawing.Size(125, 21);
             this.comboBoxresDoc.TabIndex = 42;
             // 
             // label19
@@ -296,13 +296,6 @@
             this.label21.Size = new System.Drawing.Size(43, 13);
             this.label21.TabIndex = 38;
             this.label21.Text = "Pacient";
-            // 
-            // textBoxresDate
-            // 
-            this.textBoxresDate.Location = new System.Drawing.Point(19, 43);
-            this.textBoxresDate.Name = "textBoxresDate";
-            this.textBoxresDate.Size = new System.Drawing.Size(100, 20);
-            this.textBoxresDate.TabIndex = 37;
             // 
             // panel5
             // 
@@ -643,6 +636,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd hh:mm";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(19, 43);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(125, 20);
+            this.dateTimePicker1.TabIndex = 44;
+            // 
             // PrintForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -722,7 +724,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBoxresDate;
         private System.Windows.Forms.ComboBox comboBoxresDoc;
         private System.Windows.Forms.ComboBox comboBoxresPac;
         private System.Windows.Forms.ComboBox comboBoxworPos;
@@ -731,5 +732,6 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBoxposName;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
