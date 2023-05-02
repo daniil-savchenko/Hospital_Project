@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Hospital_Project.Classes
 {
@@ -584,6 +585,94 @@ namespace Hospital_Project.Classes
                 con.Close();
             }
         }
+
+        public bool UpdateDoctorsTable(Workers worker)
+        {
+            try
+            {
+                con.Open();
+                sqlcom = "Update Doctors SET workerName = @workerName, phone = @phone, email = @email , salary = @sal WHERE ID = @id";
+
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
+                {
+                    cmd.Parameters.AddWithValue("@workerName", worker.WorkerName);
+                    cmd.Parameters.AddWithValue("@phone", worker.Phone);
+                    cmd.Parameters.AddWithValue("@email", worker.Email);
+                    cmd.Parameters.AddWithValue("@sal", worker.Salary);
+                    cmd.Parameters.AddWithValue("@id", worker.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public bool UpdateParentTable(Parents parent)
+        {
+            try
+            {
+                con.Open();
+
+                sqlcom = "Update Parents Set parName = @parname, phone = @phone, egn = @egn where ID = @id";
+
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
+                {
+                    cmd.Parameters.AddWithValue("@parname", parent.ParName);
+                    cmd.Parameters.AddWithValue("@phone", parent.Phone);
+                    cmd.Parameters.AddWithValue("@egn", parent.Egn);
+                    cmd.Parameters.AddWithValue("@id", parent.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public bool UpdatePositionsTable(Positions positions)
+        {
+            try
+            {
+                con.Open();
+
+                sqlcom = "Update Positions Set posName = @posname where ID = @id";
+
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
+                {
+                    cmd.Parameters.AddWithValue("@posname", positions.PosName);
+                    cmd.Parameters.AddWithValue("@id", positions.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+
     }
     
 }

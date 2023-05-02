@@ -200,7 +200,6 @@ namespace Hospital_Project
                     break;
             }*/
 
-            MessageBox.Show(comboBoxpacPar.Text);
             try
             {
                 switch (tablename)
@@ -296,7 +295,7 @@ namespace Hospital_Project
                             adb = new SqlDataAdapter(cmd);
                             table = new DataTable();
 
-                            cmd.Parameters.AddWithValue("@pos", worker.Position1);
+                            cmd.Parameters.AddWithValue("@pos", comboBoxworPos.Text);
 
                             adb.Fill(table);
                             adb.Dispose();
@@ -315,10 +314,10 @@ namespace Hospital_Project
 
                             con.Close();
                         }
+                        worker.ID = id;
                         worker.WorkerName = textBoxworName.Text;
                         worker.Phone = textBoxworPhone.Text;
-                        worker.Email = textBoxpacEgn.Text;
-                        worker.Position1 = comboBoxworPos.Text;
+                        worker.Email = textBoxworEmail.Text;
                         worker.Salary = textBoxworSal.Text;
 
                         if (databaseman.UpdateWorkerTable(worker))
@@ -326,7 +325,29 @@ namespace Hospital_Project
                             MessageBox.Show("Data was updated");
                         } else MessageBox.Show("Data was NOT updated");
                         break;
+                    case "Doctors":
+                        worker = new Workers();
+                        worker.ID = id;
+                        worker.WorkerName = textBoxdocName.Text;
+                        worker.Phone = textBoxdocPhone.Text;
+                        worker.Email = textBoxdocEmail.Text;
+                        worker.Salary = textBoxdocSal.Text;
 
+                        if (databaseman.UpdateDoctorsTable(worker))
+                        {
+                            MessageBox.Show("Data was updated");
+                        }
+                        else MessageBox.Show("Data was NOT updated");
+                        break;
+                    case "Parents":
+                        Parents parent = new Parents();
+
+                        parent.ID = id;
+                        parent.ParName= textBoxparName.Text;
+                        parent.Phone = textBoxparPhone.Text;
+                        parent.Egn = textBoxparEgn.Text;
+
+                        break;
                     default:
                         break;
                 }
