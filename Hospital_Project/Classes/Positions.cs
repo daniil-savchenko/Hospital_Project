@@ -11,6 +11,8 @@ namespace Hospital_Project.Classes
         private int id;
         private string posName;
 
+        public Positions() { }
+
         public string PosName { get => posName; set => posName = value; }
         public int ID { get => id; set => id = value; }
     }

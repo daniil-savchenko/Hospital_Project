@@ -13,6 +13,8 @@ namespace Hospital_Project.Classes
         private string pacientId;
         private string doctorId;
 
+        public Reservations() { }
+
         public string Thedate { get => thedate; set => thedate = value; }
         public string PacientId { get => pacientId; set => pacientId = value; }
         public string DoctorId { get => doctorId; set => doctorId = value; }

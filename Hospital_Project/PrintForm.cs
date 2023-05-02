@@ -25,6 +25,7 @@ namespace Hospital_Project
         private SqlDataAdapter adb;
         private DataTable table;
 
+
         public PrintForm()
         {
             InitializeComponent();
@@ -187,7 +188,7 @@ namespace Hospital_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            DataBaseManager databaseman = new DataBaseManager();
             /*MessageBox.Show(dataGridView.SelectedCells[0].Value.ToString()); // value
             MessageBox.Show(dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name); // name of column
             MessageBox.Show(id.ToString());*/
@@ -199,7 +200,151 @@ namespace Hospital_Project
                     break;
             }*/
 
-            MessageBox.Show(comboBoxpacPar.SelectedIndex.ToString());
+            MessageBox.Show(comboBoxpacPar.Text);
+            try
+            {
+                switch (tablename)
+                {
+                    case "Pacients":
+                        Pacients pacient = new Pacients();
+
+                        if (string.IsNullOrEmpty(comboBoxpacPar.Text) ||
+                            string.IsNullOrEmpty(comboBoxpacDoc.Text))
+                        {
+                            MessageBox.Show("String can't be empty");
+                            break;
+                        }
+                        else
+                        {
+                            pacient.Parent1 = comboBoxpacPar.Text;
+                            pacient.Doctor1 = comboBoxpacDoc.Text;
+                        }
+
+
+                        var select = "SELECT ID from Doctors where workerName = @Doctor";
+
+                        using (SqlCommand cmd = new SqlCommand(select, con))
+                        {
+                            con.Open();
+                            adb = new SqlDataAdapter(cmd);
+                            table = new DataTable();
+
+                            cmd.Parameters.AddWithValue("@Doctor", pacient.Doctor1);
+
+                            adb.Fill(table);
+                            adb.Dispose();
+                            if (table.Rows.Count >= 1)
+                            {
+                                foreach (DataRow row in table.Rows)
+                                {
+                                    pacient.Doctor1 = row["ID"].ToString();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No such Doctor");
+                                break;
+                            }
+
+                            con.Close();
+                        }
+
+                        select = "SELECT ID from Parents where parName = @Parent";
+                        using (SqlCommand cmd = new SqlCommand(select, con))
+                        {
+                            con.Open();
+                            adb = new SqlDataAdapter(cmd);
+                            table = new DataTable();
+
+                            cmd.Parameters.AddWithValue("@Parent", pacient.Parent1);
+
+                            adb.Fill(table);
+                            adb.Dispose();
+                            if (table.Rows.Count >= 1)
+                            {
+                                foreach (DataRow row in table.Rows)
+                                {
+                                    pacient.Parent1 = row["ID"].ToString();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No such Parent");
+                                break;
+                            }
+
+                            con.Close();
+                        }
+                        pacient.ID = id;
+                        pacient.PacName = textBoxPacName.Text;
+                        pacient.Phone = textBoxpacPhone.Text;
+                        pacient.Egn = textBoxpacEgn.Text;
+
+                        if (databaseman.UpdatePacTable(pacient))
+                        {
+                            MessageBox.Show("Data was updated");
+                        }
+                        else MessageBox.Show("Data was NOT updated");
+                        break;
+                    case "Workers":
+                        Workers worker = new Workers();
+                        select = "SELECT ID from Positions where posName = @pos";
+
+                        using (SqlCommand cmd = new SqlCommand(select, con))
+                        {
+                            con.Open();
+                            adb = new SqlDataAdapter(cmd);
+                            table = new DataTable();
+
+                            cmd.Parameters.AddWithValue("@pos", worker.Position1);
+
+                            adb.Fill(table);
+                            adb.Dispose();
+                            if (table.Rows.Count >= 1)
+                            {
+                                foreach (DataRow row in table.Rows)
+                                {
+                                    worker.Position1 = row["ID"].ToString();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No such position");
+                                break;
+                            }
+
+                            con.Close();
+                        }
+                        worker.WorkerName = textBoxworName.Text;
+                        worker.Phone = textBoxworPhone.Text;
+                        worker.Email = textBoxpacEgn.Text;
+                        worker.Position1 = comboBoxworPos.Text;
+                        worker.Salary = textBoxworSal.Text;
+
+                        if (databaseman.UpdateWorkerTable(worker))
+                        {
+                            MessageBox.Show("Data was updated");
+                        } else MessageBox.Show("Data was NOT updated");
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+            
+
+
 
         }
 
@@ -210,14 +355,53 @@ namespace Hospital_Project
 
         private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            /*var updatepac = new UpdatePac();
             DataGridViewRow row = this.dataGridView.Rows[e.RowIndex];
-            id = int.Parse(row.Cells[0].Value.ToString());
-            MessageBox.Show(row.Cells[1].Value.ToString());
-            MessageBox.Show(row.Cells[2].Value.ToString());
-            MessageBox.Show(row.Cells[3].Value.ToString());
-            MessageBox.Show(row.Cells[4].Value.ToString());
-            MessageBox.Show(row.Cells[5].Value.ToString());*/
+            switch (tablename)
+            {
+                case "Pacients":
+                    id = int.Parse(row.Cells[0].Value.ToString());
+                    textBoxPacName.Text = row.Cells[1].Value.ToString();
+                    textBoxpacPhone.Text = row.Cells[2].Value.ToString();
+                    textBoxpacEgn.Text = row.Cells[3].Value.ToString();
+                    comboBoxpacPar.Text = row.Cells[4].Value.ToString();
+                    comboBoxpacDoc.Text = row.Cells[5].Value.ToString();
+                    break;
+                case "Workers":
+                    id = int.Parse(row.Cells[0].Value.ToString());
+                    textBoxworName.Text = row.Cells[1].Value.ToString();
+                    textBoxworPhone.Text = row.Cells[2].Value.ToString();
+                    textBoxworEmail.Text = row.Cells[3].Value.ToString();
+                    comboBoxworPos.Text = row.Cells[4].Value.ToString();
+                    textBoxworSal.Text = row.Cells[5].Value.ToString();
+                    break;
+                case "Doctors":
+                    id = int.Parse(row.Cells[0].Value.ToString());
+                    textBoxdocName.Text = row.Cells[1].Value.ToString();
+                    textBoxdocPhone.Text = row.Cells[2].Value.ToString();
+                    textBoxdocEmail.Text = row.Cells[3].Value.ToString();
+                    textBoxdocSal.Text = row.Cells[4].Value.ToString();
+                    break;
+                case "Parents":
+                    id = int.Parse(row.Cells[0].Value.ToString());
+                    textBoxparName.Text = row.Cells[1].Value.ToString();
+                    textBoxparPhone.Text = row.Cells[2].Value.ToString();
+                    textBoxparEgn.Text = row.Cells[2].Value.ToString();
+                    break;
+                case "Positions":
+                    id = int.Parse(row.Cells[0].Value.ToString());
+                    textBoxposName.Text = row.Cells[1].Value.ToString();
+                    break;
+                case "Reservations":
+                    id = int.Parse(row.Cells[0].Value.ToString());
+                    textBoxresDate.Text = row.Cells[1].Value.ToString();
+                    comboBoxresPac.Text = row.Cells[2].Value.ToString();
+                    comboBoxresDoc.Text = row.Cells[3].Value.ToString();
+                    break;
+                default:
+                    break;
+            }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -243,11 +427,10 @@ namespace Hospital_Project
                 adb.Dispose();
             }
             Dictionary<int, string> dic = new Dictionary<int, string>();
-
             foreach (DataRow row in table.Rows)
             {
-                dic.Add(int.Parse(row["ID"].ToString()), row["parName"].ToString());
-                comboBoxpacPar.Items.Add(dic[int.Parse(row["ID"].ToString())]);
+                string name = row["parName"].ToString();
+                comboBoxpacPar.Items.Add(name);
             }
 
             select = "SELECT * FROM Doctors";

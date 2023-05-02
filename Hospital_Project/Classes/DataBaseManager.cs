@@ -8,6 +8,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -524,36 +525,14 @@ namespace Hospital_Project.Classes
             return table;
         }
 
-        public bool UpdateUsingMethod(string tablename, string column, string newval, string oldval, string sql)
-        {
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    con.Open();
-                    cmd.Parameters.AddWithValue("@newval", newval);
-                    cmd.Parameters.AddWithValue("@value", oldval);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                }
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-                throw;
-            }
-            
-        }
-
         public bool UpdatePacTable(Pacients pacient)
         {
             try
             {
                 con.Open();
-                sqlcom = "Update Pacients SET parName = @parname, phone = @phone, egn = @egn , Parent = @par, Doctor = @doc WHERE ID = @id";
+                sqlcom = "Update Pacients SET pacName = @parname, phone = @phone, egn = @egn , Parent = @par, Doctor = @doc WHERE ID = @id";
 
-                using (SqlCommand cmd = new SqlCommand(sqlcom,con))
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
                 {
                     cmd.Parameters.AddWithValue("@parname", pacient.PacName);
                     cmd.Parameters.AddWithValue("@phone", pacient.Phone);
@@ -561,11 +540,10 @@ namespace Hospital_Project.Classes
                     cmd.Parameters.AddWithValue("@par", pacient.Parent1);
                     cmd.Parameters.AddWithValue("@doc", pacient.Doctor1);
                     cmd.Parameters.AddWithValue("@ID", pacient.ID);
-                    cmd.CommandText= sqlcom;
                     cmd.ExecuteNonQuery();
                     return true;
                 }
-            
+
             }
             catch (Exception)
             {
@@ -577,188 +555,35 @@ namespace Hospital_Project.Classes
             }
         }
 
-        public bool UpdateData(string tablename, string column, string newval, string oldval)
+        public bool UpdateWorkerTable(Workers worker)
         {
             try
             {
-                switch (tablename)
+                con.Open();
+                sqlcom = "Update Workers SET workerName = @workerName, phone = @phone, email = @email , Position = @pos, salary = @sal WHERE ID = @id";
+
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
                 {
-                    case "Pacients":
-
-                        switch (column)
-                        {
-                            case "Name":
-
-                                sqlcom = "Update Pacients SET pacName = @newval Where id = @value";
-
-                                break;
-                            case "Phone":
-                                Regex phoneregex = new Regex(@"^0[0-9]{9}$");
-                                sqlcom = "Update Pacients SET phone = @newval Where id = @value";
-
-                                if (!phoneregex.IsMatch(newval)) return false;
-                                break;
-
-                            case "egn":
-                                Regex egnregex = new Regex(@"^[0-9]{10}$");
-                                sqlcom = "Update Pacients SET egn = @newval Where id = @value";
-
-                                if (!egnregex.IsMatch(newval)) return false;
-                                break;
-
-                            case "Parent":
-                                sqlcom = "Update Pacients SET Parent = @newval Where id = @value";
-
-                                break;
-                            case "Doctor":
-                                sqlcom = "Update Pacients SET Doctor = @newval Where id = @value";
-
-                                break;
-                            default:
-                                MessageBox.Show("Can't change Id's data");
-                                return false;
-                        }
-                        break;
-                    case "Doctors":
-                        switch (column)
-                        {
-                            case "Name":
-                                sqlcom = "Update Doctors SET workerName = @newval Where id = @value";
-                                break;
-
-                            case "phone":
-                                Regex phoneregex = new Regex(@"^0[0-9]{9}$");
-                                sqlcom = "Update Doctors SET phone = @newval Where id = @value";
-
-                                if (!phoneregex.IsMatch(newval)) return false;
-                                break;
-
-                            case "email":
-                                Regex reg = new Regex(@"(@)(.+)$");
-                                sqlcom = "Update Doctors SET email = @newval Where id = @value";
-
-                                if (!reg.IsMatch(newval)) return false;
-                                break;
-
-                            case "salary":
-                                sqlcom = "Update Doctors SET salary = @newval Where id = @value";
-
-                                break;
-                            default:
-                                MessageBox.Show("Can't change Id's data");
-                                return false;
-                        }
-                        break;
-                    case "Parents":
-                        switch (column)
-                        {
-                            case "Name":
-                                sqlcom = "Update Parents SET parName = @newval Where id = @value";
-                                break;
-
-                            case "phone":
-                                Regex phoneregex = new Regex(@"^0[0-9]{9}$");
-                                sqlcom = "Update Parents SET phone = @newval Where id = @value";
-
-                                if (!phoneregex.IsMatch(newval)) return false;
-                                break;
-
-                            case "egn":
-                                Regex egnregex = new Regex(@"^[0-9]{10}$");
-                                sqlcom = "Update Parents SET egn = @newval Where id = @value";
-
-                                if (!egnregex.IsMatch(newval)) return false;
-                                break;
-
-                            default: MessageBox.Show("Can't change Id's data");
-                                return false;
-                        }
-                        break;
-                    case "Positions":
-                        switch (column)
-                        {
-                            case "Name":
-                                sqlcom = "Update Positins SET posName = @newval Where id = @value";
-                                break;
-
-                            default:
-                                MessageBox.Show("Can't change Id's data");
-                                return false;
-                        }
-                        break;
-                    case "Reservations":
-                        switch (column)
-                        {
-                            case "thedate":
-                                sqlcom = "UPDATE Reservations SET thedate = @newval Where id = @value";
-                                break;
-                            case "Patient":
-                                sqlcom = "Update Reservations SET Patient = @newval Where id = @value";
-                                break;
-                            case "Doctor":
-                                sqlcom = "Update Reservations SET Doctor = @newval Where id = @value";
-                                break;
-                            default: MessageBox.Show("Can't change Id's data");
-                                return false;
-                        }
-                        break;
-                    case "Workers":
-                        switch (column)
-                        {
-                            case "Name":
-                                sqlcom = "Update Workers SET workerName = @newval Where id = @value";
-
-                                break;
-
-                            case "Phone":
-                                Regex phoneregex = new Regex(@"^0[0-9]{9}$");
-                                sqlcom = "Update Workers SET phone = @newval Where id = @value";
-
-                                if (!phoneregex.IsMatch(newval)) return false;
-                                break;
-
-                            case "email":
-                                Regex reg = new Regex(@"(@)(.+)$");
-                                sqlcom = "Update Workers SET email = @newval Where id = @value";
-
-                                if (!reg.IsMatch(newval)) return false;
-                                break;
-
-                            case "Position":
-                                sqlcom = "Update Workers SET Position = @newval Where id = @value";
-
-                                if (newval == "Doctor")
-                                {
-                                    MessageBox.Show("Can't change current position to Doctor");
-                                    return false;
-                                }
-                                break;
-
-                            case "salary":
-                                sqlcom = "Update Workers SET salary = @newval Where salary = @value";
-
-                                break;
-
-                            default:
-                                MessageBox.Show("Can't change Id's data");
-                                return false;
-                        }
-                        break;
-                    default:
-                        return false;
+                    cmd.Parameters.AddWithValue("@workerName", worker.WorkerName);
+                    cmd.Parameters.AddWithValue("@phone", worker.Phone);
+                    cmd.Parameters.AddWithValue("@email", worker.Email);
+                    cmd.Parameters.AddWithValue("@pos", worker.Position1);
+                    cmd.Parameters.AddWithValue("@sal", worker.Salary);
+                    cmd.Parameters.AddWithValue("@id", worker.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
                 }
 
-                return UpdateUsingMethod(tablename, column, newval, oldval, sqlcom);
             }
-            catch (Exception x)
+            catch (Exception)
             {
-                MessageBox.Show(x.ToString());
                 throw;
             }
-
+            finally
+            {
+                con.Close();
+            }
         }
-
-
     }
     
 }

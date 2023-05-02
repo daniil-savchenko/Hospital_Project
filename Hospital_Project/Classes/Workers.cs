@@ -15,6 +15,8 @@ namespace Hospital_Project.Classes
         private string Position;
         private string salary;
 
+        public Workers() { }
+
         public string WorkerName { get => workerName; set => workerName = value; }
         public string Phone { get => phone; set => phone = value; }
         public string Email { get => email; set => email = value; }
