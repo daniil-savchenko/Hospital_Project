@@ -41,6 +41,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.textBoxposName = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBoxresPac = new System.Windows.Forms.ComboBox();
             this.comboBoxresDoc = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -84,7 +85,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxPacName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -196,6 +197,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.panel7);
             this.panel1.Controls.Add(this.panel5);
@@ -253,6 +255,15 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(167, 324);
             this.panel7.TabIndex = 10;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd hh:mm";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(19, 43);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(125, 20);
+            this.dateTimePicker1.TabIndex = 44;
             // 
             // comboBoxresPac
             // 
@@ -636,14 +647,18 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
-            // dateTimePicker1
+            // button2
             // 
-            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd hh:mm";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(19, 43);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(125, 20);
-            this.dateTimePicker1.TabIndex = 44;
+            this.button2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button2.Location = new System.Drawing.Point(233, 264);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 30);
+            this.button2.TabIndex = 45;
+            this.button2.Text = "Delete";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // PrintForm
             // 
@@ -733,5 +748,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBoxposName;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button button2;
     }
 }

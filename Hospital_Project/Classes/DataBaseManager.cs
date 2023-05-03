@@ -693,15 +693,158 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally { con.Close(); }
         }
 
+        public bool DeletePacientData(Pacients pacient)
+        {
+            sqlcom = "DELETE FROM Pacient where ID = @id";
+
+            try
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", pacient.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }finally { con.Close(); }
+
+        }
+
+        public bool DeleteWorkerData(Workers worker)
+        {
+            sqlcom = "DELETE FROM Workers Where ID = @id";
+
+            try
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", worker.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { con.Close(); }
+        }
+
+        public bool DeleteDoctorData(Workers doctor)
+        {
+            sqlcom = "DELETE FROM Doctors Where ID = @id";
+
+            try
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", doctor.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { con.Close(); }
+        }
+
+        public bool DeleteParentsData(Parents parent)
+        {
+            sqlcom = "DELETE FROM Parents Where ID = @id";
+
+            try
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", parent.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { con.Close(); }
+        }
+
+        public bool DeleteReservData(Reservations res)
 
 
+        {
+            sqlcom = "DELETE FROM Reservations Where ID = @id";
 
+            try
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", res.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { con.Close(); }
+        }
+
+        public bool DeletePositionsData(Positions position)
+        {
+            sqlcom = "DELETE FROM Positions Where ID = @id";
+
+            try
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlcom, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", position.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { con.Close(); }
+        }
+
+        public bool Checker(int i, List<string> list)
+        {
+            try
+            {
+                for (i = 0; i < list.Count; i++)
+                {
+                    if (string.IsNullOrEmpty(list[i]))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
     }
     
 }

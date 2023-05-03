@@ -191,17 +191,6 @@ namespace Hospital_Project
         private void button1_Click(object sender, EventArgs e)
         {
             DataBaseManager databaseman = new DataBaseManager();
-            /*MessageBox.Show(dataGridView.SelectedCells[0].Value.ToString()); // value
-            MessageBox.Show(dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name); // name of column
-            MessageBox.Show(id.ToString());*/
-            /*switch (tablename)
-            {
-                case "Pacients":
-                    break;
-                default:
-                    break;
-            }*/
-
             try
             {
                 Regex phoneregex = new Regex(@"^0[0-9]{9}$");
@@ -211,21 +200,26 @@ namespace Hospital_Project
                 {
                     case "Pacients":
                         Pacients pacient = new Pacients();
-
-                        if (string.IsNullOrEmpty(comboBoxpacPar.Text) ||
-                            string.IsNullOrEmpty(comboBoxpacDoc.Text) ||
-                            string.IsNullOrEmpty(textBoxPacName.Text) ||
-                            string.IsNullOrEmpty(textBoxpacPhone.Text) ||
-                            string.IsNullOrEmpty(textBoxpacEgn.Text)
-                            )
+                        pacient.ID = id;
+                        pacient.PacName = textBoxPacName.Text;
+                        pacient.Parent1 = comboBoxpacPar.Text;
+                        pacient.Doctor1 = comboBoxpacDoc.Text;
+                        pacient.Phone = textBoxpacPhone.Text;
+                        pacient.Egn = textBoxpacEgn.Text;
+                        List<string> list = new List<string>();
+                        list.Add(pacient.PacName);
+                        list.Add(pacient.Phone);
+                        list.Add(pacient.Egn);
+                        list.Add(pacient.Doctor1);
+                        list.Add(pacient.Parent1);
+                        if (databaseman.Checker(5, list))
                         {
                             MessageBox.Show("String can't be empty");
                             break;
                         }
                         else
                         {
-                            pacient.Parent1 = comboBoxpacPar.Text;
-                            pacient.Doctor1 = comboBoxpacDoc.Text;
+                            
                         }
 
 
@@ -291,8 +285,7 @@ namespace Hospital_Project
                         }
                         else { MessageBox.Show("Incorrect Phone Or EGN");  break; }
 
-                        pacient.ID = id;
-                        pacient.PacName = textBoxPacName.Text;
+                        
                         
                         if (databaseman.UpdatePacientTable(pacient))
                         {
@@ -532,11 +525,6 @@ namespace Hospital_Project
 
         }
 
-        private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewRow row = this.dataGridView.Rows[e.RowIndex];
@@ -586,11 +574,6 @@ namespace Hospital_Project
             }
             GC.Collect();
             GC.WaitForPendingFinalizers();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void PrintForm_Load(object sender, EventArgs e)
@@ -667,6 +650,11 @@ namespace Hospital_Project
             {
                 comboBoxresPac.Items.Add(row["pacName"]);
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
