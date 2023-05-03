@@ -196,30 +196,31 @@ namespace Hospital_Project
                 Regex phoneregex = new Regex(@"^0[0-9]{9}$");
                 Regex egnregex = new Regex(@"^[0-9]{10}$");
                 Regex emailregex = new Regex(@"(@)(.+)$");
+                List<string> list = new List<string>();
                 switch (tablename)
                 {
                     case "Pacients":
                         Pacients pacient = new Pacients();
                         pacient.ID = id;
-                        pacient.PacName = textBoxPacName.Text;
-                        pacient.Parent1 = comboBoxpacPar.Text;
-                        pacient.Doctor1 = comboBoxpacDoc.Text;
-                        pacient.Phone = textBoxpacPhone.Text;
-                        pacient.Egn = textBoxpacEgn.Text;
-                        List<string> list = new List<string>();
-                        list.Add(pacient.PacName);
-                        list.Add(pacient.Phone);
-                        list.Add(pacient.Egn);
-                        list.Add(pacient.Doctor1);
-                        list.Add(pacient.Parent1);
-                        if (databaseman.Checker(5, list))
+                        
+                        list.Add(textBoxPacName.Text);
+                        list.Add(comboBoxpacPar.Text);
+                        list.Add(comboBoxpacDoc.Text);
+                        list.Add(textBoxpacPhone.Text);
+                        list.Add(textBoxpacEgn.Text);
+                        int i = list.Count;
+                        if (!databaseman.Checker(i, list))
                         {
                             MessageBox.Show("String can't be empty");
                             break;
                         }
                         else
                         {
-                            
+                            pacient.PacName = textBoxPacName.Text;
+                            pacient.Parent1 = comboBoxpacPar.Text;
+                            pacient.Doctor1 = comboBoxpacDoc.Text;
+                            pacient.Phone = textBoxpacPhone.Text;
+                            pacient.Egn = textBoxpacEgn.Text;
                         }
 
 
@@ -296,12 +297,14 @@ namespace Hospital_Project
                     case "Workers":
                         Workers worker = new Workers();
                         worker.ID = id;
-                        if (string.IsNullOrEmpty(textBoxworName.Text) ||
-                            string.IsNullOrEmpty(textBoxworPhone.Text) ||
-                            string.IsNullOrEmpty(textBoxworSal.Text) ||
-                            string.IsNullOrEmpty(textBoxworEmail.Text) ||
-                            string.IsNullOrEmpty(comboBoxworPos.Text)
-                            )
+                        list = new List<string>();
+                        list.Add(textBoxworName.Text);
+                        list.Add(textBoxworPhone.Text);
+                        list.Add(textBoxworSal.Text);
+                        list.Add(textBoxworEmail.Text);
+                        list.Add(comboBoxworPos.Text);
+                        i = list.Count;
+                        if (!databaseman.Checker(i, list))
                         {
                             MessageBox.Show("String can't be empty");
                             break;
