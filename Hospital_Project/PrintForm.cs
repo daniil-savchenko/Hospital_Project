@@ -657,7 +657,32 @@ namespace Hospital_Project
 
         private void button2_Click(object sender, EventArgs e)
         {
+            DataBaseManager dbm = new DataBaseManager();
 
+            switch (tablename)
+            {
+                case "Pacients":
+                    dbm.DeletePacientData(id);
+                    break;
+
+                case "Workers":
+                    break;
+
+                case "Doctors":
+                    break;
+
+                case "Parents":
+                    break;
+
+                case "Positions":
+                    break;
+
+                case "Reservations":
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }
