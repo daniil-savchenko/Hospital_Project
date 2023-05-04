@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -63,7 +64,7 @@ namespace Hospital_Project
             DataBaseManager cmd = new DataBaseManager();
             dataGridView.AutoResizeColumns();
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridView.DataSource = cmd.SelectWokrker();
+            dataGridView.DataSource = cmd.SelectWorker();
             tablename = "Workers";
             panel3.Show();
             panel3.BringToFront();
@@ -209,7 +210,7 @@ namespace Hospital_Project
                         list.Add(textBoxpacPhone.Text);
                         list.Add(textBoxpacEgn.Text);
                         int i = list.Count;
-                        if (!databaseman.Checker(i, list))
+                        if (databaseman.Checker(list))
                         {
                             MessageBox.Show("String can't be empty");
                             break;
@@ -291,6 +292,10 @@ namespace Hospital_Project
                         if (databaseman.UpdatePacientTable(pacient))
                         {
                             MessageBox.Show("Data was updated");
+                            dataGridView.AutoResizeColumns();
+                            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                            dataGridView.DataSource = databaseman.SelectPacient();
+                            break;
                         }
                         else MessageBox.Show("Data was NOT updated");
                         break;
@@ -304,7 +309,7 @@ namespace Hospital_Project
                         list.Add(textBoxworEmail.Text);
                         list.Add(comboBoxworPos.Text);
                         i = list.Count;
-                        if (!databaseman.Checker(i, list))
+                        if (databaseman.Checker(list))
                         {
                             MessageBox.Show("String can't be empty");
                             break;
@@ -349,21 +354,26 @@ namespace Hospital_Project
                             con.Close();
                         }
 
-                        
-                        
-
                         if (databaseman.UpdateWorkerTable(worker))
                         {
                             MessageBox.Show("Data was updated");
+                            dataGridView.AutoResizeColumns();
+                            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                            dataGridView.DataSource = databaseman.SelectWorker();
+                            break;
                         } else MessageBox.Show("Data was NOT updated");
                         break;
                     case "Doctors":
                         worker = new Workers();
                         worker.ID = id;
-                        if (string.IsNullOrEmpty(textBoxdocName.Text) ||
-                        string.IsNullOrEmpty(textBoxdocPhone.Text) ||
-                        string.IsNullOrEmpty(textBoxdocEmail.Text) ||
-                        string.IsNullOrEmpty(textBoxdocSal.Text) )
+
+                        list = new List<string>();
+                        list.Add(textBoxdocName.Text);
+                        list.Add(textBoxdocPhone.Text);
+                        list.Add(textBoxdocEmail.Text);
+                        list.Add(textBoxdocSal.Text);
+
+                        if (databaseman.Checker(list))
                         {
                             MessageBox.Show("String can't be empty");
                             break;
@@ -382,17 +392,23 @@ namespace Hospital_Project
                         if (databaseman.UpdateDoctorsTable(worker))
                         {
                             MessageBox.Show("Data was updated");
+                            dataGridView.AutoResizeColumns();
+                            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                            dataGridView.DataSource = databaseman.SelectDoctor();
+                            break;
                         }
                         else MessageBox.Show("Data was NOT updated");
                         break;
                     case "Parents":
                         Parents parent = new Parents();
                         parent.ID = id;
-                        if (
-                            string.IsNullOrEmpty(textBoxparName.Text) ||
-                            string.IsNullOrEmpty(textBoxparPhone.Text) ||
-                            string.IsNullOrEmpty(textBoxparEgn.Text)
-                            )
+                        list = new List<string>();
+
+                        list.Add(textBoxparName.Text);
+                        list.Add(textBoxparPhone.Text);
+                        list.Add(textBoxparEgn.Text);
+
+                        if (databaseman.Checker(list))
                         {
                             parent.ParName = textBoxparName.Text;
                             if (
@@ -411,17 +427,20 @@ namespace Hospital_Project
                         if (databaseman.UpdateParentTable(parent))
                         {
                             MessageBox.Show("Data was updated");
+                            dataGridView.AutoResizeColumns();
+                            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                            dataGridView.DataSource = databaseman.SelectParents();
+                            break;
                         } else MessageBox.Show("Data was NOT updated");
                         break;
                     case "Reservations":
                         Reservations reservations= new Reservations();
                         reservations.ID = id;
-
-                        if (
-                            string.IsNullOrEmpty(comboBoxresDoc.Text) ||
-                            string.IsNullOrEmpty(comboBoxresPac.Text) ||
-                            string.IsNullOrEmpty(dateTimePicker1.Text)
-                            )
+                        list = new List<string>();
+                        list.Add(comboBoxresDoc.Text);
+                        list.Add(comboBoxresPac.Text);
+                        list.Add(dateTimePicker1.Text);
+                        if (databaseman.Checker(list))
                         {
                             MessageBox.Show("String can't be empty");
                             break;
@@ -489,13 +508,18 @@ namespace Hospital_Project
                         if (databaseman.UpdateReservationsTable(reservations))
                         {
                             MessageBox.Show("Data was updated");
+                            dataGridView.AutoResizeColumns();
+                            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                            dataGridView.DataSource = databaseman.SelectReservations();
+                            break;
                         } else MessageBox.Show("Data was NOT updated");
                         break;
                     case "Positions":
                         Positions positions = new Positions();
                         positions.ID = id;
-                        if (string.IsNullOrEmpty(textBoxposName.Text)
-                            )
+                        list = new List<string>();
+                        list.Add(textBoxposName.Text);
+                        if (databaseman.Checker(list))
                         {
                             MessageBox.Show("String can't be empty");
                             break;
@@ -504,6 +528,9 @@ namespace Hospital_Project
                         if (databaseman.UpdatePositionsTable(positions))
                         {
                             MessageBox.Show("Data was updated");
+                            dataGridView.AutoResizeColumns();
+                            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                            dataGridView.DataSource = databaseman.SelectPositions();
                             break;
                         } else MessageBox.Show("Data was NOT updated");
                         break;
@@ -662,22 +689,69 @@ namespace Hospital_Project
             switch (tablename)
             {
                 case "Pacients":
-                    dbm.DeletePacientData(id);
+                    if (dbm.DeletePacientData(id))
+                    {
+                        MessageBox.Show("Item was deleted");
+                        dataGridView.AutoResizeColumns();
+                        dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        dataGridView.DataSource = dbm.SelectPacient();
+                    }
+                    else MessageBox.Show("Data was NOT Deleted");
                     break;
 
                 case "Workers":
+                    if (dbm.DeleteWorkerData(id))
+                    {
+                        MessageBox.Show("Item was deleted");
+                        dataGridView.AutoResizeColumns();
+                        dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        dataGridView.DataSource = dbm.SelectWorker();
+                    }
+                    else MessageBox.Show("Data was NOT Deleted");
                     break;
 
                 case "Doctors":
+                    if (dbm.DeleteDoctorData(id))
+                    {
+                        MessageBox.Show("Item was deleted");
+                        dataGridView.AutoResizeColumns();
+                        dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        dataGridView.DataSource = dbm.SelectDoctor();
+                    }
+                    else MessageBox.Show("Data was NOT Deleted");
                     break;
 
                 case "Parents":
+                    if (dbm.DeleteParentsData(id))
+                    {
+                        MessageBox.Show("Item was deleted");
+                        dataGridView.AutoResizeColumns();
+                        dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        dataGridView.DataSource = dbm.SelectParents();
+                    }
+                    else MessageBox.Show("Data was NOT Deleted");
                     break;
 
                 case "Positions":
+                    if (dbm.DeletePositionsData(id))
+                    {
+                        MessageBox.Show("Item was deleted");
+                        dataGridView.AutoResizeColumns();
+                        dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        dataGridView.DataSource = dbm.SelectPositions();
+                    }
+                    else MessageBox.Show("Data was NOT Deleted");
                     break;
 
                 case "Reservations":
+                    if (dbm.DeleteReservData(id))
+                    {
+                        MessageBox.Show("Item was deleted");
+                        dataGridView.AutoResizeColumns();
+                        dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                        dataGridView.DataSource = dbm.SelectReservations();
+                    }
+                    else MessageBox.Show("Data was NOT Deleted");
                     break;
 
                 default:

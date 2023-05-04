@@ -158,7 +158,11 @@ namespace Hospital_Project.Classes
                 adb.Dispose();
                 foreach (DataRow row in table.Rows)
                 {
-                    idd++;
+                    if (int.Parse(row["ID"].ToString()) == idd)
+                    {
+                        idd++;
+                    }
+                    else break;
                 }
                 con.Close();
             }
@@ -202,7 +206,11 @@ namespace Hospital_Project.Classes
                 adb.Dispose();
                 foreach (DataRow row in table.Rows)
                 {
-                    idd++;
+                    if (int.Parse(row["ID"].ToString()) == idd)
+                    {
+                        idd++;
+                    }
+                    else break;
                 }
                 con.Close();
             }
@@ -248,7 +256,11 @@ namespace Hospital_Project.Classes
                 adb.Dispose();
                 foreach (DataRow row in table.Rows)
                 {
-                    idd++;
+                    if (int.Parse(row["ID"].ToString()) == idd)
+                    {
+                        idd++;
+                    }
+                    else break;
                 }
                 con.Close();
             }
@@ -347,7 +359,11 @@ namespace Hospital_Project.Classes
                         adb.Dispose();
                         foreach (DataRow row in table.Rows)
                         {
-                            idd++;
+                            if (int.Parse(row["ID"].ToString()) == idd)
+                            {
+                                idd++;
+                            }
+                            else break;
                         }
                     }
 
@@ -387,7 +403,11 @@ namespace Hospital_Project.Classes
 
                 foreach (DataRow row in table.Rows)
                 {
-                    idd++;
+                    if (int.Parse(row["ID"].ToString()) == idd)
+                    {
+                        idd++;
+                    }
+                    else break;
                 }
                 con.Close();
             }
@@ -480,7 +500,7 @@ namespace Hospital_Project.Classes
             return table;
         }
 
-        public DataTable SelectWokrker()
+        public DataTable SelectWorker()
         {
             select = "SELECT Workers.ID, Workers.WorkerName as Name, Workers.Phone, Workers.email, Positions.posName as Position, Workers.Salary FROM Workers INNER JOIN Positions ON Workers.Position = Positions.ID";
             SqlCommand cmd = new SqlCommand(select, con);
@@ -557,7 +577,7 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
             finally
             {
@@ -587,7 +607,7 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
             finally
             {
@@ -615,7 +635,7 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
             finally
             {
@@ -643,9 +663,7 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-
-                throw;
-
+                return false;
             }
             finally
             {
@@ -671,9 +689,7 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-
-                throw;
-
+                return false;
             }
             finally
             {
@@ -700,7 +716,7 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
             finally { con.Close(); }
         }
@@ -721,8 +737,9 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                throw;
-            }finally { con.Close(); }
+                return false;
+            }
+            finally { con.Close(); }
 
         }
 
@@ -742,7 +759,7 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
             finally { con.Close(); }
         }
@@ -763,7 +780,7 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
             finally { con.Close(); }
         }
@@ -784,14 +801,12 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
             finally { con.Close(); }
         }
 
         public bool DeleteReservData(int id)
-
-
         {
             sqlcom = "DELETE FROM Reservations Where ID = @id";
 
@@ -807,7 +822,7 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
             finally { con.Close(); }
         }
@@ -828,29 +843,30 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
             finally { con.Close(); }
         }
 
-        public bool Checker(int i, List<string> list)
+        public bool Checker(List<string> list)
         {
             try
             {
-                for (i = 0; i < list.Count; i++)
+                for (int i = 0; i < list.Count; i++)
                 {
                     if (string.IsNullOrEmpty(list[i]))
                     {
-                        return false;
+                        return true;
                     }
                 }
-                return true;
+                return false;
             }
             catch (Exception)
             {
                 throw;
             }
         }
+
     }
     
 }
