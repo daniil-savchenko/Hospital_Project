@@ -549,10 +549,6 @@ namespace Hospital_Project
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
-            
-
-
-
         }
 
         private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -623,7 +619,6 @@ namespace Hospital_Project
                 adb.Fill(table);
                 adb.Dispose();
             }
-            Dictionary<int, string> dic = new Dictionary<int, string>();
             foreach (DataRow row in table.Rows)
             {
                 string name = row["parName"].ToString();
@@ -680,6 +675,8 @@ namespace Hospital_Project
             {
                 comboBoxresPac.Items.Add(row["pacName"]);
             }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -695,6 +692,7 @@ namespace Hospital_Project
                         dataGridView.AutoResizeColumns();
                         dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                         dataGridView.DataSource = dbm.SelectPacient();
+
                     }
                     else MessageBox.Show("Data was NOT Deleted");
                     break;
@@ -757,6 +755,73 @@ namespace Hospital_Project
                 default:
                     break;
             }
+
+            var select = "SELECT * FROM Parents";
+            using (SqlCommand cmd = new SqlCommand(select, con))
+            {
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
+                adb.Fill(table);
+                adb.Dispose();
+            }
+            foreach (DataRow row in table.Rows)
+            {
+                string name = row["parName"].ToString();
+                comboBoxpacPar.Items.Add(name);
+            }
+
+            select = "SELECT * FROM Doctors";
+            using (SqlCommand cmd = new SqlCommand(select, con))
+            {
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
+                adb.Fill(table);
+                adb.Dispose();
+            }
+            foreach (DataRow row in table.Rows)
+            {
+                comboBoxpacDoc.Items.Add(row["workerName"]);
+            }
+
+            select = "SELECT * FROM Positions";
+            using (SqlCommand cmd = new SqlCommand(select, con))
+            {
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
+                adb.Fill(table);
+                adb.Dispose();
+            }
+            foreach (DataRow row in table.Rows)
+            {
+                comboBoxworPos.Items.Add(row["posName"]);
+            }
+
+            select = "SELECT * FROM Doctors";
+            using (SqlCommand cmd = new SqlCommand(select, con))
+            {
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
+                adb.Fill(table);
+                adb.Dispose();
+            }
+            foreach (DataRow row in table.Rows)
+            {
+                comboBoxresDoc.Items.Add(row["workerName"]);
+            }
+            select = "SELECT * FROM Pacients";
+            using (SqlCommand cmd = new SqlCommand(select, con))
+            {
+                adb = new SqlDataAdapter(cmd);
+                table = new DataTable();
+                adb.Fill(table);
+                adb.Dispose();
+            }
+            foreach (DataRow row in table.Rows)
+            {
+                comboBoxresPac.Items.Add(row["pacName"]);
+            }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
     }
 }
