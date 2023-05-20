@@ -18,11 +18,6 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Hospital_Project.Classes
 {
-    internal class ComboboxItem
-    {
-        public string Text { get; set; }
-        public object Value { get; set; }
-    }
     internal class DataBaseManager
     {
         private int idd = 1;
