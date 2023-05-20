@@ -18,7 +18,6 @@ namespace Hospital_Project
 {
     public partial class PacientForm : Form
     {
-        // MessageBox.Show(this.NameTextParentP.GetItemText(this.NameTextParentP.SelectedItem)); // for sql INSERT INTO
         
         public PacientForm()
         {
@@ -59,8 +58,8 @@ namespace Hospital_Project
 
             }
             pac.PacName = nameTextBoxP.Text;
-            pac.Parent1 = NameTextParentP.Text;
-            pac.Doctor1 = NameTextDoctorP.Text;
+            pac.Parent1 = NameTextParentP.SelectedValue.ToString();
+            pac.Doctor1 = NameTextDoctorP.SelectedValue.ToString();
             if (string.IsNullOrEmpty(pac.PacName) || 
                 string.IsNullOrEmpty(pac.Phone) ||
                 string.IsNullOrEmpty(pac.Egn) ||
@@ -82,10 +81,10 @@ namespace Hospital_Project
             }
             else
             {
-                MessageBox.Show("something went with Data input");
+                MessageBox.Show("Error in inserting data into DataBase");
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-            } 
+            }
                 
         }
 
@@ -109,10 +108,11 @@ namespace Hospital_Project
                 DataTable table = new DataTable();
                 adb.Fill(table);
                 adb.Dispose();
-                foreach (DataRow row in table.Rows)
-                {
-                    NameTextParentP.Items.Add(row["parName"].ToString());
-                }
+
+                NameTextParentP.ValueMember = "ID";
+                NameTextParentP.DisplayMember = "parName";
+                NameTextParentP.DataSource = table;
+
                 connection.Close();
             }
 
@@ -124,10 +124,9 @@ namespace Hospital_Project
                 DataTable table = new DataTable();
                 adb.Fill(table);
                 adb.Dispose();
-                foreach (DataRow row in table.Rows)
-                {
-                    NameTextDoctorP.Items.Add(row["workerName"].ToString());
-                }
+                NameTextDoctorP.ValueMember = "ID";
+                NameTextDoctorP.DisplayMember = "workerName";
+                NameTextDoctorP.DataSource = table;
                 connection.Close();
             }
             GC.Collect();

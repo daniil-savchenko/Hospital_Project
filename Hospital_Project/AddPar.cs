@@ -22,8 +22,6 @@ namespace Hospital_Project
         {
             InitializeComponent();
         }
-        //phoneregex.IsMatch(textBox2.Text)
-        //egnregex.IsMatch(textBox3.Text)
         private void button1_Click(object sender, EventArgs e)
         {
             Parents parent = new Parents();

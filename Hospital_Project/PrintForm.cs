@@ -1,21 +1,11 @@
 ﻿using Hospital_Project.Classes;
-using Hospital_Project.PrintForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.WebRequestMethods;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Hospital_Project
 {
@@ -218,67 +208,10 @@ namespace Hospital_Project
                         else
                         {
                             pacient.PacName = textBoxPacName.Text;
-                            pacient.Parent1 = comboBoxpacPar.Text;
-                            pacient.Doctor1 = comboBoxpacDoc.Text;
-                            pacient.Phone = textBoxpacPhone.Text;
-                            pacient.Egn = textBoxpacEgn.Text;
+                            pacient.Parent1 = comboBoxpacPar.SelectedValue.ToString();
+                            pacient.Doctor1 = comboBoxpacDoc.SelectedValue.ToString();
                         }
 
-
-                        var select = "SELECT ID from Doctors where workerName = @Doctor";
-
-                        using (SqlCommand cmd = new SqlCommand(select, con))
-                        {
-                            con.Open();
-                            adb = new SqlDataAdapter(cmd);
-                            table = new DataTable();
-
-                            cmd.Parameters.AddWithValue("@Doctor", pacient.Doctor1);
-
-                            adb.Fill(table);
-                            adb.Dispose();
-                            if (table.Rows.Count >= 1)
-                            {
-                                foreach (DataRow row in table.Rows)
-                                {
-                                    pacient.Doctor1 = row["ID"].ToString();
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("No such Doctor");
-                                break;
-                            }
-
-                            con.Close();
-                        }
-
-                        select = "SELECT ID from Parents where parName = @Parent";
-                        using (SqlCommand cmd = new SqlCommand(select, con))
-                        {
-                            con.Open();
-                            adb = new SqlDataAdapter(cmd);
-                            table = new DataTable();
-
-                            cmd.Parameters.AddWithValue("@Parent", pacient.Parent1);
-
-                            adb.Fill(table);
-                            adb.Dispose();
-                            if (table.Rows.Count >= 1)
-                            {
-                                foreach (DataRow row in table.Rows)
-                                {
-                                    pacient.Parent1 = row["ID"].ToString();
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("No such Parent");
-                                break;
-                            }
-
-                            con.Close();
-                        }
 
                         if (phoneregex.IsMatch(textBoxpacPhone.Text) && egnregex.IsMatch(textBoxpacEgn.Text))
                         {
@@ -308,7 +241,6 @@ namespace Hospital_Project
                         list.Add(textBoxworSal.Text);
                         list.Add(textBoxworEmail.Text);
                         list.Add(comboBoxworPos.Text);
-                        i = list.Count;
                         if (databaseman.Checker(list))
                         {
                             MessageBox.Show("String can't be empty");
@@ -318,6 +250,7 @@ namespace Hospital_Project
                         {
                             worker.WorkerName = textBoxworName.Text;
                             worker.Salary = textBoxworSal.Text;
+                            worker.Position1 = comboBoxworPos.SelectedValue.ToString();
                             if (phoneregex.IsMatch(textBoxworPhone.Text) &&
                             emailregex.IsMatch(textBoxworEmail.Text)
                             )
@@ -326,33 +259,7 @@ namespace Hospital_Project
                                 worker.Email = textBoxworEmail.Text;
                             }
                         }
-                        select = "SELECT ID from Positions where posName = @pos";
-
-                        using (SqlCommand cmd = new SqlCommand(select, con))
-                        {
-                            con.Open();
-                            adb = new SqlDataAdapter(cmd);
-                            table = new DataTable();
-
-                            cmd.Parameters.AddWithValue("@pos", comboBoxworPos.Text);
-
-                            adb.Fill(table);
-                            adb.Dispose();
-                            if (table.Rows.Count >= 1)
-                            {
-                                foreach (DataRow row in table.Rows)
-                                {
-                                    worker.Position1 = row["ID"].ToString();
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("No such position");
-                                break;
-                            }
-
-                            con.Close();
-                        }
+                       
 
                         if (databaseman.UpdateWorkerTable(worker))
                         {
@@ -447,64 +354,10 @@ namespace Hospital_Project
                         } else
                         {
                             reservations.Thedate = dateTimePicker1.Text;
-                        }
-                        select = "SELECT ID from Doctors where workerName = @Doctor";
-                        using (SqlCommand cmd = new SqlCommand(select, con))
-                        {
-                            con.Open();
-                            adb = new SqlDataAdapter(cmd);
-                            table = new DataTable();
-
-                            cmd.Parameters.AddWithValue("@Doctor", comboBoxresDoc.Text);
-
-                            adb.Fill(table);
-                            adb.Dispose();
-                            if (table.Rows.Count >= 1)
-                            {
-                                foreach (DataRow row in table.Rows)
-                                {
-                                    reservations.DoctorId = row["ID"].ToString();
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("No such Doctor");
-                                con.Close();
-                                break;
-                            }
-                            con.Close();
+                            reservations.DoctorId = comboBoxresDoc.SelectedValue.ToString();
+                            reservations.PacientId = comboBoxresPac.SelectedValue.ToString();
                         }
 
-                        select = "SELECT ID from Pacients where pacName = @pacient";
-
-                        using (SqlCommand cmd = new SqlCommand(select,con))
-                        {
-                            con.Open();
-
-                            adb = new SqlDataAdapter(cmd);
-                            table = new DataTable();
-
-                            cmd.Parameters.AddWithValue("@pacient", comboBoxresPac.Text);
-
-                            adb.Fill(table);
-                            adb.Dispose();
-                            if (table.Rows.Count >= 1)
-                            {
-                                foreach (DataRow row in table.Rows)
-                                {
-                                    reservations.PacientId = row["ID"].ToString();
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("No such Pacient");
-                                con.Close();
-                                break;
-                            }
-                            con.Close();
-                        }
-
-                        
                         if (databaseman.UpdateReservationsTable(reservations))
                         {
                             MessageBox.Show("Data was updated");
@@ -619,11 +472,11 @@ namespace Hospital_Project
                 adb.Fill(table);
                 adb.Dispose();
             }
-            foreach (DataRow row in table.Rows)
-            {
-                string name = row["parName"].ToString();
-                comboBoxpacPar.Items.Add(name);
-            }
+
+            comboBoxpacPar.DisplayMember = "parName";
+            comboBoxpacPar.ValueMember = "ID";
+            comboBoxpacPar.DataSource = table;
+
 
             select = "SELECT * FROM Doctors";
             using (SqlCommand cmd = new SqlCommand(select, con))
@@ -633,10 +486,14 @@ namespace Hospital_Project
                 adb.Fill(table);
                 adb.Dispose();
             }
-            foreach (DataRow row in table.Rows)
-            {
-                comboBoxpacDoc.Items.Add(row["workerName"]);
-            }
+
+            comboBoxpacDoc.DisplayMember = "workerName";
+            comboBoxpacDoc.ValueMember = "ID";
+            comboBoxpacDoc.DataSource = table;
+
+            comboBoxresDoc.DisplayMember = "workerName";
+            comboBoxresDoc.ValueMember = "ID";
+            comboBoxresDoc.DataSource = table;
 
             select = "SELECT * FROM Positions";
             using (SqlCommand cmd = new SqlCommand(select, con))
@@ -646,23 +503,11 @@ namespace Hospital_Project
                 adb.Fill(table);
                 adb.Dispose();
             }
-            foreach (DataRow row in table.Rows)
-            {
-                comboBoxworPos.Items.Add(row["posName"]);
-            }
 
-            select = "SELECT * FROM Doctors";
-            using (SqlCommand cmd = new SqlCommand(select, con))
-            {
-                adb = new SqlDataAdapter(cmd);
-                table = new DataTable();
-                adb.Fill(table);
-                adb.Dispose();
-            }
-            foreach (DataRow row in table.Rows)
-            {
-                comboBoxresDoc.Items.Add(row["workerName"]);
-            }
+            comboBoxworPos.DisplayMember = "posName";
+            comboBoxworPos.ValueMember = "ID";
+            comboBoxworPos.DataSource = table;
+
             select = "SELECT * FROM Pacients";
             using (SqlCommand cmd = new SqlCommand(select, con))
             {
@@ -671,10 +516,10 @@ namespace Hospital_Project
                 adb.Fill(table);
                 adb.Dispose();
             }
-            foreach (DataRow row in table.Rows)
-            {
-                comboBoxresPac.Items.Add(row["pacName"]);
-            }
+
+            comboBoxresPac.DisplayMember = "pacName";
+            comboBoxresPac.ValueMember = "ID";
+            comboBoxresPac.DataSource = table;
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -764,11 +609,11 @@ namespace Hospital_Project
                 adb.Fill(table);
                 adb.Dispose();
             }
-            foreach (DataRow row in table.Rows)
-            {
-                string name = row["parName"].ToString();
-                comboBoxpacPar.Items.Add(name);
-            }
+
+            comboBoxpacPar.DisplayMember = "parName";
+            comboBoxpacPar.ValueMember = "ID";
+            comboBoxpacPar.DataSource = table;
+
 
             select = "SELECT * FROM Doctors";
             using (SqlCommand cmd = new SqlCommand(select, con))
@@ -778,10 +623,14 @@ namespace Hospital_Project
                 adb.Fill(table);
                 adb.Dispose();
             }
-            foreach (DataRow row in table.Rows)
-            {
-                comboBoxpacDoc.Items.Add(row["workerName"]);
-            }
+
+            comboBoxpacDoc.DisplayMember = "workerName";
+            comboBoxpacDoc.ValueMember = "ID";
+            comboBoxpacDoc.DataSource = table;
+
+            comboBoxresDoc.DisplayMember = "workerName";
+            comboBoxresDoc.ValueMember = "ID";
+            comboBoxresDoc.DataSource = table;
 
             select = "SELECT * FROM Positions";
             using (SqlCommand cmd = new SqlCommand(select, con))
@@ -791,23 +640,11 @@ namespace Hospital_Project
                 adb.Fill(table);
                 adb.Dispose();
             }
-            foreach (DataRow row in table.Rows)
-            {
-                comboBoxworPos.Items.Add(row["posName"]);
-            }
 
-            select = "SELECT * FROM Doctors";
-            using (SqlCommand cmd = new SqlCommand(select, con))
-            {
-                adb = new SqlDataAdapter(cmd);
-                table = new DataTable();
-                adb.Fill(table);
-                adb.Dispose();
-            }
-            foreach (DataRow row in table.Rows)
-            {
-                comboBoxresDoc.Items.Add(row["workerName"]);
-            }
+            comboBoxworPos.DisplayMember = "posName";
+            comboBoxworPos.ValueMember = "ID";
+            comboBoxworPos.DataSource = table;
+
             select = "SELECT * FROM Pacients";
             using (SqlCommand cmd = new SqlCommand(select, con))
             {
@@ -816,10 +653,10 @@ namespace Hospital_Project
                 adb.Fill(table);
                 adb.Dispose();
             }
-            foreach (DataRow row in table.Rows)
-            {
-                comboBoxresPac.Items.Add(row["pacName"]);
-            }
+
+            comboBoxresPac.DisplayMember = "pacName";
+            comboBoxresPac.ValueMember = "ID";
+            comboBoxresPac.DataSource = table;
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }

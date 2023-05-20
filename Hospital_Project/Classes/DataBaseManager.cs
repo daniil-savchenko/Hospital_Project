@@ -59,62 +59,6 @@ namespace Hospital_Project.Classes
                 con.Close();
             }
 
-            select = "SELECT ID from Doctors where workerName = @Doctor";
-
-            using (SqlCommand cmd = new SqlCommand(select, con))
-            {
-                con.Open();
-                adb = new SqlDataAdapter(cmd);
-                table = new DataTable();
-
-                cmd.Parameters.AddWithValue("@Doctor", pacient.Doctor1);
-
-                adb.Fill(table);
-                adb.Dispose();
-                if (table.Rows.Count >= 1)
-                {
-                    foreach (DataRow row in table.Rows)
-                    {
-                        pacient.Doctor1 = row["ID"].ToString();
-                    }
-                }
-                else
-                {
-                    pacient.Doctor1 = string.Empty;
-                }
-
-                con.Close();
-            }
-
-            select = "SELECT ID from Parents where parName = @Parent";
-            using (SqlCommand cmd = new SqlCommand(select, con))
-            {
-                con.Open();
-                adb = new SqlDataAdapter(cmd);
-                table = new DataTable();
-
-                cmd.Parameters.AddWithValue("@Parent", pacient.Parent1);
-
-                adb.Fill(table);
-                adb.Dispose();
-                if (table.Rows.Count >= 1)
-                {
-                    foreach (DataRow row in table.Rows)
-                    {
-                        pacient.Parent1 = row["ID"].ToString();
-                    }
-                }
-                else
-                {
-                    pacient.Parent1 = string.Empty;
-                }
-
-
-                con.Close();
-            }
-
-
-
             try
             {
                 con.Open();
@@ -132,7 +76,7 @@ namespace Hospital_Project.Classes
             }
             catch (Exception)
             {
-                MessageBox.Show("Error in inserting data into DataBase");
+                
                 return false;
             }
             finally
@@ -239,13 +183,12 @@ namespace Hospital_Project.Classes
             }
         }
 
-        public bool AddWorker(Workers worker)
+        public bool AddWorker(Workers worker, bool isDoctor)
         {
             SqlDataAdapter adb;
             DataTable table;
             sqlcom = "INSERT INTO Workers Values(@ID, @workerName, @phone, @email, @Position, @salary)";
             select = "SELECT * FROM Workers";
-            var isDoctor = false;
 
             using (SqlCommand cmd = new SqlCommand(select, con))
             {
@@ -261,36 +204,6 @@ namespace Hospital_Project.Classes
                         idd++;
                     }
                     else break;
-                }
-                con.Close();
-            }
-
-            if (worker.Position1 == "Doctor")
-            {
-                isDoctor = true;
-            }
-
-            select = "SELECT ID from Positions where posName = @name";
-            using (SqlCommand cmd = new SqlCommand(select, con))
-            {
-                con.Open();
-                adb = new SqlDataAdapter(cmd);
-                table = new DataTable();
-
-                cmd.Parameters.AddWithValue("@name", worker.Position1);
-
-                adb.Fill(table);
-                adb.Dispose();
-                if (table.Rows.Count >= 1)
-                {
-                    foreach (DataRow row in table.Rows)
-                    {
-                        worker.Position1 = row["ID"].ToString();
-                    }
-                }
-                else
-                {
-                    worker.Position1 = string.Empty;
                 }
                 con.Close();
             }
@@ -416,53 +329,7 @@ namespace Hospital_Project.Classes
             {
                 using (SqlCommand cmd = new SqlCommand(sqlcom, con))
                 {
-                    select = "SELECT * FROM Pacients where pacName = @name";
-                    using (SqlCommand sel = new SqlCommand(select, con))
-                    {
-                        con.Open();
-                        adb = new SqlDataAdapter(sel);
-                        table = new DataTable();
-                        sel.Parameters.AddWithValue("@name", reservation.PacientId);
-                        adb.Fill(table);
-                        adb.Dispose();
-                        if (table.Rows.Count == 1)
-                        {
-                            foreach (DataRow row in table.Rows)
-                            {
-                                reservation.PacientId = row["ID"].ToString();
-                            }
-                        }
-                        else
-                        {
-                            reservation.PacientId = string.Empty;
-                        }
-                        con.Close();
-                    }
-                    select = "SELECT * FROM Doctors where workerName = @name";
-                    using (SqlCommand sel = new SqlCommand(select, con))
-                    {
-                        con.Open();
-                        adb = new SqlDataAdapter(sel);
-                        table = new DataTable();
-                        sel.Parameters.AddWithValue("@name", reservation.DoctorId);
-                        adb.Fill(table);
-                        adb.Dispose();
-
-                        if (table.Rows.Count >= 1)
-                        {
-                            foreach (DataRow row in table.Rows)
-                            {
-                                reservation.DoctorId = row["ID"].ToString();
-                            }
-                        }
-                        else
-                        {
-                            reservation.DoctorId = string.Empty;
-                        }
-                        con.Close();
-                    }
-                    if (reservation.DoctorId != string.Empty && reservation.PacientId != string.Empty)
-                    {
+                    
                         con.Open();
                         cmd.Parameters.AddWithValue("@ID", idd);
                         cmd.Parameters.AddWithValue("@pac", reservation.PacientId);
@@ -470,8 +337,6 @@ namespace Hospital_Project.Classes
                         cmd.Parameters.AddWithValue("@date", reservation.Thedate);
                         cmd.ExecuteNonQuery();
                         return true;
-                    }
-                    else return false;
                 }
             }
             catch (Exception)
@@ -754,6 +619,7 @@ namespace Hospital_Project.Classes
                 {
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.ExecuteNonQuery();
+                    
                     return true;
                 }
             }

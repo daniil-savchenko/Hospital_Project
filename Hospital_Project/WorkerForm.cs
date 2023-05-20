@@ -29,11 +29,13 @@ namespace Hospital_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(PositionTextBoxW.Text.ToString());
             Workers worker = new Workers();
             DataBaseManager cmd = new DataBaseManager();
             Regex reg = new Regex(@"(@)(.+)$");
             Regex phoneregex = new Regex(@"^0[0-9]{9}$");
             string pattern = @"(@)(.+)$";
+            bool isdoc = false;
             if (Regex.IsMatch(EmailTextBoxW.Text, pattern, RegexOptions.IgnoreCase))
             {
                 worker.Email = EmailTextBoxW.Text;
@@ -58,8 +60,13 @@ namespace Hospital_Project
             }
 
             worker.WorkerName = NameTextBoxW.Text;
-            worker.Position1 = PositionTextBoxW.Text;
+            worker.Position1 = PositionTextBoxW.SelectedValue.ToString();
             worker.Salary = SalaryTextBoxW.Text;
+            
+            if (PositionTextBoxW.Text.ToString().ToLower() == "doctor")
+            {
+                isdoc = true;
+            }
 
             if (
                 string.IsNullOrEmpty(worker.WorkerName) ||
@@ -74,7 +81,7 @@ namespace Hospital_Project
                 GC.WaitForPendingFinalizers();
                 return;
             }
-            else if (cmd.AddWorker(worker))
+            else if (cmd.AddWorker(worker, isdoc))
             {
                 MessageBox.Show("Data writing was successed");
                 GC.Collect();
@@ -102,10 +109,11 @@ namespace Hospital_Project
                 DataTable table = new DataTable();
                 adb.Fill(table);
                 adb.Dispose();
-                foreach (DataRow row in table.Rows)
-                {
-                    PositionTextBoxW.Items.Add(row["posName"].ToString());
-                }
+
+                PositionTextBoxW.DisplayMember = "posName";
+                PositionTextBoxW.ValueMember = "ID";
+                PositionTextBoxW.DataSource = table;
+                
                 connection.Close();
             }
             GC.Collect();

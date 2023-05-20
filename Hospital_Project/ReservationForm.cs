@@ -26,8 +26,8 @@ namespace Hospital_Project
         {
             DataBaseManager cmd = new DataBaseManager();
             Reservations res = new Reservations();
-            res.DoctorId = DocBox.Text;
-            res.PacientId = PacientBox.Text;
+            res.DoctorId = DocBox.SelectedValue.ToString();
+            res.PacientId = PacientBox.SelectedValue.ToString();
             res.Thedate = dateTimePicker.Text;
 
             if (cmd.AddReservation(res))
@@ -53,10 +53,11 @@ namespace Hospital_Project
                 table = new DataTable();
                 adb.Fill(table);
                 adb.Dispose();
-                foreach (DataRow row in table.Rows)
-                {
-                    PacientBox.Items.Add(row["pacName"].ToString());
-                }
+
+                PacientBox.ValueMember = "ID";
+                PacientBox.DisplayMember = "pacName";
+                PacientBox.DataSource = table;
+
                 connection.Close();
             }
             select = "SELECT * FROM Doctors";
@@ -66,10 +67,10 @@ namespace Hospital_Project
                 table = new DataTable();
                 adb.Fill(table);
                 adb.Dispose();
-                foreach (DataRow row in table.Rows)
-                {
-                    DocBox.Items.Add(row["workerName"].ToString());
-                }
+                DocBox.ValueMember = "ID";
+                DocBox.DisplayMember = "workerName";
+                DocBox.DataSource = table;
+
                 connection.Close();
             }
             GC.Collect();
