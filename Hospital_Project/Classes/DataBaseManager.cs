@@ -461,6 +461,8 @@ namespace Hospital_Project.Classes
                     cmd.Parameters.AddWithValue("@sal", worker.Salary);
                     cmd.Parameters.AddWithValue("@id", worker.ID);
                     cmd.ExecuteNonQuery();
+
+
                     return true;
                 }
 
@@ -603,7 +605,7 @@ namespace Hospital_Project.Classes
 
         }
 
-        public bool DeleteWorkerData(int id)
+        public bool DeleteWorkerData(Workers worker, bool isdoc)
         {
             sqlcom = "DELETE FROM Workers Where ID = @id";
 
@@ -612,7 +614,13 @@ namespace Hospital_Project.Classes
                 con.Open();
                 using (SqlCommand cmd = new SqlCommand(sqlcom, con))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@id", worker.ID);
+
+                    if (isdoc)
+                    {
+                        DeleteDoctorData(worker);
+                    }
+
                     cmd.ExecuteNonQuery();
                     
                     return true;
@@ -625,16 +633,17 @@ namespace Hospital_Project.Classes
             finally { con.Close(); }
         }
 
-        public bool DeleteDoctorData(int id)
+        public bool DeleteDoctorData(Workers worker)
         {
-            sqlcom = "DELETE FROM Doctors Where ID = @id";
+            sqlcom = "DELETE FROM Doctors Where WorkerName = @name AND phone = @phone";
 
             try
             {
                 con.Open();
                 using (SqlCommand cmd = new SqlCommand(sqlcom, con))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@name", worker.WorkerName);
+                    cmd.Parameters.AddWithValue("@phone", worker.Phone);
                     cmd.ExecuteNonQuery();
                     return true;
                 }

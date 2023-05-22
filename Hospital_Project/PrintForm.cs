@@ -543,7 +543,17 @@ namespace Hospital_Project
                     break;
 
                 case "Workers":
-                    if (dbm.DeleteWorkerData(id))
+                    Workers worker = new Workers();
+                    worker.ID = id;
+                    bool isdoc = false;
+                    worker.WorkerName = textBoxworName.Text;
+                    worker.Phone = textBoxworPhone.Text;
+                    if (comboBoxworPos.Text.ToLower() == "doctor")
+                    {
+                        isdoc = true;
+                    }
+
+                    if (dbm.DeleteWorkerData(worker,isdoc))
                     {
                         MessageBox.Show("Item was deleted");
                         dataGridView.AutoResizeColumns();
@@ -554,7 +564,8 @@ namespace Hospital_Project
                     break;
 
                 case "Doctors":
-                    if (dbm.DeleteDoctorData(id))
+                    worker = new Workers();
+                    if (dbm.DeleteDoctorData(worker))
                     {
                         MessageBox.Show("Item was deleted");
                         dataGridView.AutoResizeColumns();
